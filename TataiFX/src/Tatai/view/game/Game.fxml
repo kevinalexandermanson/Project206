@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" styleClass="root" stylesheets="@Login.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Tatai.view.game.GameController">
+   <children>
+      <AnchorPane fx:id="topPane" prefHeight="186.0" prefWidth="800.0" styleClass="topPane" stylesheets="@Login.css" AnchorPane.bottomAnchor="414.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Label fx:id="lblNowPlaying" layoutX="38.0" layoutY="26.0" text="Now Playing - [Practise Mode - Easy]">
+               <font>
+                  <Font name="BebasNeueBold" size="36.0" />
+               </font>
+            </Label>
+         </children></AnchorPane>
+      <AnchorPane fx:id="cardPane" layoutX="27.0" layoutY="76.0" prefHeight="472.0" prefWidth="539.0" styleClass="gamePane" stylesheets="@Login.css">
+         <children>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="192.0" layoutY="128.0" prefHeight="157.0" prefWidth="157.0" text="10" textAlignment="CENTER">
+               <font>
+                  <Font name="BebasNeueBold" size="96.0" />
+               </font>
+            </Label>
+            <JFXButton fx:id="btnRecord" layoutX="156.0" layoutY="333.0" prefHeight="72.0" prefWidth="227.0" styleClass="score" text="Record">
+               <font>
+                  <Font name="BebasNeueBold" size="36.0" />
+               </font>
+            </JFXButton>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="45.0" layoutY="14.0" prefHeight="128.0" prefWidth="452.0" text="Press Record, and say your answer in Te Reo clearly into the microphone. You have 3 seconds." textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font name="BebasNeueBold" size="24.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="scorePane" layoutX="591.0" layoutY="250.0" prefHeight="180.0" prefWidth="195.0" styleClass="score" stylesheets="@Login.css">
+         <children>
+            <Label layoutX="63.0" layoutY="14.0" text="Score">
+               <font>
+                  <Font name="BebasNeueBold" size="36.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblScoreNumber" alignment="CENTER" contentDisplay="CENTER" layoutX="1.0" layoutY="51.0" prefHeight="111.0" prefWidth="195.0" text="10/10" textAlignment="CENTER">
+               <font>
+                  <Font name="BebasNeueBold" size="72.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="questionPane" layoutX="591.0" layoutY="55.0" prefHeight="180.0" prefWidth="195.0" styleClass="score" stylesheets="@Login.css">
+         <children>
+            <Label layoutX="45.0" layoutY="14.0" text="Question">
+               <font>
+                  <Font name="BebasNeueBold" size="36.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblQuestionNumber" alignment="CENTER" contentDisplay="CENTER" layoutX="45.0" layoutY="51.0" prefHeight="111.0" prefWidth="105.0" text="10" textAlignment="CENTER">
+               <font>
+                  <Font name="BebasNeueBold" size="96.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <JFXButton fx:id="btnStatistics" alignment="CENTER_RIGHT" layoutX="592.0" layoutY="441.0" prefHeight="43.0" prefWidth="195.0" styleClass="score" text="Statistics" textAlignment="CENTER">
+         <font>
+            <Font name="BebasNeueBold" size="36.0" />
+         </font>
+      </JFXButton>
+      <JFXButton fx:id="btnQuit" alignment="CENTER" layoutX="591.0" layoutY="519.0" onAction="#btnQuitHandler" prefHeight="43.0" prefWidth="195.0" styleClass="score" text="Quit">
+         <font>
+            <Font name="BebasNeueBold" size="36.0" />
+         </font>
+      </JFXButton>
+      <MaterialDesignIconView fill="#212121" glyphName="CHART_LINE" layoutX="604.0" layoutY="485.0" size="30" text="" />
+   </children>
+</AnchorPane>

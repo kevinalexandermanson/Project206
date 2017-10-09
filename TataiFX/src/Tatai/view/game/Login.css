@@ -1,0 +1,20 @@
+.root {
+	-fx-background-color: #DDDDDD;
+	
+	
+}
+
+.score {
+	-fx-background-color: #757575;
+	-fx-background-radius: 8px;
+}
+
+.topPane{
+	-fx-background-color: #2196F3
+}
+
+.gamePane {
+	-fx-background-color: #FFFFFF;
+	-fx-background-radius: 8px;
+}
+
