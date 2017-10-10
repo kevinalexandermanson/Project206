@@ -18,7 +18,7 @@
          </children></AnchorPane>
       <AnchorPane fx:id="cardPane" layoutX="27.0" layoutY="76.0" prefHeight="472.0" prefWidth="539.0" styleClass="gamePane" stylesheets="@game.css">
          <children>
-            <Label fx:id="lblCurrentGameNumber" alignment="CENTER" contentDisplay="CENTER" layoutX="192.0" layoutY="128.0" prefHeight="157.0" prefWidth="157.0" text="10" textAlignment="CENTER">
+            <Label fx:id="lblCurrentGameNumber" alignment="CENTER" contentDisplay="CENTER" layoutX="-1.0" layoutY="128.0" prefHeight="157.0" prefWidth="539.0" text="10" textAlignment="CENTER">
                <font>
                   <Font name="BebasNeueBold" size="96.0" />
                </font>

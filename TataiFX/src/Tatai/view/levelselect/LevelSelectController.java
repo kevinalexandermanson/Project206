@@ -65,8 +65,8 @@ public class LevelSelectController implements Initializable {
 	
 	@FXML
 	private void selectModeHandler(ActionEvent event) throws IOException {
-		Parent parentGame = FXMLLoader.load(getClass().getResource("/Tatai/view/game/Game.fxml"));
-		/*FXMLLoader loader = new FXMLLoader();
+
+		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(getClass().getResource("/Tatai/view/game/Game.fxml"));
 		Parent parentGame = loader.load();
 		
@@ -85,7 +85,6 @@ public class LevelSelectController implements Initializable {
 		}
 
 		
-		*/
 		Scene sceneGame = new Scene(parentGame);
 		
 		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

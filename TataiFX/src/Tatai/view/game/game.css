@@ -4,6 +4,14 @@
 	
 }
 
+.rootCorrect {
+	-fx-background-color: #DCEDC8;
+}
+
+.rootWrong {
+	-fx-background-color: #ffcdd2;
+}
+
 .nextQuestion {
 	-fx-background-color: #BBDEFB;
 	-fx-background-radius: 8px;

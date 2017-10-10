@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Random;
 import java.util.ResourceBundle;
+import java.util.concurrent.ExecutionException;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.effects.JFXDepthManager;
@@ -76,6 +77,7 @@ public class GameController implements Initializable {
     private JFXButton btnQuit;
     
 	private String level = "";
+	private boolean secondAttempt;
 	
 	private static final int NUMOFQUESTIONS = 10;
 	private static final String NUMOFQUESTIONSSTRING = String.valueOf(NUMOFQUESTIONS);
@@ -83,6 +85,9 @@ public class GameController implements Initializable {
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
 		JFXDepthManager.setDepth(cardPane,  4);
+		JFXDepthManager.setDepth(scorePane, 4);
+		JFXDepthManager.setDepth(questionPane, 4);
+		
 		
 		btnTryAgain.setVisible(false);
 		btnNextQuestion.setVisible(false);
@@ -121,9 +126,25 @@ public class GameController implements Initializable {
 	
 	@FXML
 	private void btnNextQuestionHandler(ActionEvent event) {
-		btnRecord.setVisible(true);
 		
-		questionNumChange();
+		secondAttempt=false;
+		int num = currentQuestion();
+		
+		if (num == NUMOFQUESTIONS) {
+			lblRecording.setText("Game Over");
+			
+			lblScoreNumber.setText("0/" + NUMOFQUESTIONSSTRING);
+			lblQuestionNumber.setText("1");
+		} 
+		else {
+			lblCurrentGameNumber.setText(Integer.toString(randomNumber()));
+			questionNumChange();
+			
+			btnRecord.setVisible(true);
+
+		}
+		
+		lblRecording.setText("");
 		
 		btnTryAgain.setVisible(false);
 		btnNextQuestion.setVisible(false);
@@ -154,19 +175,63 @@ public class GameController implements Initializable {
 		return randomNumber;
 	}
 
-	private class RecordingTask extends Task<Void> {
+	private class RecordingTask extends Task<Recording> {
 
 		
 		@Override
-		protected Void call() throws Exception {
+		protected Recording call() throws Exception {
 			Recording recording = new Recording();
 			recording.record();
-			return null;
+			return recording;
 		}
 		
 	    @Override protected void succeeded() {
 	        super.succeeded();
-			lblRecording.setText("Recording complete.");
+	        
+	        int number = Integer.parseInt(lblCurrentGameNumber.getText());
+	        
+	        //gets the recording object
+	    	Recording recording;
+			try {
+				recording = get();
+				
+				//get correct number and recorded number
+				String correctNumber = recording.getCorrectNumber(number);
+				String recordedNumber = recording.getRecordedNumber();
+				
+				//check if numbers are equivalent
+				boolean answer = (recording.getCorrectNumber(number).equals(recording.getRecordedNumber()));
+				
+				if (answer == true) {
+					lblCurrentGameNumber.setText("Correct");
+					root.getStyleClass().removeAll();
+					root.getStyleClass().add("rootCorrect");
+				} else {
+					lblCurrentGameNumber.setText("Wrong");
+					root.getStyleClass().removeAll();
+					root.getStyleClass().add("rootWrong");
+				}
+				
+				//prepare for output
+				correctNumber = correctNumber.replace("whaa", "wha");
+				correctNumber = correctNumber.replace("maa", "ma");
+				recordedNumber = recordedNumber.replace("whaa", "wha");
+				recordedNumber = recordedNumber.replace("maa", "ma");
+				
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (ExecutionException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	    	
+
+
+			
+
+			
+			lblRecording.setText("Recording complete. ");
 			
 			btnTryAgain.setVisible(true);
 			btnNextQuestion.setVisible(true);
