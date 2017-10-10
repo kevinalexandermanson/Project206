@@ -33,7 +33,7 @@
                   <Font name="BebasNeueBold" size="24.0" />
                </font>
             </Label>
-            <JFXButton fx:id="btnTryAgain" alignment="CENTER" layoutX="11.0" layoutY="405.0" onAction="#btnQuitHandler" prefHeight="45.0" prefWidth="157.0" styleClass="score" text="Try Again" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="11.0">
+            <JFXButton fx:id="btnTryAgain" alignment="CENTER" layoutX="11.0" layoutY="405.0" onAction="#btnTryAgainHandler" prefHeight="45.0" prefWidth="157.0" styleClass="score" text="Try Again" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="11.0">
                <font>
                   <Font name="BebasNeueBold" size="24.0" />
                </font>
@@ -43,9 +43,24 @@
                   <Font name="BebasNeueBold" size="24.0" />
                </font>
             </JFXButton>
-            <JFXButton fx:id="btnPlayRecording" alignment="CENTER" layoutX="371.0" layoutY="405.0" onAction="#btnQuitHandler" prefHeight="45.0" prefWidth="157.0" styleClass="score" text="Play Recording" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="371.0">
+            <JFXButton fx:id="btnPlayRecording" alignment="CENTER" layoutX="371.0" layoutY="405.0" onAction="#btnPlayRecordingHandler" prefHeight="45.0" prefWidth="157.0" styleClass="score" text="Play Recording" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="371.0">
                <font>
                   <Font name="BebasNeueBold" size="24.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="btnPlayAgain" layoutX="90.0" layoutY="346.0" onAction="#btnPlayAgainHandler" prefHeight="51.0" prefWidth="157.0" styleClass="score" text="Play Again">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="btnReturnToMenu" layoutX="293.0" layoutY="346.0" onAction="#btnQuitHandler" prefHeight="51.0" prefWidth="157.0" styleClass="score" text="Menu">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="btnNextLevel" layoutX="171.0" layoutY="401.0" onAction="#btnNextLevelHandler" styleClass="score" text="Next Level Hard">
+               <font>
+                  <Font size="24.0" />
                </font>
             </JFXButton>
          </children>

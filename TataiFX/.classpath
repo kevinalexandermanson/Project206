@@ -6,7 +6,7 @@
 			<accessrule kind="accessible" pattern="javafx/**"/>
 		</accessrules>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/Kevin Manson/Google Drive/Part 2 Software Engineering/SOFTENG 206/jfoenix.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Kevin Manson/Google Drive/Part 2 Software Engineering/SOFTENG 206/fontawesomefx-8.9.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Yianni/Git/Project206/fontawesomefx-8.9.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Yianni/Git/Project206/jfoenix.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
