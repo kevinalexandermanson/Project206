@@ -1,7 +1,6 @@
 .root {
 	-fx-background-color: #DDDDDD;
 	
-	
 }
 
 .rootCorrect {
@@ -23,7 +22,7 @@
 }
 
 .topPane{
-	-fx-background-color: #2196F3
+	-fx-background-color: #2196F3;
 }
 
 .gamePane {

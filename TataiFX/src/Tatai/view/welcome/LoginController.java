@@ -46,6 +46,7 @@ public class LoginController implements Initializable{
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
 		JFXDepthManager.setDepth(cardPane,  4);
+		JFXDepthManager.setDepth(topPane, 5);
 	}
 	
 	@FXML

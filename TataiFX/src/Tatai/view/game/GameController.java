@@ -98,6 +98,7 @@ public class GameController implements Initializable {
 		JFXDepthManager.setDepth(cardPane,  4);
 		JFXDepthManager.setDepth(scorePane, 4);
 		JFXDepthManager.setDepth(questionPane, 4);
+		JFXDepthManager.setDepth(topPane, 5);
 
 
 		btnTryAgain.setVisible(false);
@@ -142,11 +143,17 @@ public class GameController implements Initializable {
 	@FXML
 	private void btnNextQuestionHandler(ActionEvent event) {
 
+		//set color back to grey
+		root.getStyleClass().removeAll("rootCorrect");
+		root.getStyleClass().removeAll("rootWrong");
+
+		
 		secondAttempt = false;
 		int num = currentQuestion();
 
 		if (num == NUMOFQUESTIONS) {
-			lblRecording.setText("Game Over");
+			lblRecording.setText("");
+			lblCurrentGameNumber.setText("Game Over");
 
 			
 			
@@ -156,7 +163,6 @@ public class GameController implements Initializable {
 			
 			lblScoreNumber.setText("0/" + NUMOFQUESTIONSSTRING);
 			lblQuestionNumber.setText("1");
-			lblCurrentGameNumber.setText("");
 			btnPlayAgain.setVisible(true);
 			btnReturnToMenu.setVisible(true);
 
@@ -298,12 +304,12 @@ public class GameController implements Initializable {
 				boolean answer = true;
 				if (answer == true) {
 					lblCurrentGameNumber.setText("Correct");
-					root.getStyleClass().removeAll();
+					root.getStyleClass().removeAll("rootWrong");
 					root.getStyleClass().add("rootCorrect");
 					scoreNumChange();
 				} else {
 					lblCurrentGameNumber.setText("Wrong");
-					root.getStyleClass().removeAll();
+					root.getStyleClass().removeAll("rootCorrect");
 					root.getStyleClass().add("rootWrong");
 				}
 
