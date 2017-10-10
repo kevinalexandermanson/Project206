@@ -1,4 +1,4 @@
-package Tatai.view.game;
+package Tatai.model;
 
 public enum Numbers {
 

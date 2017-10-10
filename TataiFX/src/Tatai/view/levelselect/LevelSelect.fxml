@@ -6,9 +6,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" styleClass="root" stylesheets="@Login.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Tatai.view.levelselect.LevelSelectController">
+<AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" styleClass="root" stylesheets="@levelselect.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Tatai.view.levelselect.LevelSelectController">
    <children>
-      <AnchorPane fx:id="topPane" prefHeight="186.0" prefWidth="800.0" styleClass="topPane" stylesheets="@Login.css" AnchorPane.bottomAnchor="414.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane fx:id="topPane" prefHeight="186.0" prefWidth="800.0" styleClass="topPane" stylesheets="@levelselect.css" AnchorPane.bottomAnchor="414.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <Label fx:id="lblWelcome" alignment="CENTER" contentDisplay="CENTER" layoutX="199.0" layoutY="32.0" text="Welcome to Tātai" textAlignment="CENTER" textFill="#212121">
                <font>
@@ -17,7 +17,7 @@
             </Label>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="cardPane" layoutX="186.0" layoutY="145.0" prefHeight="357.0" prefWidth="428.0" styleClass="cardPane" stylesheets="@Login.css">
+      <AnchorPane fx:id="cardPane" layoutX="186.0" layoutY="145.0" prefHeight="357.0" prefWidth="428.0" styleClass="cardPane" stylesheets="@levelselect.css">
          <children>
             <JFXButton fx:id="btnBack" layoutX="14.0" layoutY="318.0" onAction="#btnBackHandler" styleClass="root" text="Back">
                <graphic>
@@ -27,7 +27,7 @@
                   <Font name="BebasNeueBold" size="14.0" />
                </font>
             </JFXButton>
-            <JFXButton fx:id="btnPractiseEasy" layoutX="41.0" layoutY="137.0" onAction="#btnPractiseEasyHandler" prefHeight="58.0" prefWidth="153.0" styleClass="root" text="Easy: 1 - 9">
+            <JFXButton fx:id="btnPractiseEasy" layoutX="41.0" layoutY="137.0" onAction="#selectModeHandler" prefHeight="58.0" prefWidth="153.0" styleClass="root" text="Easy: 1 - 9">
                <font>
                   <Font name="BebasNeueBold" size="18.0" />
                </font>
@@ -47,17 +47,17 @@
                   <Font name="BebasNeueBold" size="36.0" />
                </font>
             </Label>
-            <JFXButton fx:id="btnPractiseHard" layoutX="42.0" layoutY="210.0" prefHeight="58.0" prefWidth="153.0" styleClass="root" text="Hard: 1 - 99">
+            <JFXButton fx:id="btnPractiseHard" layoutX="42.0" layoutY="210.0" onAction="#selectModeHandler" prefHeight="58.0" prefWidth="153.0" styleClass="root" text="Hard: 1 - 99">
                <font>
                   <Font name="BebasNeueBold" size="18.0" />
                </font>
             </JFXButton>
-            <JFXButton fx:id="btnRealEasy" layoutX="240.0" layoutY="137.0" prefHeight="58.0" prefWidth="153.0" styleClass="root" text="Easy: 1 - 9">
+            <JFXButton fx:id="btnRealEasy" layoutX="240.0" layoutY="137.0" onAction="#selectModeHandler" prefHeight="58.0" prefWidth="153.0" styleClass="root" text="Easy: 1 - 9">
                <font>
                   <Font name="BebasNeueBold" size="18.0" />
                </font>
             </JFXButton>
-            <JFXButton fx:id="btnRealHard" layoutX="240.0" layoutY="210.0" prefHeight="58.0" prefWidth="153.0" styleClass="root" text="Hard: 1 - 99">
+            <JFXButton fx:id="btnRealHard" layoutX="240.0" layoutY="210.0" onAction="#selectModeHandler" prefHeight="58.0" prefWidth="153.0" styleClass="root" text="Hard: 1 - 99">
                <font>
                   <Font name="BebasNeueBold" size="18.0" />
                </font>

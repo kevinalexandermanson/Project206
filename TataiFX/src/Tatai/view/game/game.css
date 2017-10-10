@@ -4,6 +4,11 @@
 	
 }
 
+.nextQuestion {
+	-fx-background-color: #BBDEFB;
+	-fx-background-radius: 8px;
+}
+
 .score {
 	-fx-background-color: #757575;
 	-fx-background-radius: 8px;

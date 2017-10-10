@@ -1,4 +1,4 @@
-package Tatai.view.game;
+package Tatai.model;
 
 public enum Levels {
 	
@@ -10,7 +10,7 @@ public enum Levels {
 		this.level = level;
 	}
 
-	public String getNumber() {
+	public String getLevel() {
 		return level;
 	}
 

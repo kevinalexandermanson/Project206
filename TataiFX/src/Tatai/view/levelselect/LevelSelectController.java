@@ -7,8 +7,8 @@ import java.util.ResourceBundle;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.effects.JFXDepthManager;
 
+import Tatai.model.Levels;
 import Tatai.view.game.GameController;
-import Tatai.view.game.Levels;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -64,32 +64,28 @@ public class LevelSelectController implements Initializable {
 	}
 	
 	@FXML
-	private void btnPractiseEasyHandler(ActionEvent event) throws IOException {
-
-		FXMLLoader loader = new FXMLLoader();
+	private void selectModeHandler(ActionEvent event) throws IOException {
+		Parent parentGame = FXMLLoader.load(getClass().getResource("/Tatai/view/game/Game.fxml"));
+		/*FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(getClass().getResource("/Tatai/view/game/Game.fxml"));
-		Parent parentGame = null;
-		try {
-			parentGame = loader.load();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		Parent parentGame = loader.load();
 		
 		GameController controller = loader.getController();
 		if (event.getSource().equals(btnPractiseEasy)) {
-			controller.initialize(Levels.PractiseEasy.getNumber());
+			controller.setLevel(Levels.PractiseEasy.getLevel());
 		}
 		else if (event.getSource().equals(btnPractiseHard)) {
-			controller.initialize(Levels.PractiseHard.getNumber());
+			controller.setLevel(Levels.PractiseHard.getLevel());
 		}
 		else if (event.getSource().equals(btnRealEasy)) {
-			controller.initialize(Levels.RealEasy.getNumber());
+			controller.setLevel(Levels.RealEasy.getLevel());
 		}
 		else if (event.getSource().equals(btnRealHard)) {
-			controller.initialize(Levels.RealHard.getNumber());
+			controller.setLevel(Levels.RealHard.getLevel());
 		}
 
 		
+		*/
 		Scene sceneGame = new Scene(parentGame);
 		
 		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
