@@ -5,9 +5,10 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.effects.JFXDepthManager;
 
+import Tatai.view.game.GameController;
+import Tatai.view.game.Levels;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,9 +16,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
@@ -38,7 +37,16 @@ public class LevelSelectController implements Initializable {
     private JFXButton btnBack;
 
     @FXML
-    private JFXButton btnPractise;
+    private JFXButton btnPractiseEasy;
+    
+    @FXML
+    private JFXButton btnPractiseHard;
+    
+    @FXML
+    private JFXButton btnRealEasy;
+    
+    @FXML
+    private JFXButton btnRealHard;
 
 	
 	@Override
@@ -57,7 +65,31 @@ public class LevelSelectController implements Initializable {
 	
 	@FXML
 	private void btnPractiseEasyHandler(ActionEvent event) throws IOException {
-		Parent parentGame = FXMLLoader.load(getClass().getResource("/Tatai/view/game/Game.fxml"));
+
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(getClass().getResource("/Tatai/view/game/Game.fxml"));
+		Parent parentGame = null;
+		try {
+			parentGame = loader.load();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		GameController controller = loader.getController();
+		if (event.getSource().equals(btnPractiseEasy)) {
+			controller.initialize(Levels.PractiseEasy.getNumber());
+		}
+		else if (event.getSource().equals(btnPractiseHard)) {
+			controller.initialize(Levels.PractiseHard.getNumber());
+		}
+		else if (event.getSource().equals(btnRealEasy)) {
+			controller.initialize(Levels.RealEasy.getNumber());
+		}
+		else if (event.getSource().equals(btnRealHard)) {
+			controller.initialize(Levels.RealHard.getNumber());
+		}
+
+		
 		Scene sceneGame = new Scene(parentGame);
 		
 		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

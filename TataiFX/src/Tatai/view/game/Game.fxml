@@ -18,17 +18,17 @@
          </children></AnchorPane>
       <AnchorPane fx:id="cardPane" layoutX="27.0" layoutY="76.0" prefHeight="472.0" prefWidth="539.0" styleClass="gamePane" stylesheets="@Login.css">
          <children>
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="192.0" layoutY="128.0" prefHeight="157.0" prefWidth="157.0" text="10" textAlignment="CENTER">
+            <Label fx:id="lblCurrentGameNumber" alignment="CENTER" contentDisplay="CENTER" layoutX="192.0" layoutY="128.0" prefHeight="157.0" prefWidth="157.0" text="10" textAlignment="CENTER">
                <font>
                   <Font name="BebasNeueBold" size="96.0" />
                </font>
             </Label>
-            <JFXButton fx:id="btnRecord" layoutX="156.0" layoutY="333.0" prefHeight="72.0" prefWidth="227.0" styleClass="score" text="Record">
+            <JFXButton fx:id="btnRecord" layoutX="156.0" layoutY="333.0" onAction="#btnRecordingHandler" prefHeight="72.0" prefWidth="227.0" styleClass="score" text="Record">
                <font>
                   <Font name="BebasNeueBold" size="36.0" />
                </font>
             </JFXButton>
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="45.0" layoutY="14.0" prefHeight="128.0" prefWidth="452.0" text="Press Record, and say your answer in Te Reo clearly into the microphone. You have 3 seconds." textAlignment="CENTER" wrapText="true">
+            <Label fx:id="lblRecording" alignment="CENTER" contentDisplay="CENTER" layoutX="45.0" layoutY="14.0" prefHeight="128.0" prefWidth="452.0" text="Press Record, and say your answer in Te Reo clearly into the microphone. You have 3 seconds." textAlignment="CENTER" wrapText="true">
                <font>
                   <Font name="BebasNeueBold" size="24.0" />
                </font>
@@ -42,7 +42,7 @@
                   <Font name="BebasNeueBold" size="36.0" />
                </font>
             </Label>
-            <Label fx:id="lblScoreNumber" alignment="CENTER" contentDisplay="CENTER" layoutX="1.0" layoutY="51.0" prefHeight="111.0" prefWidth="195.0" text="10/10" textAlignment="CENTER">
+            <Label fx:id="lblScoreNumber" alignment="CENTER" contentDisplay="CENTER" layoutX="1.0" layoutY="51.0" prefHeight="111.0" prefWidth="195.0" text="0/10" textAlignment="CENTER">
                <font>
                   <Font name="BebasNeueBold" size="72.0" />
                </font>
@@ -56,7 +56,7 @@
                   <Font name="BebasNeueBold" size="36.0" />
                </font>
             </Label>
-            <Label fx:id="lblQuestionNumber" alignment="CENTER" contentDisplay="CENTER" layoutX="45.0" layoutY="51.0" prefHeight="111.0" prefWidth="105.0" text="10" textAlignment="CENTER">
+            <Label fx:id="lblQuestionNumber" alignment="CENTER" contentDisplay="CENTER" layoutX="45.0" layoutY="51.0" prefHeight="111.0" prefWidth="105.0" text="1" textAlignment="CENTER">
                <font>
                   <Font name="BebasNeueBold" size="96.0" />
                </font>
