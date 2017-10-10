@@ -17,9 +17,9 @@
             </Label>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="cardPane" layoutX="186.0" layoutY="145.0" prefHeight="357.0" prefWidth="428.0" styleClass="cardPane" stylesheets="@levelselect.css">
+      <AnchorPane fx:id="cardPane" layoutX="186.0" layoutY="145.0" prefHeight="395.0" prefWidth="561.0" styleClass="cardPane" stylesheets="@levelselect.css">
          <children>
-            <JFXButton fx:id="btnBack" layoutX="14.0" layoutY="318.0" onAction="#btnBackHandler" styleClass="root" text="Back">
+            <JFXButton fx:id="btnBack" layoutX="8.0" layoutY="348.0" onAction="#btnBackHandler" styleClass="root" text="Back">
                <graphic>
                   <MaterialDesignIconView glyphName="ARROW_LEFT_BOLD" size="16" />
                </graphic>
@@ -52,23 +52,38 @@
                   <Font name="BebasNeueBold" size="18.0" />
                </font>
             </JFXButton>
-            <JFXButton fx:id="btnRealEasy" layoutX="240.0" layoutY="137.0" onAction="#selectModeHandler" prefHeight="58.0" prefWidth="153.0" styleClass="root" text="Easy: 1 - 9">
+            <JFXButton fx:id="btnAddition" layoutX="240.0" layoutY="137.0" onAction="#selectModeHandler" prefHeight="58.0" prefWidth="153.0" styleClass="root" text="Addition">
                <font>
                   <Font name="BebasNeueBold" size="18.0" />
                </font>
             </JFXButton>
-            <JFXButton fx:id="btnRealHard" layoutX="240.0" layoutY="210.0" onAction="#selectModeHandler" prefHeight="58.0" prefWidth="153.0" styleClass="root" text="Hard: 1 - 99">
+            <JFXButton fx:id="btnSubtraction" layoutX="240.0" layoutY="210.0" onAction="#selectModeHandler" prefHeight="58.0" prefWidth="153.0" styleClass="root" text="Subtraction">
                <font>
                   <Font name="BebasNeueBold" size="18.0" />
                </font>
             </JFXButton>
-            <JFXButton alignment="CENTER_RIGHT" layoutX="317.0" layoutY="318.0" prefHeight="28.0" prefWidth="90.0" styleClass="root" text="Statistics">
+            <JFXButton alignment="CENTER_RIGHT" layoutX="317.0" layoutY="348.0" prefHeight="28.0" prefWidth="90.0" styleClass="root" text="Statistics">
                <font>
                   <Font name="BebasNeueBold" size="14.0" />
                </font>
                <graphic>
                   <MaterialDesignIconView glyphName="CHART_LINE" size="16" />
                </graphic>
+            </JFXButton>
+            <JFXButton fx:id="btnRandom" layoutX="317.0" layoutY="278.0" onAction="#selectModeHandler" prefHeight="58.0" prefWidth="153.0" styleClass="root" text="Random">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="btnMultiplication" layoutX="396.0" layoutY="210.0" onAction="#selectModeHandler" prefHeight="58.0" prefWidth="153.0" styleClass="root" text="Multiplication">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="btnDivision" layoutX="396.0" layoutY="137.0" onAction="#selectModeHandler" prefHeight="58.0" prefWidth="153.0" styleClass="root" text="Division">
+               <font>
+                  <Font size="18.0" />
+               </font>
             </JFXButton>
          </children>
       </AnchorPane>

@@ -2,6 +2,7 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
@@ -30,7 +31,7 @@
                   <Font name="BebasNeueBold" size="18.0" />
                </font>
             </JFXButton>
-            <JFXButton fx:id="btnNewUser" layoutX="116.0" layoutY="225.0" prefHeight="35.0" prefWidth="93.0" styleClass="root" stylesheets="@Login.css" text="New User">
+            <JFXButton fx:id="btnNewUser" layoutX="116.0" layoutY="225.0" onAction="#btnNewUserHandler" prefHeight="35.0" prefWidth="93.0" styleClass="root" stylesheets="@Login.css" text="New User">
                <font>
                   <Font name="BebasNeueBold" size="14.0" />
                </font>
@@ -38,6 +39,17 @@
             <JFXButton fx:id="btnDeleteUser" layoutX="219.0" layoutY="225.0" prefHeight="35.0" prefWidth="93.0" styleClass="root" stylesheets="@Login.css" text="Delete User">
                <font>
                   <Font name="BebasNeueBold" size="14.0" />
+               </font>
+            </JFXButton>
+            <JFXTextField fx:id="txtUsernameField" layoutX="123.0" layoutY="260.0" prefHeight="25.0" prefWidth="183.0" />
+            <Label fx:id="lblNewUserName" layoutX="123.0" layoutY="199.0" prefHeight="39.0" prefWidth="183.0" text="Enter a new Username">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <JFXButton fx:id="btnEnter" layoutX="181.0" layoutY="292.0" onAction="#btnEnterHandler" styleClass="root" text="Enter">
+               <font>
+                  <Font size="18.0" />
                </font>
             </JFXButton>
          </children>

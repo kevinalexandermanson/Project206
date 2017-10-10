@@ -21,6 +21,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import com.jfoenix.controls.JFXComboBox;
+import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.effects.JFXDepthManager;
 
 public class LoginController implements Initializable{
@@ -40,13 +41,27 @@ public class LoginController implements Initializable{
 	private JFXButton btnLogin;
 	@FXML
 	private JFXButton btnNewUser;
+	
 	@FXML
 	private JFXButton btnDeleteUser;
+	
+	@FXML
+	private Label lblNewUserName;
+	
+	@FXML
+	private JFXTextField txtUsernameField;
+	
+	@FXML
+	private JFXButton btnEnter;
 	
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
 		JFXDepthManager.setDepth(cardPane,  4);
 		JFXDepthManager.setDepth(topPane, 5);
+		
+		lblNewUserName.setVisible(false);
+		txtUsernameField.setVisible(false);
+		btnEnter.setVisible(false);
 	}
 	
 	@FXML
@@ -66,7 +81,30 @@ public class LoginController implements Initializable{
 		alert.showAndWait(); */
 	}
 	
-
+	@FXML
+	private void btnNewUserHandler() {
+		
+		lblSelectUser.setVisible(false);
+		btnLogin.setVisible(false);
+		btnNewUser.setVisible(false);
+		btnDeleteUser.setVisible(false);
+		cmbbxSelectUser.setVisible(false);
+		
+		btnEnter.setVisible(true);
+		lblNewUserName.setVisible(true);
+		txtUsernameField.setVisible(true);
+		
+	}
+	
+	@FXML
+	private void btnEnterHandler() {
+		
+		String userName = txtUsernameField.getText();
+		if ((userName != null) && (!(userName.equals("")))) {
+			
+		}
+		
+	}
 		
 
 }

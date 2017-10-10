@@ -43,10 +43,19 @@ public class LevelSelectController implements Initializable {
     private JFXButton btnPractiseHard;
     
     @FXML
-    private JFXButton btnRealEasy;
+    private JFXButton btnAddition;
     
     @FXML
-    private JFXButton btnRealHard;
+    private JFXButton btnSubtraction;
+    
+    @FXML
+    private JFXButton btnMultiplication;
+    
+    @FXML
+    private JFXButton btnDivision;
+    
+    @FXML
+    private JFXButton btnRandom;
 
 	
 	@Override
@@ -78,11 +87,20 @@ public class LevelSelectController implements Initializable {
 		else if (event.getSource().equals(btnPractiseHard)) {
 			controller.setLevel(Levels.PractiseHard.getLevel());
 		}
-		else if (event.getSource().equals(btnRealEasy)) {
-			controller.setLevel(Levels.RealEasy.getLevel());
+		else if (event.getSource().equals(btnAddition)) {
+			controller.setLevel(Levels.Addition.getLevel());
 		}
-		else if (event.getSource().equals(btnRealHard)) {
-			controller.setLevel(Levels.RealHard.getLevel());
+		else if (event.getSource().equals(btnSubtraction)) {
+			controller.setLevel(Levels.Subtraction.getLevel());
+		}
+		else if (event.getSource().equals(btnMultiplication)) {
+			controller.setLevel(Levels.Subtraction.getLevel());
+		}
+		else if (event.getSource().equals(btnDivision)) {
+			controller.setLevel(Levels.Division.getLevel());
+		}
+		else if (event.getSource().equals(btnRandom)) {
+			controller.setLevel(Levels.Random.getLevel());
 		}
 
 		
