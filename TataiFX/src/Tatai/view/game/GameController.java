@@ -6,9 +6,14 @@ import java.util.Random;
 import java.util.ResourceBundle;
 import java.util.concurrent.ExecutionException;
 
+import javax.script.ScriptEngine;
+import javax.script.ScriptEngineManager;
+import javax.script.ScriptException;
+
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.effects.JFXDepthManager;
 
+import Tatai.model.EquationModel;
 import Tatai.model.Levels;
 import Tatai.model.Recording;
 import javafx.collections.ObservableList;
@@ -88,6 +93,7 @@ public class GameController implements Initializable {
 	private String level = "";
 	private boolean secondAttempt = false;
 	private String currentQuestionNumber;
+	private EquationModel model;
 
 	private static final int NUMOFQUESTIONS = 10;
 	private static final String NUMOFQUESTIONSSTRING = String.valueOf(NUMOFQUESTIONS);
@@ -108,7 +114,7 @@ public class GameController implements Initializable {
 		btnReturnToMenu.setVisible(false);
 		btnNextLevel.setVisible(false);
 
-		lblCurrentGameNumber.setText(Integer.toString(randomNumber()));
+		model = new EquationModel();
 	}
 
 	/*---------- Event Handlers ------------------------------------------------------------------------------*/
@@ -168,7 +174,26 @@ public class GameController implements Initializable {
 
 		} 
 		else {
-			lblCurrentGameNumber.setText(Integer.toString(randomNumber()));
+			if (level.equals(Levels.Addition.getLevel())) {
+				model.newEquation(Levels.Addition.getLevel());
+				lblCurrentGameNumber.setText(model.getEquation());
+			}
+			else if (level.equals(Levels.Subtraction.getLevel())) {
+				model.newEquation(Levels.Subtraction.getLevel());
+				lblCurrentGameNumber.setText(model.getEquation());
+			}
+			else if (level.equals(Levels.Multiplication.getLevel())) {
+				model.newEquation(Levels.Multiplication.getLevel());
+				lblCurrentGameNumber.setText(model.getEquation());
+			}
+			else if (level.equals(Levels.Division.getLevel())) {
+				model.newEquation(Levels.Division.getLevel());
+				lblCurrentGameNumber.setText(model.getEquation());
+			}
+			else {
+				lblCurrentGameNumber.setText(Integer.toString(randomNumber()));
+			}
+		
 			questionNumChange();
 
 			btnRecord.setVisible(true);
@@ -246,9 +271,30 @@ public class GameController implements Initializable {
 		
 		if (level.equals(Levels.PractiseEasy.getLevel())) {
 			lblNowPlaying.setText("Now Playing - [Practise Mode - Easy]");
+			lblCurrentGameNumber.setText(Integer.toString(randomNumber()));
 		}
 		else if (level.equals(Levels.PractiseHard.getLevel())) {
 			lblNowPlaying.setText("Now Playing - [Practise Mode - Hard]");
+			lblCurrentGameNumber.setText(Integer.toString(randomNumber()));
+		}
+		else  {
+		
+			if (level.equals(Levels.Addition.getLevel())) {
+				model.newEquation(Levels.Addition.getLevel());
+				lblCurrentGameNumber.setText(model.getEquation());
+			}
+			else if (level.equals(Levels.Subtraction.getLevel())) {
+				model.newEquation(Levels.Subtraction.getLevel());
+				lblCurrentGameNumber.setText(model.getEquation());
+			}
+			else if (level.equals(Levels.Multiplication.getLevel())) {
+				model.newEquation(Levels.Multiplication.getLevel());
+				lblCurrentGameNumber.setText(model.getEquation());
+			}
+			else if (level.equals(Levels.Division.getLevel())) {
+				model.newEquation(Levels.Division.getLevel());
+				lblCurrentGameNumber.setText(model.getEquation());
+			}
 		}
 		
 	}
@@ -284,8 +330,17 @@ public class GameController implements Initializable {
 		@Override 
 		protected void succeeded() {
 			super.succeeded();
-
-			int number = Integer.parseInt(lblCurrentGameNumber.getText());
+			
+			ScriptEngineManager manager = new ScriptEngineManager();
+	        ScriptEngine engine = manager.getEngineByName("js");
+	        Object result = null;
+	        try {
+	        	result = engine.eval(lblCurrentGameNumber.getText());
+			} catch (ScriptException e) {
+				e.printStackTrace();
+			}
+	        
+			int number = (int) result;
 
 			//gets the recording object
 			Recording recording;

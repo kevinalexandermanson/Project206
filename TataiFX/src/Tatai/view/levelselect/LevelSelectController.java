@@ -94,7 +94,7 @@ public class LevelSelectController implements Initializable {
 			controller.setLevel(Levels.Subtraction.getLevel());
 		}
 		else if (event.getSource().equals(btnMultiplication)) {
-			controller.setLevel(Levels.Subtraction.getLevel());
+			controller.setLevel(Levels.Multiplication.getLevel());
 		}
 		else if (event.getSource().equals(btnDivision)) {
 			controller.setLevel(Levels.Division.getLevel());
