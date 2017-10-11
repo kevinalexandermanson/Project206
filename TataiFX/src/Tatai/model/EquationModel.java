@@ -19,9 +19,24 @@ public class EquationModel {
 	}
 	
 	public void newEquation(String operation) {
-		
 		Random rand = new Random();
 		
+		if (operation.equals(Levels.Random.getLevel())) {
+			int temp =  rand.nextInt(4); 
+			if (temp == 0) {
+				operation = Levels.Addition.getLevel();
+			}
+			else if (temp == 1) {
+				operation = Levels.Subtraction.getLevel();
+			}
+			else if (temp == 2) {
+				operation = Levels.Multiplication.getLevel();
+			}
+			else if (temp == 3) {
+				operation = Levels.Division.getLevel();
+			}
+		}
+
 		int num1 = 1000;
 		int num2 = 2;
 		
@@ -34,22 +49,22 @@ public class EquationModel {
 		} catch (ScriptException e) {
 			e.printStackTrace();
 		}
-		if (operation.equals(Levels.Addition.getLevel())) {
+		if (operation.equals(Levels.Addition.getLevel()) || operation.equals(Levels.Subtraction.getLevel())) {
 			while ((num1 + num2) > 99) {
 				num1 = rand.nextInt(99) + 1; 
 				num2 = rand.nextInt(99) + 1; 
 			}
 		}
 		else if (operation.equals(Levels.Multiplication.getLevel())) {
-			while ((num1 * num2) > 99) {
-				num1 = rand.nextInt(99) + 1; 
-				num2 = rand.nextInt(99) + 1; 
-			}
+			num1 = rand.nextInt(9) + 1; 
+			num2 = rand.nextInt(9) + 1; 
+			
 		}
 		else if (operation.equals(Levels.Division.getLevel())) {
-			while ((num1 / num2) > 99) {
-				num1 = rand.nextInt(99) + 1; 
-				num2 = rand.nextInt(99) + 1; 
+			num1 = 999;
+			while ((num1 % num2) != 0) {
+				num1 = rand.nextInt(9) + 1; 
+				num2 = rand.nextInt(9) + 1; 
 			}
 		}
 		

@@ -190,6 +190,10 @@ public class GameController implements Initializable {
 				model.newEquation(Levels.Division.getLevel());
 				lblCurrentGameNumber.setText(model.getEquation());
 			}
+			else if (level.equals(Levels.Random.getLevel())) {
+				model.newEquation(Levels.Random.getLevel());
+				lblCurrentGameNumber.setText(model.getEquation());
+			}
 			else {
 				lblCurrentGameNumber.setText(Integer.toString(randomNumber()));
 			}
@@ -293,6 +297,10 @@ public class GameController implements Initializable {
 			}
 			else if (level.equals(Levels.Division.getLevel())) {
 				model.newEquation(Levels.Division.getLevel());
+				lblCurrentGameNumber.setText(model.getEquation());
+			}
+			else if (level.equals(Levels.Random.getLevel())) {
+				model.newEquation(Levels.Random.getLevel());
 				lblCurrentGameNumber.setText(model.getEquation());
 			}
 		}
