@@ -14,7 +14,7 @@ public class Tatai extends Application {
 	public void start(Stage stage) throws Exception {
 		Parent root = FXMLLoader.load(getClass().getResource("/Tatai/view/welcome/Login.fxml"));
 		
-		Font.loadFont(getClass().getResourceAsStream("/Tatai/resources/BebasNeue.ttf"), 12);
+		Font.loadFont(getClass().getResourceAsStream("/Tatai/resources/BebasNeue.otf"), 12);
 		
 		Scene scene = new Scene(root);
 		

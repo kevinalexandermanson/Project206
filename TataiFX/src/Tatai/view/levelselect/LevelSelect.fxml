@@ -32,7 +32,7 @@
                   <String fx:value="bebasneue" />
                </styleClass>
             </JFXButton>
-            <JFXButton fx:id="btnPractiseEasy" layoutX="41.0" layoutY="137.0" onAction="#selectModeHandler" prefHeight="58.0" prefWidth="153.0" stylesheets="@levelselect.css" text="Easy: 1 - 9">
+            <JFXButton fx:id="btnPractiseEasy" layoutX="204.0" layoutY="107.0" onAction="#selectModeHandler" prefHeight="58.0" prefWidth="153.0" stylesheets="@levelselect.css" text="Easy: 1 - 9">
                <font>
                   <Font size="18.0" />
                </font>
@@ -46,17 +46,7 @@
                   <Font size="48.0" />
                </font>
             </Label>
-            <Label layoutX="340.0" layoutY="82.0" styleClass="bebasneue" stylesheets="@levelselect.css" text="Maths" textFill="#212121">
-               <font>
-                  <Font name="Symbol" size="36.0" />
-               </font>
-            </Label>
-            <Label layoutX="131.0" layoutY="82.0" styleClass="bebasneue" stylesheets="@levelselect.css" text="Practise" textFill="#212121">
-               <font>
-                  <Font size="36.0" />
-               </font>
-            </Label>
-            <JFXButton fx:id="btnPractiseHard" layoutX="42.0" layoutY="210.0" onAction="#selectModeHandler" prefHeight="58.0" prefWidth="153.0" stylesheets="@levelselect.css" text="Hard: 1 - 99">
+            <JFXButton fx:id="btnPractiseHard" layoutX="204.0" layoutY="181.0" onAction="#selectModeHandler" prefHeight="58.0" prefWidth="153.0" stylesheets="@levelselect.css" text="Hard: 1 - 99">
                <font>
                   <Font size="18.0" />
                </font>
@@ -65,16 +55,7 @@
                   <String fx:value="bebasneue" />
                </styleClass>
             </JFXButton>
-            <JFXButton fx:id="btnAddition" layoutX="240.0" layoutY="137.0" onAction="#selectModeHandler" prefHeight="58.0" prefWidth="153.0" stylesheets="@levelselect.css" text="Addition">
-               <font>
-                  <Font size="18.0" />
-               </font>
-               <styleClass>
-                  <String fx:value="root" />
-                  <String fx:value="bebasneue" />
-               </styleClass>
-            </JFXButton>
-            <JFXButton fx:id="btnSubtraction" layoutX="240.0" layoutY="210.0" onAction="#selectModeHandler" prefHeight="58.0" prefWidth="153.0" stylesheets="@levelselect.css" text="Subtraction">
+            <JFXButton fx:id="btnAddition" layoutX="117.0" layoutY="107.0" onAction="#selectModeHandler" prefHeight="58.0" prefWidth="153.0" stylesheets="@levelselect.css" text="Addition">
                <font>
                   <Font size="18.0" />
                </font>
@@ -95,7 +76,7 @@
                   <MaterialDesignIconView glyphName="CHART_LINE" />
                </graphic>
             </JFXButton>
-            <JFXButton fx:id="btnRandom" layoutX="317.0" layoutY="278.0" onAction="#selectModeHandler" prefHeight="58.0" prefWidth="153.0" stylesheets="@levelselect.css" text="Random">
+            <JFXButton fx:id="btnRandom" layoutX="292.0" layoutY="181.0" onAction="#selectModeHandler" prefHeight="58.0" prefWidth="153.0" stylesheets="@levelselect.css" text="Random">
                <font>
                   <Font size="18.0" />
                </font>
@@ -104,7 +85,7 @@
                   <String fx:value="bebasneue" />
                </styleClass>
             </JFXButton>
-            <JFXButton fx:id="btnMultiplication" layoutX="396.0" layoutY="210.0" onAction="#selectModeHandler" prefHeight="58.0" prefWidth="153.0" stylesheets="@levelselect.css" text="Multiplication">
+            <JFXButton fx:id="btnDivision" layoutX="117.0" layoutY="256.0" onAction="#selectModeHandler" prefHeight="58.0" prefWidth="153.0" stylesheets="@levelselect.css" text="Division">
                <font>
                   <Font size="18.0" />
                </font>
@@ -113,13 +94,40 @@
                   <String fx:value="root" />
                </styleClass>
             </JFXButton>
-            <JFXButton fx:id="btnDivision" layoutX="396.0" layoutY="137.0" onAction="#selectModeHandler" prefHeight="58.0" prefWidth="153.0" stylesheets="@levelselect.css" text="Division">
+            <JFXButton fx:id="btnSubtraction" layoutX="117.0" layoutY="181.0" onAction="#selectModeHandler" prefHeight="58.0" prefWidth="153.0" stylesheets="@levelselect.css" text="Subtraction">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <styleClass>
+                  <String fx:value="root" />
+                  <String fx:value="bebasneue" />
+               </styleClass>
+            </JFXButton>
+            <JFXButton fx:id="btnMultiplication" layoutX="291.0" layoutY="107.0" onAction="#selectModeHandler" prefHeight="58.0" prefWidth="153.0" stylesheets="@levelselect.css" text="Multiplication">
                <font>
                   <Font size="18.0" />
                </font>
                <styleClass>
                   <String fx:value="bebasneue" />
                   <String fx:value="root" />
+               </styleClass>
+            </JFXButton>
+            <JFXButton fx:id="btnPractise" layoutX="205.0" layoutY="107.0" onAction="#btnPlayHandler" prefHeight="58.0" prefWidth="153.0" stylesheets="@levelselect.css" text="Practise">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <styleClass>
+                  <String fx:value="root" />
+                  <String fx:value="bebasneue" />
+               </styleClass>
+            </JFXButton>
+            <JFXButton fx:id="btnMaths" layoutX="205.0" layoutY="181.0" onAction="#btnPlayHandler" prefHeight="58.0" prefWidth="153.0" stylesheets="@levelselect.css" text="Maths">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <styleClass>
+                  <String fx:value="root" />
+                  <String fx:value="bebasneue" />
                </styleClass>
             </JFXButton>
          </children>

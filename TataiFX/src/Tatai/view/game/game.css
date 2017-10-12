@@ -34,15 +34,3 @@
 	-fx-font-family: "Bebas Neue";
 }
 
-.button1 {
-	-fx-background-color: #E0E0E0;
-	-fx-font-size: 14px;
-	-fx-font-family: "Bebas Neue";
-	
-}
-
-.button1:hover {
-	-fx-background-color: #BDBDBD;
-	-fx-font-size: 14px;
-	-fx-font-family: "Bebas Neue";
-}

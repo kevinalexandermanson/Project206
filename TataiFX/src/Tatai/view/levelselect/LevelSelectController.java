@@ -21,56 +21,83 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 public class LevelSelectController implements Initializable {
-    @FXML
-    private AnchorPane root;
+	  @FXML
+	    private AnchorPane root;
 
-    @FXML
-    private AnchorPane topPane;
+	    @FXML
+	    private AnchorPane topPane;
 
-    @FXML
-    private Label lblWelcome;
+	    @FXML
+	    private Label lblWelcome;
 
-    @FXML
-    private AnchorPane cardPane;
+	    @FXML
+	    private AnchorPane cardPane;
 
-    @FXML
-    private JFXButton btnBack;
+	    @FXML
+	    private JFXButton btnBack;
 
-    @FXML
-    private JFXButton btnPractiseEasy;
-    
-    @FXML
-    private JFXButton btnPractiseHard;
-    
-    @FXML
-    private JFXButton btnAddition;
-    
-    @FXML
-    private JFXButton btnSubtraction;
-    
-    @FXML
-    private JFXButton btnMultiplication;
-    
-    @FXML
-    private JFXButton btnDivision;
-    
-    @FXML
-    private JFXButton btnRandom;
+	    @FXML
+	    private JFXButton btnPractiseEasy;
+
+	    @FXML
+	    private JFXButton btnPractiseHard;
+
+	    @FXML
+	    private JFXButton btnAddition;
+
+	    @FXML
+	    private JFXButton btnRandom;
+
+	    @FXML
+	    private JFXButton btnDivision;
+
+	    @FXML
+	    private JFXButton btnSubtraction;
+
+	    @FXML
+	    private JFXButton btnMultiplication;
+
+	    @FXML
+	    private JFXButton btnPractise;
+
+	    @FXML
+	    private JFXButton btnMaths;
 
 	
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
 		JFXDepthManager.setDepth(cardPane,  4);
 		JFXDepthManager.setDepth(topPane, 5);
+		btnPractiseEasy.setVisible(false);
+		btnPractiseHard.setVisible(false);
+		btnAddition.setVisible(false);
+		btnSubtraction.setVisible(false);
+		btnMultiplication.setVisible(false);
+		btnDivision.setVisible(false);
+		btnRandom.setVisible(false);
 	}
 	
 	@FXML
 	private void btnBackHandler(ActionEvent event) throws IOException {
-		Parent parentLogin = FXMLLoader.load(getClass().getResource("/Tatai/view/welcome/Login.fxml"));
-		Scene sceneLogin = new Scene(parentLogin);
-		
-		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-		stage.setScene(sceneLogin);
+		if (btnPractise.isVisible()) {
+			Parent parentLogin = FXMLLoader.load(getClass().getResource("/Tatai/view/welcome/Login.fxml"));
+			Scene sceneLogin = new Scene(parentLogin);
+			
+			Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+			stage.setScene(sceneLogin);
+		}
+		else {
+			btnPractiseEasy.setVisible(false);
+			btnPractiseHard.setVisible(false);
+			btnAddition.setVisible(false);
+			btnSubtraction.setVisible(false);
+			btnMultiplication.setVisible(false);
+			btnDivision.setVisible(false);
+			btnRandom.setVisible(false);
+			btnPractise.setVisible(true);
+			btnMaths.setVisible(true);
+			
+		}
 	}
 	
 	@FXML
@@ -110,6 +137,24 @@ public class LevelSelectController implements Initializable {
 		stage.setScene(sceneGame);
 
 		
+	}
+	
+	@FXML
+	private void btnPlayHandler(ActionEvent event) throws IOException {
+		btnPractise.setVisible(false);
+		btnMaths.setVisible(false);
+		
+		if (event.getSource().equals(btnPractise)) {
+			btnPractiseEasy.setVisible(true);
+			btnPractiseHard.setVisible(true);
+		} else {
+			btnAddition.setVisible(true);
+			btnSubtraction.setVisible(true);
+			btnMultiplication.setVisible(true);
+			btnDivision.setVisible(true);
+			btnRandom.setVisible(true);
+		}
+			
 	}
 	
 
