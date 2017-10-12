@@ -23,7 +23,7 @@
                   <Font name="BebasNeueBold" size="96.0" />
                </font>
             </Label>
-            <JFXButton fx:id="btnRecord" layoutX="156.0" layoutY="333.0" onAction="#btnRecordHandler" prefHeight="72.0" prefWidth="227.0" styleClass="score" text="Record">
+            <JFXButton fx:id="btnRecord" layoutX="156.0" layoutY="333.0" onAction="#btnRecordHandler" prefHeight="72.0" prefWidth="227.0" styleClass="buttonGame" text="Record">
                <font>
                   <Font name="BebasNeueBold" size="36.0" />
                </font>
@@ -33,32 +33,32 @@
                   <Font name="BebasNeueBold" size="24.0" />
                </font>
             </Label>
-            <JFXButton fx:id="btnTryAgain" alignment="CENTER" layoutX="11.0" layoutY="405.0" onAction="#btnTryAgainHandler" prefHeight="45.0" prefWidth="157.0" styleClass="score" text="Try Again" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="11.0">
+            <JFXButton fx:id="btnTryAgain" alignment="CENTER" layoutX="202.0" layoutY="413.0" onAction="#btnTryAgainHandler" prefHeight="45.0" prefWidth="157.0" styleClass="buttonGame" text="Try Again" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="202.0">
                <font>
                   <Font name="BebasNeueBold" size="24.0" />
                </font>
             </JFXButton>
-            <JFXButton fx:id="btnNextQuestion" alignment="CENTER" layoutX="191.0" layoutY="405.0" onAction="#btnNextQuestionHandler" prefHeight="45.0" prefWidth="157.0" styleClass="nextQuestion" text="Next Question" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="191.0">
+            <JFXButton fx:id="btnNextQuestion" alignment="CENTER" layoutX="78.0" layoutY="344.0" onAction="#btnNextQuestionHandler" prefHeight="51.0" prefWidth="157.0" styleClass="buttonNext" text="Next Question" AnchorPane.bottomAnchor="77.0" AnchorPane.leftAnchor="78.0">
                <font>
                   <Font name="BebasNeueBold" size="24.0" />
                </font>
             </JFXButton>
-            <JFXButton fx:id="btnPlayRecording" alignment="CENTER" layoutX="371.0" layoutY="405.0" onAction="#btnPlayRecordingHandler" prefHeight="45.0" prefWidth="157.0" styleClass="score" text="Play Recording" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="371.0">
+            <JFXButton fx:id="btnPlayRecording" alignment="CENTER" layoutX="305.0" layoutY="350.0" onAction="#btnPlayRecordingHandler" prefHeight="51.0" prefWidth="157.0" styleClass="buttonGame" text="Play Recording" AnchorPane.bottomAnchor="77.0" AnchorPane.leftAnchor="305.0">
                <font>
                   <Font name="BebasNeueBold" size="24.0" />
                </font>
             </JFXButton>
-            <JFXButton fx:id="btnPlayAgain" layoutX="78.0" layoutY="344.0" onAction="#btnPlayAgainHandler" prefHeight="51.0" prefWidth="157.0" styleClass="score" text="Play Again">
+            <JFXButton fx:id="btnPlayAgain" layoutX="78.0" layoutY="344.0" onAction="#btnPlayAgainHandler" prefHeight="51.0" prefWidth="157.0" styleClass="buttonGame" text="Play Again">
                <font>
                   <Font name="BebasNeueBold" size="24.0" />
                </font>
             </JFXButton>
-            <JFXButton fx:id="btnReturnToMenu" layoutX="305.0" layoutY="347.0" onAction="#btnQuitHandler" prefHeight="51.0" prefWidth="157.0" styleClass="score" text="Menu">
+            <JFXButton fx:id="btnReturnToMenu" layoutX="305.0" layoutY="347.0" onAction="#btnQuitHandler" prefHeight="51.0" prefWidth="157.0" styleClass="buttonGame" text="Menu">
                <font>
                   <Font name="BebasNeueBold" size="24.0" />
                </font>
             </JFXButton>
-            <JFXButton fx:id="btnNextLevel" layoutX="189.0" layoutY="404.0" onAction="#btnNextLevelHandler" prefHeight="51.0" prefWidth="161.0" styleClass="nextQuestion" text="Next Level Hard">
+            <JFXButton fx:id="btnNextLevel" layoutX="200.0" layoutY="410.0" onAction="#btnNextLevelHandler" prefHeight="51.0" prefWidth="161.0" styleClass="buttonNext" text="Proceed to Hard">
                <font>
                   <Font name="BebasNeueBold" size="24.0" />
                </font>
@@ -93,16 +93,18 @@
             </Label>
          </children>
       </AnchorPane>
-      <JFXButton fx:id="btnStatistics" alignment="CENTER_RIGHT" layoutX="592.0" layoutY="441.0" prefHeight="43.0" prefWidth="195.0" styleClass="score" text="Statistics" textAlignment="CENTER">
+      <JFXButton fx:id="btnStatistics" alignment="CENTER_RIGHT" layoutX="614.0" layoutY="444.0" prefHeight="47.0" prefWidth="150.0" styleClass="buttonOutside" text="Statistics" textAlignment="CENTER">
+         <font>
+            <Font name="BebasNeueBold" size="36.0" />
+         </font>
+         <graphic>
+            <MaterialDesignIconView fill="#212121" glyphName="CHART_LINE" size="30" text="" />
+         </graphic>
+      </JFXButton>
+      <JFXButton fx:id="btnQuit" alignment="CENTER" layoutX="614.0" layoutY="508.0" onAction="#btnQuitHandler" prefHeight="47.0" prefWidth="150.0" styleClass="buttonOutside" text="Quit">
          <font>
             <Font name="BebasNeueBold" size="36.0" />
          </font>
       </JFXButton>
-      <JFXButton fx:id="btnQuit" alignment="CENTER" layoutX="591.0" layoutY="519.0" onAction="#btnQuitHandler" prefHeight="43.0" prefWidth="195.0" styleClass="score" text="Quit">
-         <font>
-            <Font name="BebasNeueBold" size="36.0" />
-         </font>
-      </JFXButton>
-      <MaterialDesignIconView fill="#212121" glyphName="CHART_LINE" layoutX="604.0" layoutY="485.0" size="30" text="" />
    </children>
 </AnchorPane>

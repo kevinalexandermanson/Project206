@@ -284,22 +284,27 @@ public class GameController implements Initializable {
 		else  {
 		
 			if (level.equals(Levels.Addition.getLevel())) {
+				lblNowPlaying.setText("Now Playing - [Maths Mode - Addition]");
 				model.newEquation(Levels.Addition.getLevel());
 				lblCurrentGameNumber.setText(model.getEquation());
 			}
 			else if (level.equals(Levels.Subtraction.getLevel())) {
+				lblNowPlaying.setText("Now Playing - [Maths Mode - Subtraction]");
 				model.newEquation(Levels.Subtraction.getLevel());
 				lblCurrentGameNumber.setText(model.getEquation());
 			}
 			else if (level.equals(Levels.Multiplication.getLevel())) {
+				lblNowPlaying.setText("Now Playing - [Maths Mode - Multiplication]");
 				model.newEquation(Levels.Multiplication.getLevel());
 				lblCurrentGameNumber.setText(model.getEquation());
 			}
 			else if (level.equals(Levels.Division.getLevel())) {
+				lblNowPlaying.setText("Now Playing - [Maths Mode - Division]");
 				model.newEquation(Levels.Division.getLevel());
 				lblCurrentGameNumber.setText(model.getEquation());
 			}
 			else if (level.equals(Levels.Random.getLevel())) {
+				lblNowPlaying.setText("Now Playing - [Maths Mode - Random]");
 				model.newEquation(Levels.Random.getLevel());
 				lblCurrentGameNumber.setText(model.getEquation());
 			}

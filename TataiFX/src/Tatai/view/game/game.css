@@ -11,10 +11,6 @@
 	-fx-background-color: #ffcdd2;
 }
 
-.nextQuestion {
-	-fx-background-color: #BBDEFB;
-	-fx-background-radius: 8px;
-}
 
 .score {
 	-fx-background-color: #757575;
@@ -31,6 +27,43 @@
 }
 
 .bebasneue {
+	-fx-font-family: "Bebas Neue";
+}
+
+.buttonOutside {
+	-fx-background-color: #757575;
+	-fx-font-size: 24px;
+	-fx-font-family: "Bebas Neue";
+}
+
+.buttonOutside:hover {
+	-fx-background-color: #BDBDBD;
+	-fx-font-size: 24px;
+	-fx-font-family: "Bebas Neue";
+}
+
+.buttonNext {
+	-fx-background-color: #BBDEFB;
+	-fx-font-size: 18px;
+	-fx-font-family: "Bebas Neue";
+}
+
+.buttonNext:hover {
+	-fx-background-color: #2196F3 ;
+	-fx-font-size: 18px;
+	-fx-font-family: "Bebas Neue";	
+}
+
+.buttonGame {
+	-fx-background-color: #E0E0E0;
+	-fx-font-size: 18px;
+	-fx-font-family: "Bebas Neue";
+	
+}
+
+.buttonGame:hover {
+	-fx-background-color: #BDBDBD;
+	-fx-font-size: 18px;
 	-fx-font-family: "Bebas Neue";
 }
 
