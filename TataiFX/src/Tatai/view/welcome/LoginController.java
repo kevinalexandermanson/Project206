@@ -45,23 +45,12 @@ public class LoginController implements Initializable{
 	@FXML
 	private JFXButton btnDeleteUser;
 	
-	@FXML
-	private Label lblNewUserName;
-	
-	@FXML
-	private JFXTextField txtUsernameField;
-	
-	@FXML
-	private JFXButton btnEnter;
 	
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
 		JFXDepthManager.setDepth(cardPane,  4);
 		JFXDepthManager.setDepth(topPane, 5);
 		
-		lblNewUserName.setVisible(false);
-		txtUsernameField.setVisible(false);
-		btnEnter.setVisible(false);
 	}
 	
 	@FXML
@@ -81,30 +70,7 @@ public class LoginController implements Initializable{
 		alert.showAndWait(); */
 	}
 	
-	@FXML
-	private void btnNewUserHandler() {
-		
-		lblSelectUser.setVisible(false);
-		btnLogin.setVisible(false);
-		btnNewUser.setVisible(false);
-		btnDeleteUser.setVisible(false);
-		cmbbxSelectUser.setVisible(false);
-		
-		btnEnter.setVisible(true);
-		lblNewUserName.setVisible(true);
-		txtUsernameField.setVisible(true);
-		
-	}
-	
-	@FXML
-	private void btnEnterHandler() {
-		
-		String userName = txtUsernameField.getText();
-		if ((userName != null) && (!(userName.equals("")))) {
-			
-		}
-		
-	}
+
 		
 
 }

@@ -10,7 +10,7 @@
    <children>
       <AnchorPane fx:id="topPane" prefHeight="186.0" prefWidth="800.0" styleClass="topPane" stylesheets="@game.css" AnchorPane.bottomAnchor="414.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Label fx:id="lblNowPlaying" layoutX="38.0" layoutY="26.0" text="Now Playing - [Practise Mode - Easy]">
+            <Label fx:id="lblNowPlaying" layoutX="38.0" layoutY="26.0" styleClass="bebasneue" text="Now Playing - [Practise Mode - Easy]">
                <font>
                   <Font name="BebasNeueBold" size="36.0" />
                </font>
@@ -18,7 +18,7 @@
          </children></AnchorPane>
       <AnchorPane fx:id="cardPane" layoutX="27.0" layoutY="76.0" prefHeight="472.0" prefWidth="539.0" styleClass="gamePane" stylesheets="@game.css">
          <children>
-            <Label fx:id="lblCurrentGameNumber" alignment="CENTER" contentDisplay="CENTER" layoutX="-1.0" layoutY="128.0" prefHeight="157.0" prefWidth="539.0" text="10" textAlignment="CENTER">
+            <Label fx:id="lblCurrentGameNumber" alignment="CENTER" contentDisplay="CENTER" layoutX="-1.0" layoutY="128.0" prefHeight="157.0" prefWidth="539.0" styleClass="bebasneue" text="10" textAlignment="CENTER">
                <font>
                   <Font name="BebasNeueBold" size="96.0" />
                </font>
@@ -28,7 +28,7 @@
                   <Font name="BebasNeueBold" size="36.0" />
                </font>
             </JFXButton>
-            <Label fx:id="lblRecording" alignment="CENTER" contentDisplay="CENTER" layoutX="45.0" layoutY="14.0" prefHeight="128.0" prefWidth="452.0" text="Press Record, and say your answer in Te Reo clearly into the microphone. You have 3 seconds." textAlignment="CENTER" wrapText="true">
+            <Label fx:id="lblRecording" alignment="CENTER" contentDisplay="CENTER" layoutX="45.0" layoutY="14.0" prefHeight="128.0" prefWidth="452.0" styleClass="bebasneue" text="Press Record, and say your answer in Te Reo clearly into the microphone. You have 3 seconds." textAlignment="CENTER" wrapText="true">
                <font>
                   <Font name="BebasNeueBold" size="24.0" />
                </font>
@@ -67,12 +67,12 @@
       </AnchorPane>
       <AnchorPane fx:id="scorePane" layoutX="591.0" layoutY="250.0" prefHeight="180.0" prefWidth="195.0" styleClass="score" stylesheets="@game.css">
          <children>
-            <Label layoutX="63.0" layoutY="14.0" text="Score">
+            <Label layoutX="63.0" layoutY="14.0" styleClass="bebasneue" text="Score">
                <font>
                   <Font name="BebasNeueBold" size="36.0" />
                </font>
             </Label>
-            <Label fx:id="lblScoreNumber" alignment="CENTER" contentDisplay="CENTER" layoutX="1.0" layoutY="51.0" prefHeight="111.0" prefWidth="195.0" text="0/10" textAlignment="CENTER">
+            <Label fx:id="lblScoreNumber" alignment="CENTER" contentDisplay="CENTER" layoutX="1.0" layoutY="51.0" prefHeight="111.0" prefWidth="195.0" styleClass="bebasneue" text="0/10" textAlignment="CENTER">
                <font>
                   <Font name="BebasNeueBold" size="72.0" />
                </font>
@@ -81,12 +81,12 @@
       </AnchorPane>
       <AnchorPane fx:id="questionPane" layoutX="591.0" layoutY="55.0" prefHeight="180.0" prefWidth="195.0" styleClass="score" stylesheets="@game.css">
          <children>
-            <Label layoutX="45.0" layoutY="14.0" text="Question">
+            <Label layoutX="45.0" layoutY="14.0" styleClass="bebasneue" text="Question">
                <font>
                   <Font name="BebasNeueBold" size="36.0" />
                </font>
             </Label>
-            <Label fx:id="lblQuestionNumber" alignment="CENTER" contentDisplay="CENTER" layoutX="45.0" layoutY="51.0" prefHeight="111.0" prefWidth="105.0" text="1" textAlignment="CENTER">
+            <Label fx:id="lblQuestionNumber" alignment="CENTER" contentDisplay="CENTER" layoutX="45.0" layoutY="51.0" prefHeight="111.0" prefWidth="105.0" styleClass="bebasneue" text="1" textAlignment="CENTER">
                <font>
                   <Font name="BebasNeueBold" size="96.0" />
                </font>

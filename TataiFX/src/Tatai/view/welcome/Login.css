@@ -11,5 +11,22 @@
 }
 
 .topPane{
-	-fx-background-color: #2196F3
+	-fx-background-color: #2196F3;
+}
+
+.bebasneue {
+	-fx-font-family: "Bebas Neue";
+}
+
+.button {
+	-fx-background-color: #E0E0E0;
+	-fx-font-size: 14px;
+	-fx-font-family: "Bebas Neue";
+	
+}
+
+.button:hover {
+	-fx-background-color: #BDBDBD;
+	-fx-font-size: 14px;
+	-fx-font-family: "Bebas Neue";
 }
