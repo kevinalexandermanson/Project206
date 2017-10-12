@@ -361,15 +361,14 @@ public class GameController implements Initializable {
 				recording = get();
 
 				// Uncomment when testing on linux
-				/*
+				
 				//get correct number and recorded number
 				String correctNumber = recording.getCorrectNumber(number);
 				String recordedNumber = recording.getRecordedNumber();
 
 				//check if numbers are equivalent
 				boolean answer = (recording.getCorrectNumber(number).equals(recording.getRecordedNumber()));
-				 */
-				boolean answer = true;
+				 
 				if (answer == true) {
 					lblCurrentGameNumber.setText("Correct");
 					root.getStyleClass().removeAll("rootWrong");
@@ -382,10 +381,23 @@ public class GameController implements Initializable {
 				}
 
 				//prepare for output
-				/*correctNumber = correctNumber.replace("whaa", "wha");
+				correctNumber = correctNumber.replace("whaa", "wha");
 				correctNumber = correctNumber.replace("maa", "ma");
 				recordedNumber = recordedNumber.replace("whaa", "wha");
-				recordedNumber = recordedNumber.replace("maa", "ma");*/
+				recordedNumber = recordedNumber.replace("maa", "ma");
+				
+				lblRecording.setText("");
+				
+				if (secondAttempt && !(answer)) {
+					lblRecording.setText("The correct answer was: " + correctNumber + "\n You said: " + recordedNumber);
+				}
+
+				if (!(secondAttempt) && (!(answer))) {
+					lblRecording.setText("Try again to see the correct answer");
+					btnTryAgain.setVisible(true);
+				}
+				btnNextQuestion.setVisible(true);
+				btnPlayRecording.setVisible(true);
 
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
@@ -396,13 +408,6 @@ public class GameController implements Initializable {
 			}
 
 
-			lblRecording.setText("Recording complete. ");
-
-			if ((secondAttempt == false) && (!(lblCurrentGameNumber.getText().equals("Correct")))) {
-				btnTryAgain.setVisible(true);
-			}
-			btnNextQuestion.setVisible(true);
-			btnPlayRecording.setVisible(true);
 		}
 
 		@Override protected void cancelled() {
