@@ -2,6 +2,9 @@ package Tatai.Levels;
 
 import java.util.Random;
 
+/**
+ * Class handles PractiseHard level
+ */
 public class PractiseHard implements LevelInterface{
 	
 	private String label;
@@ -20,6 +23,7 @@ public class PractiseHard implements LevelInterface{
 	
 
 	public void calculate() {
+		//Calculates random number for hard mode between 1 and 100
 		label = "Now Playing - [Practise Mode - Hard]";
 		number = Integer.toString(randomNumber());
 	}

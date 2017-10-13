@@ -1,5 +1,9 @@
 package Tatai.Levels;
 
+/**
+ * Enum of all the different possible levels
+ *
+ */
 public enum Levels {
 	
 	PractiseEasy("PractiseEasy"), PractiseHard("PractiseHard"), Addition("+"), Subtraction("-"), 

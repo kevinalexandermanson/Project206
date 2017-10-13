@@ -2,12 +2,16 @@ package Tatai.Levels;
 
 import Tatai.model.EquationModel;
 
-public class RandomGenerator implements LevelInterface {
+/**
+ * Class handles RandomEasy level
+ *
+ */
+public class RandomEasy implements LevelInterface {
 	
 	private String label;
 	private EquationModel model;
 	
-	public RandomGenerator() {
+	public RandomEasy() {
 		model = new EquationModel();
 	}
 	
@@ -21,6 +25,7 @@ public class RandomGenerator implements LevelInterface {
 	
 
 	public void calculate() {
+		//Calulates random easy level question
 		label = "Now Playing - [Practise Mode - Random Easy]";
 		model.newEquation(Levels.Random.getLevel());
 	}

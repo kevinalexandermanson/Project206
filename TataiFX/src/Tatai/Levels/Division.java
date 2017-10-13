@@ -2,6 +2,9 @@ package Tatai.Levels;
 
 import Tatai.model.EquationModel;
 
+/**
+ * Class handles division level
+ */
 public class Division implements LevelInterface {
 	
 	private String label;
@@ -21,6 +24,7 @@ public class Division implements LevelInterface {
 	
 
 	public void calculate() {
+		// Calculates level as division
 		label = "Now Playing - [Practise Mode - Division]";
 		model.newEquation(Levels.Division.getLevel());
 	}

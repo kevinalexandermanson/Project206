@@ -2,6 +2,9 @@ package Tatai.Levels;
 
 import Tatai.model.EquationModel;
 
+/**
+ * Class handles Addition level
+ */
 public class Addition implements LevelInterface {
 
 	private String label;
@@ -21,6 +24,7 @@ public class Addition implements LevelInterface {
 	
 
 	public void calculate() {
+		// Calculates level as Addition
 		label = "Now Playing - [Practise Mode - Addition]";
 		model.newEquation(Levels.Addition.getLevel());
 	}

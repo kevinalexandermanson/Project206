@@ -2,7 +2,9 @@ package Tatai.Levels;
 
 import java.util.Random;
 
-
+/**
+ * Class handles practice easy level
+ */
 public class PractiseEasy implements LevelInterface {
 	
 	private String label;
@@ -21,6 +23,7 @@ public class PractiseEasy implements LevelInterface {
 	
 
 	public void calculate() {
+		//Calculates random number for easy mode between 1 and 10
 		label = "Now Playing - [Practise Mode - Easy]";
 		number = Integer.toString(randomNumber());
 	}
@@ -30,7 +33,7 @@ public class PractiseEasy implements LevelInterface {
 		int randomNumber = 0;
 		Random rand = new Random();
 		
-		randomNumber = rand.nextInt(9) + 1; //Range is now 1-9, as specified, rather than 0-9
+		randomNumber = rand.nextInt(9) + 1; //Range 1-9
 		
 		return randomNumber;
 	}

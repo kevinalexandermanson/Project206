@@ -1,5 +1,9 @@
 package Tatai.model;
 
+/**
+ * Enum to model all the Maori numbers
+ *
+ */
 public enum Numbers {
 
 	One("tahi"), Two("rua"), Three("toru"), Four("whaa"), Five("rima"), Six("ono"), Seven("whitu"), Eight("waru"),

@@ -66,7 +66,9 @@ public class LevelSelectController implements Initializable {
 	    @FXML
 	    private JFXButton btnRandomHard;
 
-	
+	/**
+	 * Initializes the buttons on the screen
+	 */
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
 		JFXDepthManager.setDepth(cardPane,  4);
@@ -81,6 +83,11 @@ public class LevelSelectController implements Initializable {
 		btnRandomHard.setVisible(false);
 	}
 	
+	/**
+	 * Handles the back button
+	 * @param event
+	 * @throws IOException
+	 */
 	@FXML
 	private void btnBackHandler(ActionEvent event) throws IOException {
 		if (btnPractise.isVisible()) {
@@ -106,14 +113,22 @@ public class LevelSelectController implements Initializable {
 		}
 	}
 	
+	/**
+	 * Handles the level selection
+	 * @param event
+	 * @throws IOException
+	 */
 	@FXML
 	private void selectModeHandler(ActionEvent event) throws IOException {
 
+		// Loads the new screen
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(getClass().getResource("/Tatai/view/game/Game.fxml"));
 		Parent parentGame = loader.load();
-		
+	
 		GameController controller = loader.getController();
+		
+		// Handles the level selection and loads the apporiate level for the GameController
 		if (event.getSource().equals(btnPractiseEasy)) {
 			controller.setLevel(Levels.PractiseEasy.getLevel());
 		}
@@ -139,7 +154,6 @@ public class LevelSelectController implements Initializable {
 			controller.setLevel(Levels.RandomHard.getLevel());
 		}
 
-		
 		Scene sceneGame = new Scene(parentGame);
 		
 		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -148,11 +162,17 @@ public class LevelSelectController implements Initializable {
 		
 	}
 	
+	/**
+	 * Handles which mode is selected
+	 * @param event
+	 * @throws IOException
+	 */
 	@FXML
 	private void btnPlayHandler(ActionEvent event) throws IOException {
 		btnPractise.setVisible(false);
 		btnMaths.setVisible(false);
 		
+		// Loads the appropriate level
 		if (event.getSource().equals(btnPractise)) {
 			btnPractiseEasy.setVisible(true);
 			btnPractiseHard.setVisible(true);

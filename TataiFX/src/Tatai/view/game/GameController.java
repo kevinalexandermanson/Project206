@@ -22,7 +22,7 @@ import Tatai.Levels.Levels;
 import Tatai.Levels.Multiplication;
 import Tatai.Levels.PractiseEasy;
 import Tatai.Levels.PractiseHard;
-import Tatai.Levels.RandomGenerator;
+import Tatai.Levels.RandomEasy;
 import Tatai.Levels.RandomHard;
 import Tatai.Levels.Subtraction;
 import Tatai.model.Recording;
@@ -113,7 +113,7 @@ public class GameController implements Initializable {
 		JFXDepthManager.setDepth(questionPane, 4);
 		JFXDepthManager.setDepth(topPane, 5);
 
-
+		//Initializes the buttons
 		btnTryAgain.setVisible(false);
 		btnNextQuestion.setVisible(false);
 		btnPlayRecording.setVisible(false);
@@ -128,7 +128,7 @@ public class GameController implements Initializable {
 		map.put(Levels.Subtraction.getLevel(), new Subtraction());
 		map.put(Levels.Multiplication.getLevel(), new Multiplication());
 		map.put(Levels.Division.getLevel(), new Division());
-		map.put(Levels.Random.getLevel(), new RandomGenerator());
+		map.put(Levels.Random.getLevel(), new RandomEasy());
 		map.put(Levels.PractiseEasy.getLevel(), new PractiseEasy());
 		map.put(Levels.PractiseHard.getLevel(), new PractiseHard());
 		map.put(Levels.RandomHard.getLevel(), new RandomHard());
@@ -137,8 +137,15 @@ public class GameController implements Initializable {
 
 	/*---------- Event Handlers ------------------------------------------------------------------------------*/
 
+	/**
+	 * Handles the quit button
+	 * @param event
+	 * @throws IOException
+	 */
 	@FXML
 	private void btnQuitHandler(ActionEvent event) throws IOException {
+		
+		// Loads the level select screen
 		Parent parentLevelSelect = FXMLLoader.load(getClass().getResource("/Tatai/view/levelselect/LevelSelect.fxml"));
 		Scene sceneLevelSelect = new Scene(parentLevelSelect);
 
@@ -148,22 +155,30 @@ public class GameController implements Initializable {
 
 	}
 
+	/**
+	 * Handles the recording button
+	 * @param event
+	 */
 	@FXML
 	private void btnRecordHandler(ActionEvent event) {
+		
 		btnRecord.setVisible(false);
 		lblRecording.setText("Recording in progress...");
 		currentQuestionNumber = lblCurrentGameNumber.getText();
 
+		// Opens a new recording thread and starts the recording as a background task
 		RecordingTask task = new RecordingTask();
-
 		Thread thread = new Thread(task);
-
 		thread.start();
 
 
 
 	}
 
+	/**
+	 * Handles the next question button
+	 * @param event
+	 */
 	@FXML
 	private void btnNextQuestionHandler(ActionEvent event) {
 
@@ -175,16 +190,17 @@ public class GameController implements Initializable {
 		secondAttempt = false;
 		int num = currentQuestion();
 
+		// Checks to see if the the numebr of questions is 10
 		if (num == NUMOFQUESTIONS) {
 			lblRecording.setText("");
 			lblCurrentGameNumber.setText("Game Over");
 
-
-
+			// If on practise mode, offer chance to go to next level
 			if ((level.equals(Levels.PractiseEasy.getLevel()) && (currentScore() >= 8))) {
 				btnNextLevel.setVisible(true);
 			}
-
+			
+			// Shows game over screen
 			lblScoreNumber.setText("0/" + NUMOFQUESTIONSSTRING);
 			lblQuestionNumber.setText("1");
 			btnPlayAgain.setVisible(true);
@@ -192,10 +208,12 @@ public class GameController implements Initializable {
 
 		} 
 		else {
+			// Calculates next question
 			map.get(level).calculate();
 			lblCurrentGameNumber.setText(map.get(level).getEquation());
 			lblNowPlaying.setText(map.get(level).getLabel());
 
+			// Changes the question number
 			questionNumChange();
 
 			btnRecord.setVisible(true);
@@ -203,27 +221,32 @@ public class GameController implements Initializable {
 
 		}
 
-
-
 		btnTryAgain.setVisible(false);
 		btnNextQuestion.setVisible(false);
 		btnPlayRecording.setVisible(false);
 
 	}
 
+	/**
+	 * Handles playing the recording
+	 */
 	@FXML
-	public void btnPlayRecordingHandler() {
+	private void btnPlayRecordingHandler() {
 		btnPlayRecording.setVisible(false);
+		
+		// Sets up a new recording thread to play the recording
 		PlayingThread task = new PlayingThread();
-
 		Thread thread = new Thread(task);
-
 		thread.start();
 	}
-
+	
+	/**
+	 * Handles the try again button
+	 */
 	@FXML
-	public void btnTryAgainHandler() {
+	private void btnTryAgainHandler() {
 
+		// Checks if it is their first attempt if so, let them try again
 		if (secondAttempt == false) {
 
 			lblCurrentGameNumber.setText(currentQuestionNumber);
@@ -237,64 +260,68 @@ public class GameController implements Initializable {
 		}
 	}
 
+	/**
+	 * Handles play again button
+	 */
 	@FXML
-	public void btnPlayAgainHandler() {
+	private void btnPlayAgainHandler() {
 
+		// Sets up the game screen again
 		btnPlayAgain.setVisible(false);
 		btnReturnToMenu.setVisible(false);
 		btnNextLevel.setVisible(false);
 		btnRecord.setVisible(true);
 
+		// Calculates a new equation depending on the level
 		map.get(level).calculate();
 		lblCurrentGameNumber.setText(map.get(level).getEquation());
 		
 		lblRecording.setText(INTRO);
 
-
 	}
 
+	/**
+	 * Handles next level button
+	 */
 	@FXML
-	public void btnNextLevelHandler() {
+	private void btnNextLevelHandler() {
 
+		// Moves the player to the next level
 		level = Levels.PractiseHard.getLevel();
-		lblNowPlaying.setText("Now Playing - [Practise Mode - Hard]");
 
 		btnNextLevel.setVisible(false);
 		btnPlayAgain.setVisible(false);
 		btnReturnToMenu.setVisible(false);
 		btnRecord.setVisible(true);
 
-		lblCurrentGameNumber.setText(Integer.toString(randomNumber()));
+		map.get(level).calculate();
+		lblCurrentGameNumber.setText(map.get(level).getEquation());
+		lblNowPlaying.setText(map.get(level).getLabel());
+		
 		lblRecording.setText(INTRO);
 
 	}
 	/*---------- Other Methods ------------------------------------------------------------------------*/
 
+	/**
+	 * Sets the level of the game
+	 * @param level
+	 */
 	public void setLevel(String level) {
 		this.level = level;
 
+		// Calculates the apporpriate question depending on the level
 		map.get(level).calculate();
 		lblCurrentGameNumber.setText(map.get(level).getEquation());
 		lblNowPlaying.setText(map.get(level).getLabel());
 	}
 
-	private int randomNumber() {
-
-		int randomNumber = 0;
-		Random rand = new Random();
-		if (level.equals(Levels.PractiseEasy.getLevel())) {
-			randomNumber = rand.nextInt(9) + 1; //Range is now 1-9, as specified, rather than 0-9
-		}
-		else if (level.equals(Levels.PractiseHard.getLevel())) {
-			randomNumber = rand.nextInt(99) + 1; 
-		}
-
-		return randomNumber;
-	}
-
-
 	/*---------- Threads ------------------------------------------------------------------------*/
 
+	/**
+	 * Handles the recording thread
+	 *
+	 */
 	private class RecordingTask extends Task<Recording> {
 
 
@@ -310,6 +337,7 @@ public class GameController implements Initializable {
 		protected void succeeded() {
 			super.succeeded();
 
+			// Calculates the equation
 			ScriptEngineManager manager = new ScriptEngineManager();
 			ScriptEngine engine = manager.getEngineByName("js");
 			Object result = null;
@@ -425,7 +453,7 @@ public class GameController implements Initializable {
 		return num;
 	}
 
-	/*
+	/**
 	 * Updates question number
 	 */
 	private void questionNumChange() {
@@ -437,7 +465,7 @@ public class GameController implements Initializable {
 		lblQuestionNumber.setText(returnString);
 	}
 
-	/*
+	/**
 	 * Updates score number
 	 */
 	private void scoreNumChange() {

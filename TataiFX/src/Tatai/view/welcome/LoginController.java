@@ -25,6 +25,7 @@ import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.effects.JFXDepthManager;
 
 public class LoginController implements Initializable{
+	
 	@FXML
 	private AnchorPane root;
 	@FXML
@@ -53,6 +54,11 @@ public class LoginController implements Initializable{
 		
 	}
 	
+	/**
+	 * Method to handle login button
+	 * @param event
+	 * @throws IOException
+	 */
 	@FXML
 	private void btnLoginHandler(ActionEvent event) throws IOException {
 		Parent parentLevelSelect = FXMLLoader.load(getClass().getResource("/Tatai/view/levelselect/LevelSelect.fxml"));

@@ -2,6 +2,10 @@ package Tatai.Levels;
 
 import Tatai.model.EquationModel;
 
+/**
+ * Class handles Subtraction level
+ *
+ */
 public class Subtraction implements LevelInterface {
 
 	private EquationModel model;
@@ -12,6 +16,7 @@ public class Subtraction implements LevelInterface {
 	}
 	
 	public void calculate() {
+		//Calculates subtraction question
 		label = "Now Playing - [Practise Mode - Subtraction]";
 		model.newEquation(Levels.Subtraction.getLevel());
 	}
