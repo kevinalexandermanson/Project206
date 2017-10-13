@@ -7,7 +7,7 @@ import java.util.ResourceBundle;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.effects.JFXDepthManager;
 
-import Tatai.model.Levels;
+import Tatai.Levels.Levels;
 import Tatai.view.game.GameController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

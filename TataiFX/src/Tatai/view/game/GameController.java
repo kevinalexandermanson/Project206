@@ -2,6 +2,8 @@ package Tatai.view.game;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 import java.util.ResourceBundle;
 import java.util.concurrent.ExecutionException;
@@ -13,14 +15,18 @@ import javax.script.ScriptException;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.effects.JFXDepthManager;
 
-import Tatai.model.EquationModel;
-import Tatai.model.Levels;
+import Tatai.Levels.Addition;
+import Tatai.Levels.LevelInterface;
+import Tatai.Levels.Division;
+import Tatai.Levels.Levels;
+import Tatai.Levels.Multiplication;
+import Tatai.Levels.PractiseEasy;
+import Tatai.Levels.PractiseHard;
+import Tatai.Levels.RandomGenerator;
+import Tatai.Levels.Subtraction;
 import Tatai.model.Recording;
-import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
-import javafx.concurrent.WorkerStateEvent;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -80,20 +86,20 @@ public class GameController implements Initializable {
 
 	@FXML
 	private JFXButton btnQuit;
-	
+
 	@FXML
 	private JFXButton btnPlayAgain;
-	
+
 	@FXML
 	private JFXButton btnReturnToMenu;
-	
+
 	@FXML
 	private JFXButton btnNextLevel;
 
 	private String level = "";
 	private boolean secondAttempt = false;
 	private String currentQuestionNumber;
-	private EquationModel model;
+	private Map<String, LevelInterface> map;
 
 	private static final int NUMOFQUESTIONS = 10;
 	private static final String NUMOFQUESTIONSSTRING = String.valueOf(NUMOFQUESTIONS);
@@ -114,7 +120,17 @@ public class GameController implements Initializable {
 		btnReturnToMenu.setVisible(false);
 		btnNextLevel.setVisible(false);
 
-		model = new EquationModel();
+		
+		// Creates map of all possible levels
+		map = new HashMap<String, LevelInterface>();
+		map.put(Levels.Addition.getLevel(), new Addition());
+		map.put(Levels.Subtraction.getLevel(), new Subtraction());
+		map.put(Levels.Multiplication.getLevel(), new Multiplication());
+		map.put(Levels.Division.getLevel(), new Division());
+		map.put(Levels.Random.getLevel(), new RandomGenerator());
+		map.put(Levels.PractiseEasy.getLevel(), new PractiseEasy());
+		map.put(Levels.PractiseHard.getLevel(), new PractiseHard());
+
 	}
 
 	/*---------- Event Handlers ------------------------------------------------------------------------------*/
@@ -153,7 +169,7 @@ public class GameController implements Initializable {
 		root.getStyleClass().removeAll("rootCorrect");
 		root.getStyleClass().removeAll("rootWrong");
 
-		
+
 		secondAttempt = false;
 		int num = currentQuestion();
 
@@ -161,12 +177,12 @@ public class GameController implements Initializable {
 			lblRecording.setText("");
 			lblCurrentGameNumber.setText("Game Over");
 
-			
-			
+
+
 			if ((level.equals(Levels.PractiseEasy.getLevel()) && (currentScore() >= 8))) {
 				btnNextLevel.setVisible(true);
 			}
-			
+
 			lblScoreNumber.setText("0/" + NUMOFQUESTIONSSTRING);
 			lblQuestionNumber.setText("1");
 			btnPlayAgain.setVisible(true);
@@ -174,30 +190,10 @@ public class GameController implements Initializable {
 
 		} 
 		else {
-			if (level.equals(Levels.Addition.getLevel())) {
-				model.newEquation(Levels.Addition.getLevel());
-				lblCurrentGameNumber.setText(model.getEquation());
-			}
-			else if (level.equals(Levels.Subtraction.getLevel())) {
-				model.newEquation(Levels.Subtraction.getLevel());
-				lblCurrentGameNumber.setText(model.getEquation());
-			}
-			else if (level.equals(Levels.Multiplication.getLevel())) {
-				model.newEquation(Levels.Multiplication.getLevel());
-				lblCurrentGameNumber.setText(model.getEquation());
-			}
-			else if (level.equals(Levels.Division.getLevel())) {
-				model.newEquation(Levels.Division.getLevel());
-				lblCurrentGameNumber.setText(model.getEquation());
-			}
-			else if (level.equals(Levels.Random.getLevel())) {
-				model.newEquation(Levels.Random.getLevel());
-				lblCurrentGameNumber.setText(model.getEquation());
-			}
-			else {
-				lblCurrentGameNumber.setText(Integer.toString(randomNumber()));
-			}
-		
+			map.get(level).calculate();
+			lblCurrentGameNumber.setText(map.get(level).getEquation());
+			lblNowPlaying.setText(map.get(level).getLabel());
+
 			questionNumChange();
 
 			btnRecord.setVisible(true);
@@ -205,12 +201,12 @@ public class GameController implements Initializable {
 
 		}
 
-		
+
 
 		btnTryAgain.setVisible(false);
 		btnNextQuestion.setVisible(false);
 		btnPlayRecording.setVisible(false);
-	
+
 	}
 
 	@FXML
@@ -222,48 +218,50 @@ public class GameController implements Initializable {
 
 		thread.start();
 	}
-	
+
 	@FXML
 	public void btnTryAgainHandler() {
-		
+
 		if (secondAttempt == false) {
-			
+
 			lblCurrentGameNumber.setText(currentQuestionNumber);
-			
+
 			btnRecord.setVisible(true);
 			btnTryAgain.setVisible(false);
 			btnNextQuestion.setVisible(false);
 			btnPlayRecording.setVisible(false);
-			
+
 			secondAttempt = true;
 		}
 	}
 
 	@FXML
 	public void btnPlayAgainHandler() {
-		
+
 		btnPlayAgain.setVisible(false);
 		btnReturnToMenu.setVisible(false);
 		btnNextLevel.setVisible(false);
 		btnRecord.setVisible(true);
+
+		map.get(level).calculate();
+		lblCurrentGameNumber.setText(map.get(level).getEquation());
 		
-		lblCurrentGameNumber.setText(Integer.toString(randomNumber()));
 		lblRecording.setText(INTRO);
-		
-		
+
+
 	}
 
 	@FXML
 	public void btnNextLevelHandler() {
-		
+
 		level = Levels.PractiseHard.getLevel();
 		lblNowPlaying.setText("Now Playing - [Practise Mode - Hard]");
-		
+
 		btnNextLevel.setVisible(false);
 		btnPlayAgain.setVisible(false);
 		btnReturnToMenu.setVisible(false);
 		btnRecord.setVisible(true);
-		
+
 		lblCurrentGameNumber.setText(Integer.toString(randomNumber()));
 		lblRecording.setText(INTRO);
 
@@ -272,44 +270,10 @@ public class GameController implements Initializable {
 
 	public void setLevel(String level) {
 		this.level = level;
-		
-		if (level.equals(Levels.PractiseEasy.getLevel())) {
-			lblNowPlaying.setText("Now Playing - [Practise Mode - Easy]");
-			lblCurrentGameNumber.setText(Integer.toString(randomNumber()));
-		}
-		else if (level.equals(Levels.PractiseHard.getLevel())) {
-			lblNowPlaying.setText("Now Playing - [Practise Mode - Hard]");
-			lblCurrentGameNumber.setText(Integer.toString(randomNumber()));
-		}
-		else  {
-		
-			if (level.equals(Levels.Addition.getLevel())) {
-				lblNowPlaying.setText("Now Playing - [Maths Mode - Addition]");
-				model.newEquation(Levels.Addition.getLevel());
-				lblCurrentGameNumber.setText(model.getEquation());
-			}
-			else if (level.equals(Levels.Subtraction.getLevel())) {
-				lblNowPlaying.setText("Now Playing - [Maths Mode - Subtraction]");
-				model.newEquation(Levels.Subtraction.getLevel());
-				lblCurrentGameNumber.setText(model.getEquation());
-			}
-			else if (level.equals(Levels.Multiplication.getLevel())) {
-				lblNowPlaying.setText("Now Playing - [Maths Mode - Multiplication]");
-				model.newEquation(Levels.Multiplication.getLevel());
-				lblCurrentGameNumber.setText(model.getEquation());
-			}
-			else if (level.equals(Levels.Division.getLevel())) {
-				lblNowPlaying.setText("Now Playing - [Maths Mode - Division]");
-				model.newEquation(Levels.Division.getLevel());
-				lblCurrentGameNumber.setText(model.getEquation());
-			}
-			else if (level.equals(Levels.Random.getLevel())) {
-				lblNowPlaying.setText("Now Playing - [Maths Mode - Random]");
-				model.newEquation(Levels.Random.getLevel());
-				lblCurrentGameNumber.setText(model.getEquation());
-			}
-		}
-		
+
+		map.get(level).calculate();
+		lblCurrentGameNumber.setText(map.get(level).getEquation());
+		lblNowPlaying.setText(map.get(level).getLabel());
 	}
 
 	private int randomNumber() {
@@ -343,16 +307,16 @@ public class GameController implements Initializable {
 		@Override 
 		protected void succeeded() {
 			super.succeeded();
-			
+
 			ScriptEngineManager manager = new ScriptEngineManager();
-	        ScriptEngine engine = manager.getEngineByName("js");
-	        Object result = null;
-	        try {
-	        	result = engine.eval(lblCurrentGameNumber.getText());
+			ScriptEngine engine = manager.getEngineByName("js");
+			Object result = null;
+			try {
+				result = engine.eval(lblCurrentGameNumber.getText());
 			} catch (ScriptException e) {
 				e.printStackTrace();
 			}
-	        
+
 			int number = (int) result;
 
 			//gets the recording object
@@ -361,14 +325,14 @@ public class GameController implements Initializable {
 				recording = get();
 
 				// Uncomment when testing on linux
-				
+
 				//get correct number and recorded number
 				String correctNumber = recording.getCorrectNumber(number);
 				String recordedNumber = recording.getRecordedNumber();
 
 				//check if numbers are equivalent
 				boolean answer = (recording.getCorrectNumber(number).equals(recording.getRecordedNumber()));
-				 
+				answer = true;
 				if (answer == true) {
 					lblCurrentGameNumber.setText("Correct");
 					root.getStyleClass().removeAll("rootWrong");
@@ -385,9 +349,9 @@ public class GameController implements Initializable {
 				correctNumber = correctNumber.replace("maa", "ma");
 				recordedNumber = recordedNumber.replace("whaa", "wha");
 				recordedNumber = recordedNumber.replace("maa", "ma");
-				
+
 				lblRecording.setText("");
-				
+
 				if (secondAttempt && !(answer)) {
 					lblRecording.setText("The correct answer was: " + correctNumber + "\n You said: " + recordedNumber);
 				}
@@ -400,10 +364,8 @@ public class GameController implements Initializable {
 				btnPlayRecording.setVisible(true);
 
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} catch (ExecutionException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 

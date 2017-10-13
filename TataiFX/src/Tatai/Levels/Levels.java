@@ -1,4 +1,4 @@
-package Tatai.model;
+package Tatai.Levels;
 
 public enum Levels {
 	

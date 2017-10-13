@@ -6,6 +6,8 @@ import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
 import javax.script.ScriptException;
 
+import Tatai.Levels.Levels;
+
 public class EquationModel {
 	
 	private String equation;
