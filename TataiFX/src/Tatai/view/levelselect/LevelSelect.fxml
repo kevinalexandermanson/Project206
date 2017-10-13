@@ -130,6 +130,15 @@
                   <String fx:value="bebasneue" />
                </styleClass>
             </JFXButton>
+            <JFXButton fx:id="btnRandomHard" layoutX="294.0" layoutY="256.0" onAction="#selectModeHandler" prefHeight="58.0" prefWidth="153.0" stylesheets="@levelselect.css" text="Random Hard">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <styleClass>
+                  <String fx:value="root" />
+                  <String fx:value="bebasneue" />
+               </styleClass>
+            </JFXButton>
          </children>
       </AnchorPane>
    </children>

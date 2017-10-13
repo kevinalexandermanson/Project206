@@ -62,6 +62,9 @@ public class LevelSelectController implements Initializable {
 
 	    @FXML
 	    private JFXButton btnMaths;
+	    
+	    @FXML
+	    private JFXButton btnRandomHard;
 
 	
 	@Override
@@ -75,6 +78,7 @@ public class LevelSelectController implements Initializable {
 		btnMultiplication.setVisible(false);
 		btnDivision.setVisible(false);
 		btnRandom.setVisible(false);
+		btnRandomHard.setVisible(false);
 	}
 	
 	@FXML
@@ -94,8 +98,10 @@ public class LevelSelectController implements Initializable {
 			btnMultiplication.setVisible(false);
 			btnDivision.setVisible(false);
 			btnRandom.setVisible(false);
+			btnRandomHard.setVisible(false);
 			btnPractise.setVisible(true);
 			btnMaths.setVisible(true);
+			
 			
 		}
 	}
@@ -129,6 +135,9 @@ public class LevelSelectController implements Initializable {
 		else if (event.getSource().equals(btnRandom)) {
 			controller.setLevel(Levels.Random.getLevel());
 		}
+		else if (event.getSource().equals(btnRandomHard)) {
+			controller.setLevel(Levels.RandomHard.getLevel());
+		}
 
 		
 		Scene sceneGame = new Scene(parentGame);
@@ -153,6 +162,7 @@ public class LevelSelectController implements Initializable {
 			btnMultiplication.setVisible(true);
 			btnDivision.setVisible(true);
 			btnRandom.setVisible(true);
+			btnRandomHard.setVisible(true);
 		}
 			
 	}

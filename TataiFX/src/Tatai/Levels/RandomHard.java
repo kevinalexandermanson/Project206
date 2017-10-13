@@ -2,12 +2,12 @@ package Tatai.Levels;
 
 import Tatai.model.EquationModel;
 
-public class RandomGenerator implements LevelInterface {
+public class RandomHard implements LevelInterface{
 	
 	private String label;
 	private EquationModel model;
 	
-	public RandomGenerator() {
+	public RandomHard() {
 		model = new EquationModel();
 	}
 	
@@ -21,7 +21,7 @@ public class RandomGenerator implements LevelInterface {
 	
 
 	public void calculate() {
-		label = "Now Playing - [Practise Mode - Random Easy]";
-		model.newEquation(Levels.Random.getLevel());
+		label = "Now Playing - [Practise Mode - Random Hard]";
+		model.randNumHard();
 	}
 }

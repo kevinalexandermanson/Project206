@@ -3,7 +3,7 @@ package Tatai.Levels;
 public enum Levels {
 	
 	PractiseEasy("PractiseEasy"), PractiseHard("PractiseHard"), Addition("+"), Subtraction("-"), 
-	Multiplication("*"), Division("/"), Random("Random");
+	Multiplication("*"), Division("/"), Random("Random"), RandomHard("RandomHard");
 	
 	private final String level;
 

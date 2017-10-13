@@ -23,6 +23,7 @@ import Tatai.Levels.Multiplication;
 import Tatai.Levels.PractiseEasy;
 import Tatai.Levels.PractiseHard;
 import Tatai.Levels.RandomGenerator;
+import Tatai.Levels.RandomHard;
 import Tatai.Levels.Subtraction;
 import Tatai.model.Recording;
 import javafx.concurrent.Task;
@@ -130,6 +131,7 @@ public class GameController implements Initializable {
 		map.put(Levels.Random.getLevel(), new RandomGenerator());
 		map.put(Levels.PractiseEasy.getLevel(), new PractiseEasy());
 		map.put(Levels.PractiseHard.getLevel(), new PractiseHard());
+		map.put(Levels.RandomHard.getLevel(), new RandomHard());
 
 	}
 
