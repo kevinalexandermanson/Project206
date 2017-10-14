@@ -33,7 +33,7 @@
                   <Font name="BebasNeueBold" size="24.0" />
                </font>
             </Label>
-            <JFXButton fx:id="btnTryAgain" alignment="CENTER" layoutX="202.0" layoutY="413.0" onAction="#btnTryAgainHandler" prefHeight="45.0" prefWidth="157.0" styleClass="buttonGame" text="Try Again" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="202.0">
+            <JFXButton fx:id="btnTryAgain" alignment="CENTER" layoutX="193.0" layoutY="413.0" onAction="#btnTryAgainHandler" prefHeight="45.0" prefWidth="157.0" styleClass="buttonGame" text="Try Again" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="193.0">
                <font>
                   <Font name="BebasNeueBold" size="24.0" />
                </font>
@@ -58,7 +58,7 @@
                   <Font name="BebasNeueBold" size="24.0" />
                </font>
             </JFXButton>
-            <JFXButton fx:id="btnNextLevel" layoutX="200.0" layoutY="410.0" onAction="#btnNextLevelHandler" prefHeight="51.0" prefWidth="161.0" styleClass="buttonNext" text="Proceed to Hard">
+            <JFXButton fx:id="btnNextLevel" layoutX="188.0" layoutY="410.0" onAction="#btnNextLevelHandler" prefHeight="51.0" prefWidth="161.0" styleClass="buttonNext" text="Proceed to Hard">
                <font>
                   <Font name="BebasNeueBold" size="24.0" />
                </font>

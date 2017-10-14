@@ -329,7 +329,7 @@ public class GameController implements Initializable {
 		protected Recording call() throws Exception {
 			Recording recording = new Recording();
 			// Uncomment when testing on linex
-			//recording.record();
+			recording.record();
 			return recording;
 		}
 
@@ -362,7 +362,7 @@ public class GameController implements Initializable {
 
 				//check if numbers are equivalent
 				boolean answer = (recording.getCorrectNumber(number).equals(recording.getRecordedNumber()));
-				answer = true;
+				//answer = true;
 				if (answer == true) {
 					lblCurrentGameNumber.setText("Correct");
 					root.getStyleClass().removeAll("rootWrong");
@@ -422,7 +422,7 @@ public class GameController implements Initializable {
 		protected Recording call() throws Exception {
 			Recording recording = new Recording();
 			// Uncomment when testing on linex
-			//recording.playRecording();
+			recording.playRecording();
 			return recording;
 		}
 
