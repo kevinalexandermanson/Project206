@@ -96,6 +96,10 @@ public class GameController implements Initializable {
 
 	@FXML
 	private JFXButton btnNextLevel;
+	
+	@FXML
+	private AnchorPane buttonPane;
+	
 
 	private String level = "";
 	private boolean secondAttempt = false;
@@ -112,6 +116,7 @@ public class GameController implements Initializable {
 		JFXDepthManager.setDepth(scorePane, 4);
 		JFXDepthManager.setDepth(questionPane, 4);
 		JFXDepthManager.setDepth(topPane, 5);
+		JFXDepthManager.setDepth(buttonPane,  4);
 
 		//Initializes the buttons
 		btnTryAgain.setVisible(false);
@@ -249,6 +254,8 @@ public class GameController implements Initializable {
 		// Checks if it is their first attempt if so, let them try again
 		if (secondAttempt == false) {
 
+			lblRecording.setText("");
+			
 			lblCurrentGameNumber.setText(currentQuestionNumber);
 
 			btnRecord.setVisible(true);
