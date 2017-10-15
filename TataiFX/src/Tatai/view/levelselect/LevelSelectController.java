@@ -187,8 +187,22 @@ public class LevelSelectController implements Initializable {
 			
 	}
 	
+	/**
+	 * Handles the back button
+	 * 
+	 * @param event
+	 * @throws IOException
+	 */
+	@FXML
+	private void btnStatsHandler(ActionEvent event) throws IOException {
 
-		
+		Parent parentLogin = FXMLLoader.load(getClass().getResource("/Tatai/view/stats/Stats.fxml"));
+		Scene sceneLogin = new Scene(parentLogin);
+
+		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		stage.setScene(sceneLogin);
+
+	}
 
 }
 

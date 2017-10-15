@@ -64,7 +64,7 @@
                   <String fx:value="bebasneue" />
                </styleClass>
             </JFXButton>
-            <JFXButton alignment="CENTER_RIGHT" layoutX="443.0" layoutY="347.0" prefHeight="30.0" prefWidth="104.0" stylesheets="@levelselect.css" text="Statistics">
+            <JFXButton fx:id="btnStats" alignment="CENTER_RIGHT" layoutX="443.0" layoutY="347.0" onAction="#btnStatsHandler" prefHeight="30.0" prefWidth="104.0" stylesheets="@levelselect.css" text="Statistics">
                <font>
                   <Font size="14.0" />
                </font>
