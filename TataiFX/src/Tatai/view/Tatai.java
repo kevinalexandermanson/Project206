@@ -40,7 +40,7 @@ public class Tatai extends Application {
 		
 		//Initialise a guest player. Saves .xml in current directory.
 		createPlayerXML(GUEST);
-		loadDataXML(new File("./" + GUEST + ".xml"));
+		loadDataXML(GUEST);
 
 	}
 	
@@ -50,9 +50,14 @@ public class Tatai extends Application {
 		
 	}
 	
-	
-	public static void loadDataXML(File file){
+	/**
+	 * Loads an persons profile stored in an xml file.
+	 * @param file
+	 */
+	public static void loadDataXML(String fileName){
 		try{
+			File file = new File("./" + fileName + ".xml");
+			
 			FileInputStream fis = new FileInputStream(file);
 			XMLDecoder decoder = new XMLDecoder(fis);
 			
@@ -67,6 +72,15 @@ public class Tatai extends Application {
 		
 	}
 	
+	/**
+	 * Whenever we wish to change a statistic for a player, this method is
+	 * called. The player object is modified, then the .xml file is updated.
+	 * 
+	 * @param player
+	 * @param mode
+	 * @param stat
+	 * @param Score
+	 */
 	public static void changeStatXML(PersonalStats player, gameMode mode, statType stat, int Score){
 		try{
 			player.setStats(mode, stat, Score);
@@ -82,6 +96,12 @@ public class Tatai extends Application {
 		}
 	}
 	
+	/**
+	 * Create a new player, and save it to an .xml file. Note that this does not
+	 * load the newly created player. loadDataXML should be called separately.
+	 * 
+	 * @param name
+	 */
 	public static void createPlayerXML(String name){
 		try{
 			PersonalStats p1 = new PersonalStats(name);
@@ -96,10 +116,6 @@ public class Tatai extends Application {
 		} catch(IOException e) {
 			e.printStackTrace();
 		}
-	}
-	
-	public static PersonalStats getCurrentPlayer(){
-		return CurrentPlayer;
 	}
 
 }
