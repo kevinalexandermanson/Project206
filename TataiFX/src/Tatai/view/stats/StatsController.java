@@ -176,30 +176,37 @@ public class StatsController {
   	private void loadData(ActionEvent event) {
   		//lblBestAdd.setText("change change change changing the score works");
   		//initData();
-  		lblBestAdd.setText("0 / 10");
-		lblLastAdd.setText("0 / 10");
-		lblMeanAdd.setText("0 / 10");
-		lblGamesPlayedAdd.setText("0 / 10");
+		if (Tatai.view.Tatai.CurrentPlayer != null) {
+			PersonalStats p1 = Tatai.view.Tatai.CurrentPlayer;
 
-		lblBestSub.setText("1 / 10");
-		lblLastSub.setText("1 / 10");
-		lblMeanSub.setText("1 / 10");
-		lblGamesPlayedSub.setText("1 / 10");
-		
-		lblBestMul.setText("2 / 10");
-		lblLastMul.setText("2 / 10");
-		lblMeanMul.setText("2 / 10");
-		lblGamesPlayedMul.setText("2 / 10");
-		
-		lblBestDiv.setText("3 / 10");
-		lblLastDiv.setText("3 / 10");
-		lblMeanDiv.setText("3 / 10");
-		lblGamesPlayedDiv.setText("3 / 10");
-		
-		lblBestHard.setText("4 / 10");
-		lblLastHard.setText("4 / 10");
-		lblMeanHard.setText("4 / 10");
-		lblGamesPlayedHard.setText("4 / 10");
+			lblBestAdd.setText(p1.getBestAdd() + " / 10");
+			lblLastAdd.setText(p1.getLastAdd() + " / 10");
+			lblMeanAdd.setText(p1.getMeanAdd() + " / 10");
+			lblGamesPlayedAdd.setText(p1.getGamesPlayedAdd() + " / 10");
+
+			lblBestSub.setText(p1.getBestSub() + " / 10");
+			lblLastSub.setText(p1.getLastSub() + " / 10");
+			lblMeanSub.setText(p1.getMeanSub() + " / 10");
+			lblGamesPlayedSub.setText(p1.getGamesPlayedSub() + " / 10");
+
+			lblBestMul.setText(p1.getBestMul() + " / 10");
+			lblLastMul.setText(p1.getLastMul() + " / 10");
+			lblMeanMul.setText(p1.getMeanMul() + " / 10");
+			lblGamesPlayedMul.setText(p1.getGamesPlayedMul() + " / 10");
+
+			lblBestDiv.setText(p1.getBestDiv() + " / 10");
+			lblLastDiv.setText(p1.getLastDiv() + " / 10");
+			lblMeanDiv.setText(p1.getMeanDiv() + " / 10");
+			lblGamesPlayedDiv.setText(p1.getGamesPlayedDiv() + " / 10");
+
+			lblBestHard.setText(p1.getBestHard() + " / 10");
+			lblLastHard.setText(p1.getLastHard() + " / 10");
+			lblMeanHard.setText(p1.getMeanHard() + " / 10");
+			lblGamesPlayedHard.setText(p1.getGamesPlayedHard() + " / 10");
+
+			System.out.println("Statistics for " + p1.getPlayerName() + " loaded.");
+
+		}
   	}
     
   	@FXML
@@ -229,5 +236,7 @@ public class StatsController {
 		lblLastHard.setText("Hard / 10");
 		lblMeanHard.setText("Hard / 10");
 		lblGamesPlayedHard.setText("Hard / 10");
+		
+		System.out.println("Statistics cleared.");
   	}
 }
