@@ -21,7 +21,7 @@ import javafx.stage.StageStyle;
 
 public class Tatai extends Application {
 	
-	private static PersonalStats CurrentPlayer;
+	public static PersonalStats CurrentPlayer;
 	public static final String GUEST = "guest";
 	
 	@Override
@@ -71,7 +71,7 @@ public class Tatai extends Application {
 		try{
 			player.setStats(mode, stat, Score);
 			
-			FileOutputStream fos = new FileOutputStream(new File("./"+player.getPlayerName()+".xml"));
+			FileOutputStream fos = new FileOutputStream(new File("./" + player.getPlayerName() + ".xml"));
 			XMLEncoder encoder = new XMLEncoder(fos);
 			encoder.writeObject(player);
 			encoder.close();
@@ -96,6 +96,10 @@ public class Tatai extends Application {
 		} catch(IOException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public static PersonalStats getCurrentPlayer(){
+		return CurrentPlayer;
 	}
 
 }
