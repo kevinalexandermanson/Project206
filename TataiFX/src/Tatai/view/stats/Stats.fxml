@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
@@ -13,7 +17,10 @@
       <JFXButton fx:id="btnBack" layoutX="31.0" layoutY="545.0" onAction="#goBack" text="Back" />
       <SplitPane dividerPositions="0.29797979797979796" layoutX="33.0" layoutY="74.0" prefHeight="220.0" prefWidth="697.0">
         <items>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" />
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+               <children>
+                  <ListView layoutX="3.0" layoutY="9.0" prefHeight="218.0" prefWidth="203.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+               </children></AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="380.0">
                <children>
                   <TabPane fx:id="tbpnGameMode" layoutX="105.0" layoutY="65.0" prefHeight="415.0" prefWidth="484.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -115,5 +122,13 @@
         </items>
       </SplitPane>
       <JFXButton fx:id="btnChange" layoutX="153.0" layoutY="545.0" onAction="#changeData" text="Change" />
+      <LineChart fx:id="chrtAddition" layoutX="240.0" layoutY="306.0" prefHeight="220.0" prefWidth="490.0" title="Line CHart">
+        <xAxis>
+          <CategoryAxis fx:id="chrtx" side="BOTTOM" />
+        </xAxis>
+        <yAxis>
+          <NumberAxis fx:id="chrty" side="LEFT" />
+        </yAxis>
+      </LineChart>
    </children>
 </AnchorPane>

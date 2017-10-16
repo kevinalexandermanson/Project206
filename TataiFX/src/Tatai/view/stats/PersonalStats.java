@@ -38,6 +38,8 @@ public class PersonalStats {
 
 	public enum statType {BEST, LAST, MEAN, GAMESPLAYED}
 	
+	public PersonalStats(){}
+	
 	public PersonalStats(String name) {
 		
 		this.PlayerName=name;
@@ -72,8 +74,7 @@ public class PersonalStats {
 	/**
 	 * This method can change any statistic, given that you know the game mode
 	 * and statistic you want to change.
-	 * 
-	 * @param m
+	 * @param m 
 	 * @param t
 	 * @param score
 	 */
