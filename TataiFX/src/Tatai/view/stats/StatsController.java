@@ -123,7 +123,6 @@ public class StatsController {
 	    private JFXButton btnClear;
 
 	public StatsController(){
-		System.out.println("Henlo.");
 	}
 	
 	
