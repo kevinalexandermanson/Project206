@@ -25,6 +25,7 @@ import Tatai.Levels.PractiseHard;
 import Tatai.Levels.RandomEasy;
 import Tatai.Levels.RandomHard;
 import Tatai.Levels.Subtraction;
+import Tatai.model.AudioFeedBack;
 import Tatai.model.Recording;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
@@ -100,11 +101,15 @@ public class GameController implements Initializable {
 	@FXML
 	private AnchorPane buttonPane;
 	
+	@FXML
+	private JFXButton btnPronunciation;
+	
 
 	private String level = "";
 	private boolean secondAttempt = false;
 	private String currentQuestionNumber;
 	private Map<String, LevelInterface> map;
+	private int currentNum;
 
 	private static final int NUMOFQUESTIONS = 10;
 	private static final String NUMOFQUESTIONSSTRING = String.valueOf(NUMOFQUESTIONS);
@@ -125,7 +130,7 @@ public class GameController implements Initializable {
 		btnPlayAgain.setVisible(false);
 		btnReturnToMenu.setVisible(false);
 		btnNextLevel.setVisible(false);
-
+		btnPronunciation.setVisible(false);
 		
 		// Creates map of all possible levels
 		map = new HashMap<String, LevelInterface>();
@@ -229,7 +234,7 @@ public class GameController implements Initializable {
 		btnTryAgain.setVisible(false);
 		btnNextQuestion.setVisible(false);
 		btnPlayRecording.setVisible(false);
-
+		btnPronunciation.setVisible(false);
 	}
 
 	/**
@@ -265,6 +270,7 @@ public class GameController implements Initializable {
 
 			secondAttempt = true;
 		}
+
 	}
 
 	/**
@@ -308,6 +314,14 @@ public class GameController implements Initializable {
 		lblRecording.setText(INTRO);
 
 	}
+	/**
+	 * Handles pronunciation button
+	 */
+	@FXML
+	private void btnPronunciationHanlder() {
+		AudioFeedBack.playFeedBackAudio(currentNum);
+	}
+	
 	/*---------- Other Methods ------------------------------------------------------------------------*/
 
 	/**
@@ -355,6 +369,7 @@ public class GameController implements Initializable {
 			}
 
 			int number = (int) result;
+			currentNum = number;
 
 			//gets the recording object
 			Recording recording;
@@ -391,6 +406,7 @@ public class GameController implements Initializable {
 
 				if (secondAttempt && !(answer)) {
 					lblRecording.setText("The correct answer was: " + correctNumber + "\n You said: " + recordedNumber);
+					btnPronunciation.setVisible(true);
 				}
 
 				if (!(secondAttempt) && (!(answer))) {
