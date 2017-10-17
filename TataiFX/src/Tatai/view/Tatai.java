@@ -38,9 +38,6 @@ public class Tatai extends Application {
 		stage.setResizable(false);;
 		stage.show();
 		
-		//Initialise a guest player. Saves .xml in current directory.
-		createPlayerXML(GUEST);
-		loadDataXML(GUEST);
 
 	}
 	
@@ -50,72 +47,5 @@ public class Tatai extends Application {
 		
 	}
 	
-	/**
-	 * Loads an persons profile stored in an xml file.
-	 * @param file
-	 */
-	public static void loadDataXML(String fileName){
-		try{
-			File file = new File("./" + fileName + ".xml");
-			
-			FileInputStream fis = new FileInputStream(file);
-			XMLDecoder decoder = new XMLDecoder(fis);
-			
-			CurrentPlayer = (PersonalStats)decoder.readObject();
-			decoder.close();
-			fis.close();
-			System.out.println(CurrentPlayer.getPlayerName() + " currently loaded.");
-			//System.out.println(CurrentPlayer.getPlayerName() +" scored " +CurrentPlayer.getELast() +" points on " + gameMode.EASY.toString()+".");
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
-	}
-	
-	/**
-	 * Whenever we wish to change a statistic for a player, this method is
-	 * called. The player object is modified, then the .xml file is updated.
-	 * 
-	 * @param player
-	 * @param mode
-	 * @param stat
-	 * @param Score
-	 */
-	public static void changeStatXML(PersonalStats player, gameMode mode, statType stat, int Score){
-		try{
-			player.setStats(mode, stat, Score);
-			
-			FileOutputStream fos = new FileOutputStream(new File("./" + player.getPlayerName() + ".xml"));
-			XMLEncoder encoder = new XMLEncoder(fos);
-			encoder.writeObject(player);
-			encoder.close();
-			fos.close();
-		
-		} catch(IOException e) {
-			e.printStackTrace();
-		}
-	}
-	
-	/**
-	 * Create a new player, and save it to an .xml file. Note that this does not
-	 * load the newly created player. loadDataXML should be called separately.
-	 * 
-	 * @param name
-	 */
-	public static void createPlayerXML(String name){
-		try{
-			PersonalStats p1 = new PersonalStats(name);
-			
-			FileOutputStream fos = new FileOutputStream(new File("./" + p1.getPlayerName() + ".xml"));
-			XMLEncoder encoder = new XMLEncoder(fos);
-			encoder.writeObject(p1);
-			encoder.close();
-			fos.close();
-			System.out.println("New player: "+ p1.getPlayerName() + " successfully created.");
-		
-		} catch(IOException e) {
-			e.printStackTrace();
-		}
-	}
 
 }
