@@ -242,7 +242,7 @@ public class GameController implements Initializable {
 	 */
 	@FXML
 	private void btnPlayRecordingHandler() {
-		btnPlayRecording.setVisible(false);
+		btnPlayRecording.setDisable(true);
 		
 		// Sets up a new recording thread to play the recording
 		PlayingThread task = new PlayingThread();
@@ -319,7 +319,13 @@ public class GameController implements Initializable {
 	 */
 	@FXML
 	private void btnPronunciationHanlder() {
-		AudioFeedBack.playFeedBackAudio(currentNum);
+		
+		btnPronunciation.setDisable(true);
+		//Sets up a new pronunciation thread task
+		PronunciationThread task = new PronunciationThread();
+		Thread thread = new Thread(task);
+		thread.start();
+		
 	}
 	
 	/*---------- Other Methods ------------------------------------------------------------------------*/
@@ -451,10 +457,30 @@ public class GameController implements Initializable {
 
 		@Override 
 		protected void succeeded() {
+			btnPlayRecording.setDisable(false);
 			super.succeeded();
-			btnPlayRecording.setVisible(true);
+			
+		}
+	}
+	
+	/**
+	 * Handles prounciation in a different thread
+	 *
+	 */
+	private class PronunciationThread extends Task<Void>  {
+
+		@Override
+		protected Void call() throws Exception {
+			AudioFeedBack.playFeedBackAudio(currentNum);
+			return null;
 		}
 
+		@Override 
+		protected void succeeded() {
+			btnPronunciation.setDisable(false);
+			super.succeeded();
+			
+		}
 	}
 
 	/**
