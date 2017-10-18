@@ -56,8 +56,13 @@ public class Recording {
 			ProcessBuilder builder = new ProcessBuilder("/bin/bash", "-c", cmd);
 
 			Process process = builder.start();
+			
+			process.waitFor();
 
 		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} 
 
