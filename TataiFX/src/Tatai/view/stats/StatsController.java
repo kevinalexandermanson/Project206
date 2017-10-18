@@ -4,11 +4,13 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.effects.JFXDepthManager;
 
 import Tatai.view.stats.PersonalStats.gameMode;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -21,94 +23,47 @@ import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-public class StatsController {
+public class StatsController implements Initializable{
 	
 	 @FXML
-	    private JFXButton btnBack;
+	    private AnchorPane root;
 
 	    @FXML
-	    private TabPane tbpnGameMode;
+	    private AnchorPane topPane;
 
 	    @FXML
-	    private Tab tbAdd;
+	    private Label lblStatistics;
 
 	    @FXML
-	    private Label lblBestAdd;
+	    private AnchorPane cardPane;
 
 	    @FXML
-	    private Label lblLastAdd;
+	    private AnchorPane buttonPane;
 
 	    @FXML
-	    private Label lblMeanAdd;
+	    private JFXButton btnPractise;
 
 	    @FXML
-	    private Label lblGamesPlayedAdd;
+	    private JFXButton btnAddition;
 
 	    @FXML
-	    private Tab tbSub;
+	    private JFXButton btnSubtraction;
 
 	    @FXML
-	    private Label lblBestSub;
+	    private JFXButton btnMultiplication;
 
 	    @FXML
-	    private Label lblLastSub;
+	    private JFXButton btnDivision;
 
 	    @FXML
-	    private Label lblMeanSub;
+	    private JFXButton btnRandom;
 
 	    @FXML
-	    private Label lblGamesPlayedSub;
-
-	    @FXML
-	    private Tab tbMul;
-
-	    @FXML
-	    private Label lblBestMul;
-
-	    @FXML
-	    private Label lblLastMul;
-
-	    @FXML
-	    private Label lblMeanMul;
-
-	    @FXML
-	    private Label lblGamesPlayedMul;
-
-	    @FXML
-	    private Tab tbDiv;
-
-	    @FXML
-	    private Label lblBestDiv;
-
-	    @FXML
-	    private Label lblLastDiv;
-
-	    @FXML
-	    private Label lblMeanDiv;
-
-	    @FXML
-	    private Label lblGamesPlayedDiv;
-
-	    @FXML
-	    private Tab tbHard;
-
-	    @FXML
-	    private Label lblBestHard;
-
-	    @FXML
-	    private Label lblLastHard;
-
-	    @FXML
-	    private Label lblMeanHard;
-
-	    @FXML
-	    private Label lblGamesPlayedHard;
-
-	    @FXML
-	    private LineChart<?, ?> chrtAddition;
+	    private LineChart<?, ?> chrtStatistics;
 
 	    @FXML
 	    private CategoryAxis chrtx;
@@ -117,18 +72,23 @@ public class StatsController {
 	    private NumberAxis chrty;
 
 	    @FXML
-	    private JFXButton btnLoad;
+	    private Label lblBest;
 
 	    @FXML
-	    private JFXButton btnClear;
+	    private Label lblPrevious;
 
-	public StatsController(){
-	}
+	    @FXML
+	    private Label lblAverage;
+
+	    @FXML
+	    private Label lblGames;
+
 	
 	
-	//@Override
-	//public void initialize(URL url, ResourceBundle rb){
-		
+	@Override
+	public void initialize(URL url, ResourceBundle rb){
+		//lblStatistics.setText("Statistics For " + Tatai.view.Tatai.CurrentPlayer.getPlayerName());
+		JFXDepthManager.setDepth(cardPane,  4);
 		//initData();
 		//System.out.println("Henlo");
 		/*
@@ -153,12 +113,12 @@ public class StatsController {
 		set1.getData().add(new XYChart.Data("7", 23));
 		//chrtAddition.getData().addAll(set1);
 		 */
-	//}
+	}
 	
 	
-	
+	/* Handles back button */
     @FXML
-    private void goBack(ActionEvent event) throws IOException {
+    private void btnBackHandler(ActionEvent event) throws IOException {
     	Parent parentLevelSelect = FXMLLoader.load(getClass().getResource("/Tatai/view/levelselect/LevelSelect.fxml"));
 		Scene sceneLevelSelect = new Scene(parentLevelSelect);
 		
@@ -166,11 +126,84 @@ public class StatsController {
 		stage.setScene(sceneLevelSelect);
     }
     
-    public void setPersonData(){
+/*    public void setPersonData(){
+    	
+    }*/
+    
+    /* Handles which game mode to display stats for */
+    @FXML 
+    private void btnModeHandler(ActionEvent event) {
+
+		PersonalStats p1 = Tatai.view.Tatai.CurrentPlayer;
+
+		
+    	if (event.getSource().equals(btnPractise)) {
+    		removeButtonStyles();
+    		btnPractise.getStyleClass().add("pressed");
+    		
+    		chrtStatistics.setTitle("Practise");
+    	} else if (event.getSource().equals(btnAddition)) {
+    		removeButtonStyles();
+    		btnAddition.getStyleClass().add("pressed");
+    		
+    		chrtStatistics.setTitle("Addition");
+
+			lblBest.setText("Best Score: " + p1.getBestAdd() + " / 10");
+			lblPrevious.setText("Previous Score: " + p1.getLastAdd() + " / 10");
+			lblAverage.setText("Average Score: " + p1.getMeanAdd() + " / 10");
+			lblGames.setText("Games Played: " + p1.getGamesPlayedAdd() + "");
+
+    	} else if (event.getSource().equals(btnSubtraction)) {
+    		removeButtonStyles();
+    		btnSubtraction.getStyleClass().add("pressed");
+    		
+    		chrtStatistics.setTitle("Subtraction");
+
+			lblBest.setText("Best Score: " + p1.getBestSub() + " / 10");
+			lblPrevious.setText("Previous Score: " + p1.getLastSub() + " / 10");
+			lblAverage.setText("Average Score: " + p1.getMeanSub() + " / 10");
+			lblGames.setText("Games Played: " + p1.getGamesPlayedSub() + "");
+
+    	} else if (event.getSource().equals(btnMultiplication)) {
+    		removeButtonStyles();
+    		btnMultiplication.getStyleClass().add("pressed");
+    		
+    		chrtStatistics.setTitle("Multiplication");
+
+			lblBest.setText("Best Score: " + p1.getBestMul() + " / 10");
+			lblPrevious.setText("Previous Score: " + p1.getLastMul() + " / 10");
+			lblAverage.setText("Average Score: " + p1.getMeanMul() + " / 10");
+			lblGames.setText("Games Played: " + p1.getGamesPlayedMul() + "");
+
+    	} else if (event.getSource().equals(btnDivision)) {
+    		removeButtonStyles();
+    		btnDivision.getStyleClass().add("pressed");
+    		
+    		chrtStatistics.setTitle("Division");
+    		
+			lblBest.setText("Best Score: " + p1.getBestDiv() + " / 10");
+			lblPrevious.setText("Previous Score: " + p1.getLastDiv() + " / 10");
+			lblAverage.setText("Average Score: " + p1.getMeanDiv() + " / 10");
+			lblGames.setText("Games Played: " + p1.getGamesPlayedDiv() + "");
+    	} else if (event.getSource().equals(btnRandom)) {
+    		removeButtonStyles();
+    		btnRandom.getStyleClass().add("pressed");
+    		
+    		chrtStatistics.setTitle("Random");
+    	}
+    }
+    
+    private void removeButtonStyles() {
+    	btnPractise.getStyleClass().removeAll("pressed");
+    	btnAddition.getStyleClass().removeAll("pressed");
+    	btnSubtraction.getStyleClass().removeAll("pressed");
+    	btnMultiplication.getStyleClass().removeAll("pressed");
+    	btnDivision.getStyleClass().removeAll("pressed");
+    	btnRandom.getStyleClass().removeAll("pressed");
     	
     }
     
-  //TODO: Retrieve the data from the players account info.
+/*  //TODO: Retrieve the data from the players account info.
   	@FXML
   	private void loadData(ActionEvent event) {
   		//lblBestAdd.setText("change change change changing the score works");
@@ -181,27 +214,27 @@ public class StatsController {
 			lblBestAdd.setText(p1.getBestAdd() + " / 10");
 			lblLastAdd.setText(p1.getLastAdd() + " / 10");
 			lblMeanAdd.setText(p1.getMeanAdd() + " / 10");
-			lblGamesPlayedAdd.setText(p1.getGamesPlayedAdd() + " / 10");
+			lblGamesPlayedAdd.setText(p1.getGamesPlayedAdd() + "");
 
 			lblBestSub.setText(p1.getBestSub() + " / 10");
 			lblLastSub.setText(p1.getLastSub() + " / 10");
 			lblMeanSub.setText(p1.getMeanSub() + " / 10");
-			lblGamesPlayedSub.setText(p1.getGamesPlayedSub() + " / 10");
+			lblGamesPlayedSub.setText(p1.getGamesPlayedSub() + "");
 
 			lblBestMul.setText(p1.getBestMul() + " / 10");
 			lblLastMul.setText(p1.getLastMul() + " / 10");
 			lblMeanMul.setText(p1.getMeanMul() + " / 10");
-			lblGamesPlayedMul.setText(p1.getGamesPlayedMul() + " / 10");
+			lblGamesPlayedMul.setText(p1.getGamesPlayedMul() + "");
 
 			lblBestDiv.setText(p1.getBestDiv() + " / 10");
 			lblLastDiv.setText(p1.getLastDiv() + " / 10");
 			lblMeanDiv.setText(p1.getMeanDiv() + " / 10");
-			lblGamesPlayedDiv.setText(p1.getGamesPlayedDiv() + " / 10");
+			lblGamesPlayedDiv.setText(p1.getGamesPlayedDiv() + "");
 
 			lblBestHard.setText(p1.getBestHard() + " / 10");
 			lblLastHard.setText(p1.getLastHard() + " / 10");
 			lblMeanHard.setText(p1.getMeanHard() + " / 10");
-			lblGamesPlayedHard.setText(p1.getGamesPlayedHard() + " / 10");
+			lblGamesPlayedHard.setText(p1.getGamesPlayedHard() + ""A);
 
 			System.out.println("Statistics for " + p1.getPlayerName() + " loaded.");
 
@@ -214,28 +247,31 @@ public class StatsController {
   		lblBestAdd.setText("Add / 10");
 		lblLastAdd.setText("Add / 10");
 		lblMeanAdd.setText("Add / 10");
-		lblGamesPlayedAdd.setText("Add / 10");
+		lblGamesPlayedAdd.setText("");
 
 		lblBestSub.setText("Sub / 10");
 		lblLastSub.setText("Sub / 10");
 		lblMeanSub.setText("Sub / 10");
-		lblGamesPlayedSub.setText("Sub / 10");
+		lblGamesPlayedSub.setText("");
 		
 		lblBestMul.setText("Mul / 10");
 		lblLastMul.setText("Mul / 10");
 		lblMeanMul.setText("Mul / 10");
-		lblGamesPlayedMul.setText("Mul / 10");
+		lblGamesPlayedMul.setText("");
 		
 		lblBestDiv.setText("Div / 10");
 		lblLastDiv.setText("Div / 10");
 		lblMeanDiv.setText("Div / 10");
-		lblGamesPlayedDiv.setText("Div / 10");
+		lblGamesPlayedDiv.setText("");
 		
 		lblBestHard.setText("Hard / 10");
 		lblLastHard.setText("Hard / 10");
 		lblMeanHard.setText("Hard / 10");
-		lblGamesPlayedHard.setText("Hard / 10");
+		lblGamesPlayedHard.setText("");
 		
 		System.out.println("Statistics cleared.");
-  	}
+  	}*/
+
+
+
 }

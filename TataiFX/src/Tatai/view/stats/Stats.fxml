@@ -1,135 +1,88 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
+<?import java.lang.String?>
 <?import javafx.scene.chart.CategoryAxis?>
 <?import javafx.scene.chart.LineChart?>
 <?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.SplitPane?>
-<?import javafx.scene.control.Tab?>
-<?import javafx.scene.control.TabPane?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Tatai.view.stats.StatsController">
+<AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" styleClass="root" stylesheets="@stats.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Tatai.view.stats.StatsController">
    <children>
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="300.0" layoutY="14.0" prefHeight="40.0" prefWidth="200.0" text="STATISTICS" />
-      <JFXButton fx:id="btnBack" layoutX="31.0" layoutY="545.0" onAction="#goBack" text="Back" />
-      <SplitPane dividerPositions="0.29797979797979796" layoutX="33.0" layoutY="74.0" prefHeight="220.0" prefWidth="697.0">
-        <items>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+      <AnchorPane fx:id="topPane" prefHeight="186.0" prefWidth="800.0" styleClass="topPane" stylesheets="@../levelselect/levelselect.css">
+         <children>
+            <Label fx:id="lblStatistics" alignment="CENTER" contentDisplay="CENTER" layoutX="177.0" layoutY="14.0" prefHeight="103.0" prefWidth="447.0" styleClass="bebasneue" text="STATISTICS For USER" textFill="#212121">
+               <font>
+                  <Font size="70.0" />
+               </font></Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="cardPane" layoutX="50.0" layoutY="115.0" prefHeight="460.0" prefWidth="700.0" styleClass="cardPane">
+         <children>
+            <AnchorPane fx:id="buttonPane" prefHeight="460.0" prefWidth="180.0" styleClass="buttonPane">
                <children>
-                  <ListView layoutX="3.0" layoutY="9.0" prefHeight="218.0" prefWidth="203.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-               </children></AnchorPane>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="380.0">
-               <children>
-                  <TabPane fx:id="tbpnGameMode" layoutX="105.0" layoutY="65.0" prefHeight="415.0" prefWidth="484.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                    <tabs>
-                      <Tab fx:id="tbAdd" text="Addition">
-                        <content>
-                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                                 <children>
-                                    <Label layoutX="43.0" layoutY="30.0" prefHeight="25.0" prefWidth="100.0" text="Best Score" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="20.0" />
-                                    <Label layoutX="43.0" layoutY="80.0" prefHeight="25.0" prefWidth="100.0" text="Last Score" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="60.0" />
-                                    <Label layoutX="43.0" layoutY="126.0" prefHeight="25.0" prefWidth="100.0" text="Average Score" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="100.0" />
-                                    <Label layoutX="43.0" layoutY="176.0" prefHeight="25.0" prefWidth="100.0" text="Games Played" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="140.0" />
-                                    <Label fx:id="lblBestAdd" layoutX="171.0" layoutY="27.0" prefHeight="25.0" prefWidth="100.0" text="Add / 10" AnchorPane.topAnchor="20.0" />
-                                    <Label fx:id="lblLastAdd" layoutX="171.0" layoutY="77.0" prefHeight="25.0" prefWidth="100.0" text="Add / 10" AnchorPane.topAnchor="60.0" />
-                                    <Label fx:id="lblMeanAdd" layoutX="171.0" layoutY="123.0" prefHeight="25.0" prefWidth="100.0" text="Add / 10 " AnchorPane.topAnchor="100.0" />
-                                    <Label fx:id="lblGamesPlayedAdd" layoutX="171.0" layoutY="173.0" prefHeight="25.0" prefWidth="100.0" text="Add / 10" AnchorPane.topAnchor="140.0" />
-                                 </children>
-                              </AnchorPane>
-                        </content>
-                      </Tab>
-                      <Tab fx:id="tbSub" text="Subtraction">
-                           <content>
-                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                                 <children>
-                                    <Label layoutX="43.0" layoutY="30.0" prefHeight="25.0" prefWidth="100.0" text="Best Score" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="20.0" />
-                                    <Label layoutX="43.0" layoutY="80.0" prefHeight="25.0" prefWidth="100.0" text="Last Score" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="60.0" />
-                                    <Label layoutX="43.0" layoutY="126.0" prefHeight="25.0" prefWidth="100.0" text="Average Score" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="100.0" />
-                                    <Label layoutX="43.0" layoutY="176.0" prefHeight="25.0" prefWidth="100.0" text="Games Played" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="140.0" />
-                                    <Label fx:id="lblBestSub" layoutX="171.0" layoutY="27.0" prefHeight="25.0" prefWidth="100.0" text="Sub / 10" AnchorPane.topAnchor="20.0" />
-                                    <Label fx:id="lblLastSub" layoutX="171.0" layoutY="77.0" prefHeight="25.0" prefWidth="100.0" text="Sub / 10" AnchorPane.topAnchor="60.0" />
-                                    <Label fx:id="lblMeanSub" layoutX="171.0" layoutY="123.0" prefHeight="25.0" prefWidth="100.0" text="Sub / 10 " AnchorPane.topAnchor="100.0" />
-                                    <Label fx:id="lblGamesPlayedSub" layoutX="171.0" layoutY="173.0" prefHeight="25.0" prefWidth="100.0" text="Sub / 10" AnchorPane.topAnchor="140.0" />
-                                 </children>
-                              </AnchorPane>
-                           </content>
-                      </Tab>
-                        <Tab fx:id="tbMul" text="Multiplication">
-                           <content>
-                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                                 <children>
-                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                                       <children>
-                                          <Label layoutX="43.0" layoutY="30.0" prefHeight="25.0" prefWidth="100.0" text="Best Score" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="20.0" />
-                                          <Label layoutX="43.0" layoutY="80.0" prefHeight="25.0" prefWidth="100.0" text="Last Score" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="60.0" />
-                                          <Label layoutX="43.0" layoutY="126.0" prefHeight="25.0" prefWidth="100.0" text="Average Score" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="100.0" />
-                                          <Label layoutX="43.0" layoutY="176.0" prefHeight="25.0" prefWidth="100.0" text="Games Played" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="140.0" />
-                                          <Label fx:id="lblBestMul" layoutX="171.0" layoutY="27.0" prefHeight="25.0" prefWidth="100.0" text="Mul / 10" AnchorPane.topAnchor="20.0" />
-                                          <Label fx:id="lblLastMul" layoutX="171.0" layoutY="77.0" prefHeight="25.0" prefWidth="100.0" text="Mul / 10" AnchorPane.topAnchor="60.0" />
-                                          <Label fx:id="lblMeanMul" layoutX="171.0" layoutY="123.0" prefHeight="25.0" prefWidth="100.0" text="Mul / 10 " AnchorPane.topAnchor="100.0" />
-                                          <Label fx:id="lblGamesPlayedMul" layoutX="171.0" layoutY="173.0" prefHeight="25.0" prefWidth="100.0" text="Mul / 10" AnchorPane.topAnchor="140.0" />
-                                       </children>
-                                    </AnchorPane>
-                                 </children></AnchorPane>
-                           </content>
-                        </Tab>
-                        <Tab fx:id="tbDiv" text="Division">
-                           <content>
-                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                                 <children>
-                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                                       <children>
-                                          <Label layoutX="43.0" layoutY="30.0" prefHeight="25.0" prefWidth="100.0" text="Best Score" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="20.0" />
-                                          <Label layoutX="43.0" layoutY="80.0" prefHeight="25.0" prefWidth="100.0" text="Last Score" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="60.0" />
-                                          <Label layoutX="43.0" layoutY="126.0" prefHeight="25.0" prefWidth="100.0" text="Average Score" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="100.0" />
-                                          <Label layoutX="43.0" layoutY="176.0" prefHeight="25.0" prefWidth="100.0" text="Games Played" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="140.0" />
-                                          <Label fx:id="lblBestDiv" layoutX="171.0" layoutY="21.0" prefHeight="25.0" prefWidth="100.0" text="Div / 10" AnchorPane.topAnchor="21.0" />
-                                          <Label fx:id="lblLastDiv" layoutX="171.0" layoutY="77.0" prefHeight="25.0" prefWidth="100.0" text="Div / 10" AnchorPane.topAnchor="60.0" />
-                                          <Label fx:id="lblMeanDiv" layoutX="171.0" layoutY="123.0" prefHeight="25.0" prefWidth="100.0" text="Div / 10 " AnchorPane.topAnchor="100.0" />
-                                          <Label fx:id="lblGamesPlayedDiv" layoutX="171.0" layoutY="173.0" prefHeight="25.0" prefWidth="100.0" text="Div / 10" AnchorPane.topAnchor="140.0" />
-                                       </children>
-                                    </AnchorPane>
-                                 </children></AnchorPane>
-                           </content>
-                        </Tab>
-                        <Tab fx:id="tbHard" text="Hard">
-                           <content>
-                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                                 <children>
-                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                                       <children>
-                                          <Label layoutX="43.0" layoutY="30.0" prefHeight="25.0" prefWidth="100.0" text="Best Score" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="20.0" />
-                                          <Label layoutX="43.0" layoutY="80.0" prefHeight="25.0" prefWidth="100.0" text="Last Score" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="60.0" />
-                                          <Label layoutX="43.0" layoutY="126.0" prefHeight="25.0" prefWidth="100.0" text="Average Score" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="100.0" />
-                                          <Label layoutX="43.0" layoutY="176.0" prefHeight="25.0" prefWidth="100.0" text="Games Played" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="140.0" />
-                                          <Label fx:id="lblBestHard" layoutX="171.0" layoutY="21.0" prefHeight="25.0" prefWidth="100.0" text="Hrd / 10" AnchorPane.topAnchor="21.0" />
-                                          <Label fx:id="lblLastHard" layoutX="171.0" layoutY="77.0" prefHeight="25.0" prefWidth="100.0" text="Hrd / 10" AnchorPane.topAnchor="60.0" />
-                                          <Label fx:id="lblMeanHard" layoutX="171.0" layoutY="123.0" prefHeight="25.0" prefWidth="100.0" text="Hrd / 10 " AnchorPane.topAnchor="100.0" />
-                                          <Label fx:id="lblGamesPlayedHard" layoutX="171.0" layoutY="173.0" prefHeight="25.0" prefWidth="100.0" text="Hrd / 10" AnchorPane.topAnchor="140.0" />
-                                       </children>
-                                    </AnchorPane>
-                                 </children>
-                              </AnchorPane>
-                           </content>
-                        </Tab>
-                    </tabs>
-                  </TabPane>
+                  <JFXButton fx:id="btnPractise" alignment="CENTER_RIGHT" layoutY="6.0" onAction="#btnModeHandler" prefHeight="69.0" prefWidth="180.0" text="Practise" />
+                  <JFXButton fx:id="btnAddition" alignment="CENTER_RIGHT" layoutY="81.0" onAction="#btnModeHandler" prefHeight="69.0" prefWidth="180.0" text="Addition" />
+                  <JFXButton fx:id="btnSubtraction" alignment="CENTER_RIGHT" layoutY="157.0" onAction="#btnModeHandler" prefHeight="69.0" prefWidth="180.0" text="Subtraction" />
+                  <JFXButton fx:id="btnMultiplication" alignment="CENTER_RIGHT" layoutY="233.0" onAction="#btnModeHandler" prefHeight="69.0" prefWidth="180.0" text="Multiplication" />
+                  <JFXButton fx:id="btnDivision" alignment="CENTER_RIGHT" layoutY="310.0" onAction="#btnModeHandler" prefHeight="69.0" prefWidth="180.0" text="Division" />
+                  <JFXButton fx:id="btnRandom" alignment="CENTER_RIGHT" layoutY="385.0" onAction="#btnModeHandler" prefHeight="69.0" prefWidth="180.0" text="Random" />
+                  <MaterialDesignIconView glyphName="FOOD_APPLE" layoutX="14.0" layoutY="52.0" size="30" text="" wrappingWidth="31.0" />
+                  <MaterialDesignIconView glyphName="PLUS" layoutX="15.0" layoutY="127.0" size="30" />
+                  <MaterialDesignIconView glyphName="MINUS" layoutX="15.0" layoutY="203.0" size="30" />
+                  <MaterialDesignIconView glyphName="MULTIPLICATION" layoutX="15.0" layoutY="279.0" size="30" />
+                  <MaterialDesignIconView glyphName="DIVISION" layoutX="15.0" layoutY="355.0" size="30" />
+                  <MaterialDesignIconView glyphName="DICE_5" layoutX="15.0" layoutY="431.0" size="30" />
                </children>
             </AnchorPane>
-        </items>
-      </SplitPane>
-      <LineChart fx:id="chrtAddition" layoutX="240.0" layoutY="306.0" prefHeight="220.0" prefWidth="490.0" title="Statistics Chart">
-        <xAxis>
-          <CategoryAxis fx:id="chrtx" side="BOTTOM" />
-        </xAxis>
-        <yAxis>
-          <NumberAxis fx:id="chrty" side="LEFT" />
-        </yAxis>
-      </LineChart>
-      <JFXButton fx:id="btnLoad" layoutX="162.0" layoutY="306.0" onAction="#loadData" text="Load" />
-      <JFXButton fx:id="btnClear" layoutX="56.0" layoutY="306.0" onAction="#clearData" text="Clear" />
+            <LineChart fx:id="chrtStatistics" layoutX="182.0" prefHeight="220.0" prefWidth="520.0" title="Statistics">
+               <xAxis>
+                  <CategoryAxis fx:id="chrtx" side="BOTTOM" />
+               </xAxis>
+               <yAxis>
+                  <NumberAxis fx:id="chrty" side="LEFT" />
+               </yAxis>
+               <styleClass>
+                  <String fx:value="bebasneue" />
+                  <String fx:value="cardPane" />
+               </styleClass>
+            </LineChart>
+            <Label fx:id="lblBest" layoutX="225.0" layoutY="250.0" prefHeight="25.0" prefWidth="160.0" styleClass="bebasneue" text="Best Score:">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblPrevious" layoutX="225.0" layoutY="290.0" prefHeight="25.0" prefWidth="160.0" styleClass="bebasneue" text="Previous Score:">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblAverage" layoutX="225.0" layoutY="330.0" prefHeight="25.0" prefWidth="160.0" styleClass="bebasneue" text="Average Score:">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblGames" layoutX="225.0" layoutY="370.0" prefHeight="25.0" prefWidth="160.0" styleClass="bebasneue" text="Games Played:">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <JFXButton fx:id="btnBack" layoutX="621.0" layoutY="415.0" onAction="#btnBackHandler" stylesheets="@../levelselect/levelselect.css" text="Back">
+               <graphic>
+                  <MaterialDesignIconView fx:id="btnBack" glyphName="ARROW_LEFT_BOLD" size="16" styleClass="root" />
+               </graphic>
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <styleClass>
+                  <String fx:value="root" />
+                  <String fx:value="bebasneue" />
+               </styleClass>
+            </JFXButton>
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>
