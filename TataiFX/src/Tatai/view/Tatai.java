@@ -1,15 +1,6 @@
 package Tatai.view;
 
-import java.beans.XMLDecoder;
-import java.beans.XMLEncoder;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-
 import Tatai.view.stats.PersonalStats;
-import Tatai.view.stats.PersonalStats.gameMode;
-import Tatai.view.stats.PersonalStats.statType;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -17,7 +8,6 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
 public class Tatai extends Application {
 	

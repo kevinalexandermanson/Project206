@@ -1,6 +1,5 @@
 package Tatai.view.welcome;
 
-import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -25,75 +24,53 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonType;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import com.jfoenix.controls.JFXComboBox;
-import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.effects.JFXDepthManager;
 
-import Tatai.view.game.GameController;
 import Tatai.view.stats.PersonalStats;
 import Tatai.view.stats.PersonalStats.gameMode;
 import Tatai.view.stats.PersonalStats.statType;
 
 public class LoginController implements Initializable{
 
-	@FXML
-	private AnchorPane root;
-	@FXML
-	private AnchorPane topPane;
-	@FXML
-	private Label lblWelcome;
-	@FXML
-	private AnchorPane cardPane;
-	@FXML
-	private JFXComboBox<String> cmbbxSelectUser;
-	@FXML
-	protected Label lblSelectUser;
-	@FXML
-	protected JFXButton btnLogin;
-	@FXML
-	protected JFXButton btnNewUser;
+	 @FXML
+    private AnchorPane root;
 
-	@FXML
-	protected JFXButton btnDeleteUser;
+    @FXML
+    private AnchorPane topPane;
 
+    @FXML
+    private Label lblWelcome;
 
-	@FXML
-	private JFXButton btnBack;
-	@FXML 
-	private AnchorPane newUserPane;
-	@FXML
-	private JFXButton newUserEnterButton;
-	@FXML
-	private JFXTextField userNameField;
-	@FXML
-	private JFXTextField userNameErrorField;
-	@FXML
-	protected JFXButton deleteUserEnterButton;
-	@FXML
-	private JFXButton btnDeleteBack;
-	@FXML
-	private JFXTextField txtNoUserSelected;
-	@FXML
-	private JFXTextField txtNoUserToDelete;
+    @FXML
+    private AnchorPane cardPane;
+
+    @FXML
+    private JFXComboBox<String> cmbbxSelectUser;
+
+    @FXML
+    private JFXButton btnLogin;
+
+    @FXML
+    private JFXButton btnNewUser;
+
+    @FXML
+    private JFXButton btnDeleteUser;
+
+    @FXML
+    private Label lblSelectUser;
 
 	public static PersonalStats CurrentPlayer;
-	protected ObservableList<String> userNames;
+	private ObservableList<String> userNames;
 
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
 		JFXDepthManager.setDepth(cardPane,  4);
 		JFXDepthManager.setDepth(topPane, 5);
-		txtNoUserToDelete.setVisible(false);
-		newUserPane.setVisible(false);
-		userNameErrorField.setVisible(false);
-		userNameErrorField.setEditable(false);
-		deleteUserEnterButton.setVisible(false);
-		btnDeleteBack.setVisible(false);
-		txtNoUserSelected.setVisible(false);
-		txtNoUserSelected.setEditable(false);
 
 		userNames = FXCollections.observableArrayList();
 		File[] files = new File("./").listFiles();
@@ -107,11 +84,7 @@ public class LoginController implements Initializable{
 		cmbbxSelectUser.setItems(userNames);
 	}
 
-	/**
-	 * Method to handle login button
-	 * @param event
-	 * @throws IOException
-	 */
+	/* Login Handler */
 	@FXML
 	private void btnLoginHandler(ActionEvent event) throws IOException {
 
@@ -124,121 +97,88 @@ public class LoginController implements Initializable{
 			stage.setScene(sceneLevelSelect);
 		}
 		else {
-			txtNoUserSelected.setText("Please select a user");
-			txtNoUserSelected.setVisible(true);
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setTitle("Login");
+			alert.setHeaderText("Please select a user.");
+			alert.setContentText("No user selected.");
+
+			alert.showAndWait(); 
 		}
 
-		/*	Alert alert = new Alert(AlertType.INFORMATION);
-		alert.setTitle("Login");
-		alert.setHeaderText("Welcome");
-		alert.setContentText("You pressed login!");
-
-		alert.showAndWait(); */
-	}
-
-	@FXML
-	private void btnNewUserHandler() {
-
-		txtNoUserSelected.setVisible(false);
-		newUserPane.setVisible(true);
-		btnDeleteUser.setVisible(false);
-		btnNewUser.setVisible(false);
-		btnLogin.setVisible(false);
-		lblSelectUser.setVisible(false);
-		cmbbxSelectUser.setVisible(false);
 
 	}
 
+	/* New User Handler */
 	@FXML
-	private void btnNewUserEnterHandler() {
-		String userName = userNameField.getText();
-
-		if (userName.equals("")) {
-			userNameErrorField.setVisible(true);
-			userNameErrorField.setText("Please Enter a valid username");
-		}
-		else if (!(userNames.contains(userName))) {
-			createPlayerXML(userName);
-			userNames.add(userName);
-
-			cmbbxSelectUser.setItems(userNames);
-
-			newUserPane.setVisible(false);
-			btnDeleteUser.setVisible(true);
-			btnNewUser.setVisible(true);
-			btnLogin.setVisible(true);
-			lblSelectUser.setVisible(true);
-			cmbbxSelectUser.setVisible(true);
-
-			userNameField.setText("");
-			userNameErrorField.setText("");
-			userNameErrorField.setVisible(false);
-
-			txtNoUserSelected.setText(userName + " succesfully created");
-			txtNoUserSelected.setVisible(true); 
-
-		}
-		else {
-			userNameErrorField.setVisible(true);
-			userNameErrorField.setText("Sorry, username already exists");
-		}
+	private void btnNewUserHandler(ActionEvent event) throws IOException {
+		Parent parentLogin = FXMLLoader.load(getClass().getResource("/Tatai/view/welcome/NewUser.fxml"));
+		Scene sceneLogin = new Scene(parentLogin);
+		
+		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		stage.setScene(sceneLogin);
 	}
-
-
-
+	
 	@FXML
-	private void btnBackHandler() {
+	private void btnDeleteUserHandler() {
 
-		txtNoUserToDelete.setVisible(false);
-		btnDeleteBack.setVisible(false);
-		newUserPane.setVisible(false);
-		lblSelectUser.setVisible(true);
-		cmbbxSelectUser.setVisible(true);
-		btnDeleteUser.setVisible(true);
-		btnNewUser.setVisible(true);
-		btnLogin.setVisible(true);
-		lblSelectUser.setText("Select User");
-		deleteUserEnterButton.setVisible(false);
-
-	}
-
-	@FXML
-	private void deleteUserHandler() {
-
-		txtNoUserSelected.setVisible(false);
-		btnDeleteBack.setVisible(true);
-		btnDeleteUser.setVisible(false);
-		btnNewUser.setVisible(false);
-		btnLogin.setVisible(false);
-		lblSelectUser.setText("Select user to delete");
-		deleteUserEnterButton.setVisible(true);
-
-	}
-
-	@FXML
-	private void deleteUserEnterButtonHandler() throws IOException {
 		if (cmbbxSelectUser.getValue() != null) {
+			String user = (String) cmbbxSelectUser.getValue();
 			
-			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(getClass().getResource("DeleteConfirmation.fxml"));
-			Parent confirmation = loader.load();
-
-			DeleteConfirmationController controller = loader.getController();
-			controller.setController(cmbbxSelectUser.getValue(), btnNewUser, lblSelectUser, btnLogin, btnDeleteUser, deleteUserEnterButton, userNames);
 			
-			Scene scene = new Scene(confirmation);
+			Alert alert = new Alert(AlertType.CONFIRMATION, "Delete " + user + " ?", ButtonType.YES, ButtonType.NO, ButtonType.CANCEL);
+			alert.showAndWait();
 
-			Stage stage = new Stage();
-			stage.setScene(scene);
-			stage.show();
-			txtNoUserToDelete.setVisible(false);
+			if (alert.getResult() == ButtonType.YES) {
+			    userNames.remove(user);
+			    File userFile = new File("./" + user + ".xml");
+			    if (userFile.delete()) {
+					Alert deleteSuccess = new Alert(AlertType.INFORMATION);
+					deleteSuccess.setTitle("Delete User");
+					deleteSuccess.setHeaderText("Delete Success");
+					deleteSuccess.setContentText(user + " has been deleted.");
+
+					deleteSuccess.showAndWait(); 
+			    } else {
+					Alert deleteFail = new Alert(AlertType.INFORMATION);
+					deleteFail.setTitle("Delete User");
+					deleteFail.setHeaderText("Delete Fail");
+					deleteFail.setContentText("Error deleting " + user);
+
+					deleteFail.showAndWait(); 
+			    }
+			    
+			} else {
+				Alert deleteCancel = new Alert(AlertType.INFORMATION);
+				deleteCancel.setTitle("Delete User");
+				deleteCancel.setHeaderText("");
+				deleteCancel.setContentText(user + " will not be deleted.");
+
+				deleteCancel.showAndWait(); 
+			}
 		}
 		else {
-			txtNoUserToDelete.setText("Please select a user to delete");
-			txtNoUserToDelete.setVisible(true);
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setTitle("Delete User");
+			alert.setHeaderText("Please select a user.");
+			alert.setContentText("No user selected.");
+
+			alert.showAndWait(); 
 		}
 
 	}
+	
+	/* Returns list of users */
+	protected ObservableList<String> getUsers() {
+		return this.userNames;
+	}
+	
+	/* Adds a user */
+	protected void addUser(String user) {
+		userNames.add(user);
+	}
+
+
+
 
 	/**
 	 * Loads an persons profile stored in an xml file.

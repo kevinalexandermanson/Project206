@@ -328,20 +328,6 @@ public class GameController implements Initializable {
 		
 	}
 	
-	/*---------- Other Methods ------------------------------------------------------------------------*/
-
-	/**
-	 * Sets the level of the game
-	 * @param level
-	 */
-	public void setLevel(String level) {
-		this.level = level;
-
-		// Calculates the apporpriate question depending on the level
-		map.get(level).calculate();
-		lblCurrentGameNumber.setText(map.get(level).getEquation());
-		lblNowPlaying.setText(map.get(level).getLabel());
-	}
 
 	/*---------- Threads ------------------------------------------------------------------------*/
 
@@ -480,6 +466,21 @@ public class GameController implements Initializable {
 			super.succeeded();
 			
 		}
+	}
+	
+	/*---------- Other Methods ------------------------------------------------------------------------*/
+
+	/**
+	 * Sets the level of the game
+	 * @param level
+	 */
+	public void setLevel(String level) {
+		this.level = level;
+
+		// Calculates the apporpriate question depending on the level
+		map.get(level).calculate();
+		lblCurrentGameNumber.setText(map.get(level).getEquation());
+		lblNowPlaying.setText(map.get(level).getLabel());
 	}
 
 	/**
