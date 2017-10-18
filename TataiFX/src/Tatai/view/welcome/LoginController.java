@@ -64,7 +64,7 @@ public class LoginController implements Initializable{
     @FXML
     private Label lblSelectUser;
 
-	public static PersonalStats CurrentPlayer;
+	private static PersonalStats CurrentPlayer;
 	private ObservableList<String> userNames;
 
 	@Override
@@ -246,6 +246,10 @@ public class LoginController implements Initializable{
 		} catch(IOException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public static String getCurrentPlayer() {
+		return CurrentPlayer.getPlayerName();
 	}
 
 

@@ -9,6 +9,7 @@ import com.jfoenix.effects.JFXDepthManager;
 
 import Tatai.Levels.Levels;
 import Tatai.view.game.GameController;
+import Tatai.view.welcome.LoginController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -65,12 +66,17 @@ public class LevelSelectController implements Initializable {
 	    
 	    @FXML
 	    private JFXButton btnRandomHard;
+	    
+	    @FXML
+	    private Label lblUser;
 
 	/**
 	 * Initializes the buttons on the screen
 	 */
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
+		lblUser.setText("Logged in as: " + LoginController.getCurrentPlayer());
+		
 		JFXDepthManager.setDepth(cardPane,  4);
 		JFXDepthManager.setDepth(topPane, 5);
 		btnPractiseEasy.setVisible(false);

@@ -14,9 +14,9 @@
    <children>
       <AnchorPane fx:id="topPane" prefHeight="186.0" prefWidth="800.0" styleClass="topPane" stylesheets="@../levelselect/levelselect.css">
          <children>
-            <Label fx:id="lblStatistics" alignment="CENTER" contentDisplay="CENTER" layoutX="177.0" layoutY="14.0" prefHeight="103.0" prefWidth="447.0" styleClass="bebasneue" text="STATISTICS For USER" textFill="#212121">
+            <Label fx:id="lblStatistics" alignment="CENTER" contentDisplay="CENTER" layoutY="14.0" prefHeight="103.0" prefWidth="800.0" styleClass="bebasneue" text="STATISTICS For USER" textFill="#212121">
                <font>
-                  <Font size="70.0" />
+                  <Font size="60.0" />
                </font></Label>
          </children>
       </AnchorPane>

@@ -27,6 +27,7 @@ import Tatai.Levels.RandomHard;
 import Tatai.Levels.Subtraction;
 import Tatai.model.AudioFeedBack;
 import Tatai.model.Recording;
+import Tatai.view.welcome.LoginController;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -104,6 +105,9 @@ public class GameController implements Initializable {
 	@FXML
 	private JFXButton btnPronunciation;
 	
+	@FXML
+	private Label lblUser;
+	
 
 	private String level = "";
 	private boolean secondAttempt = false;
@@ -117,6 +121,8 @@ public class GameController implements Initializable {
 
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
+		lblUser.setText("Logged in as: " + LoginController.getCurrentPlayer());
+		
 		JFXDepthManager.setDepth(cardPane,  4);
 		JFXDepthManager.setDepth(scorePane, 4);
 		JFXDepthManager.setDepth(questionPane, 4);

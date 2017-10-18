@@ -6,7 +6,9 @@ import java.util.ResourceBundle;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.effects.JFXDepthManager;
 
+import Tatai.view.game.GameController;
 import Tatai.view.stats.PersonalStats.gameMode;
+import Tatai.view.welcome.LoginController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -87,7 +89,8 @@ public class StatsController implements Initializable{
 	
 	@Override
 	public void initialize(URL url, ResourceBundle rb){
-		//lblStatistics.setText("Statistics For " + Tatai.view.Tatai.CurrentPlayer.getPlayerName());
+		
+		lblStatistics.setText("Statistics For " + LoginController.getCurrentPlayer());
 		JFXDepthManager.setDepth(cardPane,  4);
 		//initData();
 		//System.out.println("Henlo");
