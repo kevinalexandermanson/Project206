@@ -84,6 +84,9 @@ public class StatsController implements Initializable{
 
 	    @FXML
 	    private Label lblGames;
+	    
+	    @FXML
+	    private AnchorPane statisticsPane;
 
 	
 	
@@ -92,6 +95,7 @@ public class StatsController implements Initializable{
 		
 		lblStatistics.setText("Statistics For " + LoginController.getCurrentPlayer());
 		JFXDepthManager.setDepth(cardPane,  4);
+		JFXDepthManager.setDepth(statisticsPane, 2);
 		//initData();
 		//System.out.println("Henlo");
 		/*

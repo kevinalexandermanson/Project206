@@ -50,39 +50,44 @@
                   <String fx:value="cardPane" />
                </styleClass>
             </LineChart>
-            <Label fx:id="lblBest" layoutX="225.0" layoutY="250.0" prefHeight="25.0" prefWidth="160.0" styleClass="bebasneue" text="Best Score:">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Label>
-            <Label fx:id="lblPrevious" layoutX="225.0" layoutY="290.0" prefHeight="25.0" prefWidth="160.0" styleClass="bebasneue" text="Previous Score:">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Label>
-            <Label fx:id="lblAverage" layoutX="225.0" layoutY="330.0" prefHeight="25.0" prefWidth="160.0" styleClass="bebasneue" text="Average Score:">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Label>
-            <Label fx:id="lblGames" layoutX="225.0" layoutY="370.0" prefHeight="25.0" prefWidth="160.0" styleClass="bebasneue" text="Games Played:">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Label>
-            <JFXButton fx:id="btnBack" layoutX="621.0" layoutY="415.0" onAction="#btnBackHandler" stylesheets="@../levelselect/levelselect.css" text="Back">
-               <graphic>
-                  <MaterialDesignIconView fx:id="btnBack" glyphName="ARROW_LEFT_BOLD" size="16" styleClass="root" />
-               </graphic>
-               <font>
-                  <Font size="14.0" />
-               </font>
-               <styleClass>
-                  <String fx:value="root" />
-                  <String fx:value="bebasneue" />
-               </styleClass>
-            </JFXButton>
+            <AnchorPane fx:id="statisticsPane" layoutX="197.0" layoutY="210.0" prefHeight="236.0" prefWidth="490.0" styleClass="statsPane">
+               <children>
+                  <Label fx:id="lblBest" layoutX="30.0" layoutY="30.0" prefHeight="25.0" prefWidth="160.0" styleClass="bebasneue" text="Best Score:">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lblPrevious" layoutX="30.0" layoutY="70.0" prefHeight="25.0" prefWidth="160.0" styleClass="bebasneue" text="Previous Score:">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lblAverage" layoutX="30.0" layoutY="110.0" prefHeight="25.0" prefWidth="160.0" styleClass="bebasneue" text="Average Score:">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lblGames" layoutX="30.0" layoutY="150.0" prefHeight="25.0" prefWidth="160.0" styleClass="bebasneue" text="Games Played:">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <JFXButton fx:id="btnBack" layoutX="404.0" layoutY="185.0" onAction="#btnBackHandler" stylesheets="@../levelselect/levelselect.css" text="Back">
+                     <graphic>
+                        <MaterialDesignIconView fx:id="btnBack" glyphName="ARROW_LEFT_BOLD" size="16" styleClass="root" />
+                     </graphic>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <styleClass>
+                        <String fx:value="root" />
+                        <String fx:value="bebasneue" />
+                     </styleClass>
+                  </JFXButton>
+               </children>
+            </AnchorPane>
          </children>
       </AnchorPane>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" />
    </children>
 </AnchorPane>

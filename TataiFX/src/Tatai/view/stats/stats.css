@@ -4,7 +4,8 @@
 }
 
 .statsPane {
-	-fx-background-color: #757575;
+	-fx-background-color: #ffffff;
+	-fx-background-radius: 8px;
 }
 
 .cardPane {
