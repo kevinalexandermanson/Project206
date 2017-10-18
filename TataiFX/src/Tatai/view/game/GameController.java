@@ -445,14 +445,13 @@ public class GameController implements Initializable {
 	/*
 	 * Handles playback in separate thread
 	 */
-	private class PlayingThread extends Task<Recording>  {
+	private class PlayingThread extends Task<Void>  {
 
 		@Override
-		protected Recording call() throws Exception {
+		protected Void call() throws Exception {
 			Recording recording = new Recording();
-			// Uncomment when testing on linex
 			recording.playRecording();
-			return recording;
+			return null;
 		}
 
 		@Override 
