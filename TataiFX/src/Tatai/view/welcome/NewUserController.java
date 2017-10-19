@@ -1,15 +1,19 @@
 package Tatai.view.welcome;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
+import com.jfoenix.effects.JFXDepthManager;
 
 import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -19,7 +23,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-public class NewUserController {
+public class NewUserController implements Initializable{
 
     @FXML
     private AnchorPane root;
@@ -102,5 +106,12 @@ public class NewUserController {
 		}
 
     }
+
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+		JFXDepthManager.setDepth(cardPane,  4);
+		JFXDepthManager.setDepth(topPane,  5);
+		
+	}
 
 }
