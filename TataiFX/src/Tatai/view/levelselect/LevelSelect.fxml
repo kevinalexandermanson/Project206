@@ -32,7 +32,7 @@
                   <String fx:value="bebasneue" />
                </styleClass>
             </JFXButton>
-            <JFXButton fx:id="btnPractiseEasy" layoutX="204.0" layoutY="107.0" onAction="#selectModeHandler" prefHeight="58.0" prefWidth="153.0" stylesheets="@levelselect.css" text="Easy: 1 - 9">
+            <JFXButton fx:id="btnPractiseEasy" layoutX="205.0" layoutY="107.0" onAction="#selectModeHandler" prefHeight="58.0" prefWidth="153.0" stylesheets="@levelselect.css" text="Easy: 1 - 9">
                <font>
                   <Font size="18.0" />
                </font>
@@ -46,7 +46,7 @@
                   <Font size="48.0" />
                </font>
             </Label>
-            <JFXButton fx:id="btnPractiseHard" layoutX="204.0" layoutY="181.0" onAction="#selectModeHandler" prefHeight="58.0" prefWidth="153.0" stylesheets="@levelselect.css" text="Hard: 1 - 99">
+            <JFXButton fx:id="btnPractiseHard" layoutX="205.0" layoutY="181.0" onAction="#selectModeHandler" prefHeight="58.0" prefWidth="153.0" stylesheets="@levelselect.css" text="Hard: 1 - 99">
                <font>
                   <Font size="18.0" />
                </font>
@@ -112,7 +112,7 @@
                   <String fx:value="root" />
                </styleClass>
             </JFXButton>
-            <JFXButton fx:id="btnPractise" layoutX="205.0" layoutY="107.0" onAction="#btnPlayHandler" prefHeight="58.0" prefWidth="153.0" stylesheets="@levelselect.css" text="Practise">
+            <JFXButton fx:id="btnPractise" layoutX="205.0" layoutY="107.0" onAction="#btnPlayHandler" prefHeight="58.0" prefWidth="153.0" stylesheets="@levelselect.css" text="Practice">
                <font>
                   <Font size="18.0" />
                </font>

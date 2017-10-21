@@ -24,7 +24,7 @@ public class PractiseHard implements LevelInterface{
 
 	public void calculate() {
 		//Calculates random number for hard mode between 1 and 100
-		label = "Now Playing - [Practise Mode - Hard]";
+		label = "Now Playing - [Practice Mode - Hard]";
 		number = Integer.toString(randomNumber());
 	}
 	

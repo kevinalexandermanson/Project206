@@ -24,7 +24,7 @@
          <children>
             <AnchorPane fx:id="buttonPane" prefHeight="460.0" prefWidth="180.0" styleClass="buttonPane">
                <children>
-                  <JFXButton fx:id="btnPractise" alignment="CENTER_RIGHT" layoutY="6.0" onAction="#btnModeHandler" prefHeight="69.0" prefWidth="180.0" text="Practise" />
+                  <JFXButton fx:id="btnPractise" alignment="CENTER_RIGHT" layoutY="6.0" onAction="#btnModeHandler" prefHeight="69.0" prefWidth="180.0" text="Practice" />
                   <JFXButton fx:id="btnAddition" alignment="CENTER_RIGHT" layoutY="81.0" onAction="#btnModeHandler" prefHeight="69.0" prefWidth="180.0" text="Addition" />
                   <JFXButton fx:id="btnSubtraction" alignment="CENTER_RIGHT" layoutY="157.0" onAction="#btnModeHandler" prefHeight="69.0" prefWidth="180.0" text="Subtraction" />
                   <JFXButton fx:id="btnMultiplication" alignment="CENTER_RIGHT" layoutY="233.0" onAction="#btnModeHandler" prefHeight="69.0" prefWidth="180.0" text="Multiplication" />

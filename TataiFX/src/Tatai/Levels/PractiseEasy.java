@@ -24,7 +24,7 @@ public class PractiseEasy implements LevelInterface {
 
 	public void calculate() {
 		//Calculates random number for easy mode between 1 and 10
-		label = "Now Playing - [Practise Mode - Easy]";
+		label = "Now Playing - [Practice Mode - Easy]";
 		number = Integer.toString(randomNumber());
 	}
 	
