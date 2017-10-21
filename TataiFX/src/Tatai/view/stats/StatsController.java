@@ -94,6 +94,7 @@ public class StatsController implements Initializable{
 	public void initialize(URL url, ResourceBundle rb){
 		
 		lblStatistics.setText("Statistics For " + LoginController.getCurrentPlayer());
+		JFXDepthManager.setDepth(topPane,  5);
 		JFXDepthManager.setDepth(cardPane,  4);
 		JFXDepthManager.setDepth(statisticsPane, 2);
 		//initData();
