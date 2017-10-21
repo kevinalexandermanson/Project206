@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
+<?import java.lang.String?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" styleClass="root" stylesheets="@levelselect.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Tatai.view.tutorial.TutorialController">
+   <children>
+      <AnchorPane fx:id="topPane" prefHeight="186.0" prefWidth="800.0" styleClass="topPane" stylesheets="@levelselect.css" AnchorPane.bottomAnchor="414.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Label fx:id="lblHowToPlay" alignment="CENTER" contentDisplay="CENTER" layoutX="261.0" layoutY="34.0" styleClass="bebasneue" stylesheets="@levelselect.css" text="How to Play" textAlignment="CENTER" textFill="#212121">
+               <font>
+                  <Font size="70.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="cardPane" layoutX="120.0" layoutY="143.0" prefHeight="395.0" prefWidth="561.0" styleClass="cardPane" stylesheets="@levelselect.css">
+         <children>
+            <JFXButton fx:id="btnBack" layoutX="8.0" layoutY="348.0" onAction="#btnBackHandler" stylesheets="@levelselect.css" text="Back">
+               <graphic>
+                  <MaterialDesignIconView glyphName="ARROW_LEFT_BOLD" size="16" styleClass="root" />
+               </graphic>
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <styleClass>
+                  <String fx:value="root" />
+                  <String fx:value="bebasneue" />
+               </styleClass>
+            </JFXButton>
+            <ImageView fitHeight="300.0" fitWidth="400.0" layoutX="81.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true" styleClass="topPane" />
+            <JFXButton ellipsisString=" " layoutX="19.0" layoutY="152.0" prefHeight="37.0" prefWidth="35.0" />
+            <MaterialDesignIconView glyphName="ARROW_LEFT" layoutX="22.0" layoutY="181.0" size="30" />
+            <JFXButton ellipsisString=" " layoutX="512.0" layoutY="151.0" prefHeight="37.0" prefWidth="35.0" />
+            <MaterialDesignIconView glyphName="ARROW_RIGHT" layoutX="515.0" layoutY="180.0" size="30" />
+         </children>
+      </AnchorPane>
+      <Label fx:id="lblUser" layoutX="41.0" layoutY="561.0" styleClass="bebasneue" text="Logged in as: ">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <MaterialDesignIconView glyphName="ACCOUNT_CIRCLE" layoutX="14.0" layoutY="581.0" size="20" />
+   </children>
+</AnchorPane>

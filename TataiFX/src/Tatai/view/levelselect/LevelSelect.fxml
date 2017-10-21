@@ -139,6 +139,18 @@
                   <String fx:value="bebasneue" />
                </styleClass>
             </JFXButton>
+            <JFXButton fx:id="btnTutorial" alignment="CENTER_RIGHT" layoutX="332.0" layoutY="348.0" onAction="#btnTutorialHandler" prefHeight="37.0" prefWidth="104.0" stylesheets="@levelselect.css" text="Tutorial   ">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <styleClass>
+                  <String fx:value="root" />
+                  <String fx:value="bebasneue" />
+               </styleClass>
+               <graphic>
+                  <MaterialDesignIconView glyphName="HELP_CIRCLE" />
+               </graphic>
+            </JFXButton>
          </children>
       </AnchorPane>
       <Label fx:id="lblUser" layoutX="41.0" layoutY="561.0" styleClass="bebasneue" text="Logged in as: ">

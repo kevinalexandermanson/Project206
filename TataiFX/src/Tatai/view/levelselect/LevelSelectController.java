@@ -69,6 +69,9 @@ public class LevelSelectController implements Initializable {
 	    
 	    @FXML
 	    private Label lblUser;
+	    
+	    @FXML
+	    private JFXButton btnTutorial;
 
 	/**
 	 * Initializes the buttons on the screen
@@ -207,6 +210,16 @@ public class LevelSelectController implements Initializable {
 
 		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		stage.setScene(sceneStats);
+		
+	}
+	
+	@FXML
+	private void btnTutorialHandler(ActionEvent event) throws IOException {
+		Parent parentTutorial = FXMLLoader.load(getClass().getResource("/Tatai/view/tutorial/Tutorial.fxml"));
+		Scene sceneTutorial = new Scene(parentTutorial);
+
+		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		stage.setScene(sceneTutorial);
 		
 	}
 
