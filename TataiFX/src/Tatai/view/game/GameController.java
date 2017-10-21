@@ -85,9 +85,6 @@ public class GameController implements Initializable {
 	private Label lblQuestionNumber;
 
 	@FXML
-	private JFXButton btnStatistics;
-
-	@FXML
 	private JFXButton btnQuit;
 
 	@FXML
@@ -108,6 +105,9 @@ public class GameController implements Initializable {
 	@FXML
 	private Label lblUser;
 	
+	@FXML
+	private AnchorPane userPane;
+	
 
 	private String level = "";
 	private boolean secondAttempt = false;
@@ -121,8 +121,9 @@ public class GameController implements Initializable {
 
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
-		lblUser.setText("Logged in as: " + LoginController.getCurrentPlayer());
+		lblUser.setText(LoginController.getCurrentPlayer());
 		
+		JFXDepthManager.setDepth(userPane,  4);
 		JFXDepthManager.setDepth(cardPane,  4);
 		JFXDepthManager.setDepth(scorePane, 4);
 		JFXDepthManager.setDepth(questionPane, 4);

@@ -17,6 +17,11 @@
 	-fx-background-radius: 8px;
 }
 
+.user {
+	-fx-background-color: #BDBDBD  ;
+	-fx-background-radius: 4px;
+}
+
 .topPane{
 	-fx-background-color: #2196f3 ;
 }
