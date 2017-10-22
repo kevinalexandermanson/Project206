@@ -87,7 +87,23 @@ public class StatsController implements Initializable{
 	    @FXML
 	    private AnchorPane statisticsPane;
 
-	
+	    //Keep track of if a button has been pressed already
+	    private boolean addPressed=false;
+	    private boolean subPressed=false;
+	    private boolean mulPressed=false;
+	    private boolean divPressed=false;
+	    private boolean randPressed=false;
+	    private boolean pracPressed=false;
+	    
+	    XYChart.Series blankData = new XYChart.Series();
+	    XYChart.Series addData;
+	    XYChart.Series subData;
+	    XYChart.Series mulData;
+	    XYChart.Series divData;
+	    XYChart.Series randData;
+	    XYChart.Series pracData;
+	    
+	    public static final int NUMOFLEVELS = 6;
 	
 	@Override
 	public void initialize(URL url, ResourceBundle rb){
@@ -96,30 +112,11 @@ public class StatsController implements Initializable{
 		JFXDepthManager.setDepth(topPane,  5);
 		JFXDepthManager.setDepth(cardPane,  4);
 		JFXDepthManager.setDepth(statisticsPane, 2);
-		//initData();
-		//System.out.println("Henlo");
-		/*
-		//Get an array with the game modes.
-		Object[] gameModes = gameMode.values();
-		String[] gameModeStrings = new String[gameMode.values().length];
 		
-		int i=0;
-		for (gameMode g: gameMode.values()){
-			gameModeStrings[i]=g.toString();
-			i++;
+		for (int i = 0; i < NUMOFLEVELS; i++) {
+			chrtStatistics.getData().add(i,blankData);
 		}
-		*/
-		/*
-		XYChart.Series<String, Integer> set1 = new XYChart.Series<String, Integer>();
-		set1.getData().add(new XYChart.Data<String,Integer>("1", 23));
-		set1.getData().add(new XYChart.Data("2", 13));
-		set1.getData().add(new XYChart.Data("3", 43));
-		set1.getData().add(new XYChart.Data("4", 33));
-		set1.getData().add(new XYChart.Data("5", 41));
-		set1.getData().add(new XYChart.Data("6", 55));
-		set1.getData().add(new XYChart.Data("7", 23));
-		//chrtAddition.getData().addAll(set1);
-		 */
+		
 	}
 	
 	
@@ -142,29 +139,100 @@ public class StatsController implements Initializable{
     private void btnModeHandler(ActionEvent event) {
 
 		PersonalStats p1 = Tatai.view.welcome.LoginController.getCurrentPlayerStats();
-		System.out.println("Hi " + p1.getBestAdd());
+		//System.out.println("Hi " + p1.getBestAdd());
 		
     	if (event.getSource().equals(btnPractise)) {
-    		removeButtonStyles();
-    		btnPractise.getStyleClass().add("pressed");
+    		//removeButtonStyles();
+    		//btnPractise.getStyleClass().add("pressed");
     		
     		chrtStatistics.setTitle("Practise");
+    		pracData = new XYChart.Series();
+    		pracData.getData().add(new XYChart.Data("1", 1));
+    		pracData.getData().add(new XYChart.Data("2", 2));
+    		pracData.getData().add(new XYChart.Data("3", 3));
+    		pracData.getData().add(new XYChart.Data("4", 4));
+    		pracData.getData().add(new XYChart.Data("5", 5));
+    		pracData.getData().add(new XYChart.Data("6", 6));
+    		pracData.getData().add(new XYChart.Data("7", 7));
+    		
+    		if (pracPressed==false) {
+    			btnPractise.getStyleClass().add("pressed");
+    			chrtStatistics.getData().remove(0);
+    			chrtStatistics.getData().add(0, pracData);
+    			pracPressed = true;
+    		} else {
+    			btnPractise.getStyleClass().removeAll("pressed");
+    			chrtStatistics.getData().remove(0);
+    			chrtStatistics.getData().add(0, blankData);
+    			pracPressed = false;
+    		}
+    		
+    		lblBest.setText("Best Score: " + String.valueOf(p1.getBestPracE()) + " / 10");
+			lblPrevious.setText("Previous Score: " + p1.getLastPracE() + " / 10");
+			lblAverage.setText("Average Score: " + p1.getMeanPracE() + " / 10");
+			lblGames.setText("Games Played: " + p1.getGamesPlayedPracE() + "");
+			
     	} else if (event.getSource().equals(btnAddition)) {
-    		removeButtonStyles();
-    		btnAddition.getStyleClass().add("pressed");
+    		//removeButtonStyles();
+    		//btnAddition.getStyleClass().add("pressed");
     		
+    		//Set up the chart
     		chrtStatistics.setTitle("Addition");
+    		addData = new XYChart.Series();
+    		addData.getData().add(new XYChart.Data("1", 2));
+    		addData.getData().add(new XYChart.Data("2", 1));
+    		addData.getData().add(new XYChart.Data("3", 4));
+    		addData.getData().add(new XYChart.Data("4", 3));
+    		addData.getData().add(new XYChart.Data("5", 4));
+    		addData.getData().add(new XYChart.Data("6", 5));
+    		addData.getData().add(new XYChart.Data("7", 2));
     		
+    		if (addPressed==false) {
+    			btnAddition.getStyleClass().add("pressed");
+    			chrtStatistics.getData().remove(1);
+    			chrtStatistics.getData().add(1, addData);
+    			addPressed = true;
+    		} else {
+    			btnAddition.getStyleClass().removeAll("pressed");
+    			chrtStatistics.getData().remove(1);
+    			chrtStatistics.getData().add(1, blankData);
+    			addPressed = false;
+    			
+    			if(subPressed==false && mulPressed==false && divPressed==false && randPressed==false && pracPressed==false){
+    				resetGraph();
+    			}
+    		}
+    		//Change the labels.
 			lblBest.setText("Best Score: " + String.valueOf(p1.getBestAdd()) + " / 10");
 			lblPrevious.setText("Previous Score: " + p1.getLastAdd() + " / 10");
 			lblAverage.setText("Average Score: " + p1.getMeanAdd() + " / 10");
 			lblGames.setText("Games Played: " + p1.getGamesPlayedAdd() + "");
 			
     	} else if (event.getSource().equals(btnSubtraction)) {
-    		removeButtonStyles();
-    		btnSubtraction.getStyleClass().add("pressed");
+    		//removeButtonStyles();
+    		//btnSubtraction.getStyleClass().add("pressed");
     		
     		chrtStatistics.setTitle("Subtraction");
+    		subData = new XYChart.Series();
+    		subData.getData().add(new XYChart.Data("1", 1));
+    		subData.getData().add(new XYChart.Data("2", 7));
+    		subData.getData().add(new XYChart.Data("3", 9));
+    		subData.getData().add(new XYChart.Data("4", 4));
+    		subData.getData().add(new XYChart.Data("5", 1));
+    		subData.getData().add(new XYChart.Data("6", 5));
+    		subData.getData().add(new XYChart.Data("7", 6));
+    		
+    		if (subPressed==false) {
+    			btnSubtraction.getStyleClass().add("pressed");
+    			chrtStatistics.getData().remove(2);
+    			chrtStatistics.getData().add(2, subData);
+    			subPressed = true;
+    		} else {
+    			btnSubtraction.getStyleClass().removeAll("pressed");
+    			chrtStatistics.getData().remove(2);
+    			chrtStatistics.getData().add(2, blankData);
+    			subPressed = false;
+    		}
     		
 			lblBest.setText("Best Score: " + p1.getBestSub() + " / 10");
 			lblPrevious.setText("Previous Score: " + p1.getLastSub() + " / 10");
@@ -172,10 +240,30 @@ public class StatsController implements Initializable{
 			lblGames.setText("Games Played: " + p1.getGamesPlayedSub() + "");
 			
     	} else if (event.getSource().equals(btnMultiplication)) {
-    		removeButtonStyles();
-    		btnMultiplication.getStyleClass().add("pressed");
+    		//removeButtonStyles();
+    		//btnMultiplication.getStyleClass().add("pressed");
     		
     		chrtStatistics.setTitle("Multiplication");
+    		mulData = new XYChart.Series();
+    		mulData.getData().add(new XYChart.Data("1", 8));
+    		mulData.getData().add(new XYChart.Data("2", 3));
+    		mulData.getData().add(new XYChart.Data("3", 6));
+    		mulData.getData().add(new XYChart.Data("4", 7));
+    		mulData.getData().add(new XYChart.Data("5", 1));
+    		mulData.getData().add(new XYChart.Data("6", 3));
+    		mulData.getData().add(new XYChart.Data("7", 5));
+    		
+    		if (mulPressed==false) {
+    			btnMultiplication.getStyleClass().add("pressed");
+    			chrtStatistics.getData().remove(3);
+    			chrtStatistics.getData().add(3, mulData);
+    			mulPressed = true;
+    		} else {
+    			btnMultiplication.getStyleClass().removeAll("pressed");
+    			chrtStatistics.getData().remove(3);
+    			chrtStatistics.getData().add(3, blankData);
+    			mulPressed = false;
+    		}
     		
 			lblBest.setText("Best Score: " + p1.getBestMul() + " / 10");
 			lblPrevious.setText("Previous Score: " + p1.getLastMul() + " / 10");
@@ -183,10 +271,30 @@ public class StatsController implements Initializable{
 			lblGames.setText("Games Played: " + p1.getGamesPlayedMul() + "");
 
     	} else if (event.getSource().equals(btnDivision)) {
-    		removeButtonStyles();
-    		btnDivision.getStyleClass().add("pressed");
+    		//removeButtonStyles();
+    		//btnDivision.getStyleClass().add("pressed");
     		
     		chrtStatistics.setTitle("Division");
+    		divData = new XYChart.Series();
+    		divData.getData().add(new XYChart.Data("1", 2));
+    		divData.getData().add(new XYChart.Data("2", 6));
+    		divData.getData().add(new XYChart.Data("3", 8));
+    		divData.getData().add(new XYChart.Data("4", 3));
+    		divData.getData().add(new XYChart.Data("5", 2));
+    		divData.getData().add(new XYChart.Data("6", 4));
+    		divData.getData().add(new XYChart.Data("7", 3));
+    		
+    		if (divPressed==false) {
+    			btnDivision.getStyleClass().add("pressed");
+    			chrtStatistics.getData().remove(4);
+    			chrtStatistics.getData().add(4, divData);
+    			divPressed = true;
+    		} else {
+    			btnDivision.getStyleClass().removeAll("pressed");
+    			chrtStatistics.getData().remove(4);
+    			chrtStatistics.getData().add(4, blankData);
+    			divPressed = false;
+    		}
     		
 			lblBest.setText("Best Score: " + p1.getBestDiv() + " / 10");
 			lblPrevious.setText("Previous Score: " + p1.getLastDiv() + " / 10");
@@ -194,10 +302,35 @@ public class StatsController implements Initializable{
 			lblGames.setText("Games Played: " + p1.getGamesPlayedDiv() + "");
 			
     	} else if (event.getSource().equals(btnRandom)) {
-    		removeButtonStyles();
-    		btnRandom.getStyleClass().add("pressed");
+    		//removeButtonStyles();
+    		//btnRandom.getStyleClass().add("pressed");
     		
     		chrtStatistics.setTitle("Random");
+    		randData = new XYChart.Series();
+    		randData.getData().add(new XYChart.Data("1", 1));
+    		randData.getData().add(new XYChart.Data("2", 7));
+    		randData.getData().add(new XYChart.Data("3", 8));
+    		randData.getData().add(new XYChart.Data("4", 3));
+    		randData.getData().add(new XYChart.Data("5", 2));
+    		randData.getData().add(new XYChart.Data("6", 5));
+    		randData.getData().add(new XYChart.Data("7", 6));
+    		
+    		if (randPressed==false) {
+    			btnRandom.getStyleClass().add("pressed");
+    			chrtStatistics.getData().remove(5);
+    			chrtStatistics.getData().add(5, randData);
+    			randPressed = true;
+    		} else {
+    			btnRandom.getStyleClass().removeAll("pressed");
+    			chrtStatistics.getData().remove(5);
+    			chrtStatistics.getData().add(5, blankData);
+    			randPressed = false;
+    		}
+       		
+       		lblBest.setText("Best Score: " + p1.getBestRandE() + " / 10");
+			lblPrevious.setText("Previous Score: " + p1.getLastRandE() + " / 10");
+			lblAverage.setText("Average Score: " + p1.getMeanRandE() + " / 10");
+			lblGames.setText("Games Played: " + p1.getGamesPlayedRandE() + "");
     	}
     }
     
@@ -211,74 +344,12 @@ public class StatsController implements Initializable{
     	
     }
     
-/*  //TODO: Retrieve the data from the players account info.
-  	@FXML
-  	private void loadData(ActionEvent event) {
-  		//lblBestAdd.setText("change change change changing the score works");
-  		//initData();
-		if (Tatai.view.Tatai.CurrentPlayer != null) {
-			PersonalStats p1 = Tatai.view.Tatai.CurrentPlayer;
-
-			lblBestAdd.setText(p1.getBestAdd() + " / 10");
-			lblLastAdd.setText(p1.getLastAdd() + " / 10");
-			lblMeanAdd.setText(p1.getMeanAdd() + " / 10");
-			lblGamesPlayedAdd.setText(p1.getGamesPlayedAdd() + "");
-
-			lblBestSub.setText(p1.getBestSub() + " / 10");
-			lblLastSub.setText(p1.getLastSub() + " / 10");
-			lblMeanSub.setText(p1.getMeanSub() + " / 10");
-			lblGamesPlayedSub.setText(p1.getGamesPlayedSub() + "");
-
-			lblBestMul.setText(p1.getBestMul() + " / 10");
-			lblLastMul.setText(p1.getLastMul() + " / 10");
-			lblMeanMul.setText(p1.getMeanMul() + " / 10");
-			lblGamesPlayedMul.setText(p1.getGamesPlayedMul() + "");
-
-			lblBestDiv.setText(p1.getBestDiv() + " / 10");
-			lblLastDiv.setText(p1.getLastDiv() + " / 10");
-			lblMeanDiv.setText(p1.getMeanDiv() + " / 10");
-			lblGamesPlayedDiv.setText(p1.getGamesPlayedDiv() + "");
-
-			lblBestHard.setText(p1.getBestHard() + " / 10");
-			lblLastHard.setText(p1.getLastHard() + " / 10");
-			lblMeanHard.setText(p1.getMeanHard() + " / 10");
-			lblGamesPlayedHard.setText(p1.getGamesPlayedHard() + ""A);
-
-			System.out.println("Statistics for " + p1.getPlayerName() + " loaded.");
-
+    private void resetGraph(){
+    	chrtStatistics.getData().remove(0, 5);
+    	for (int i = 0; i < NUMOFLEVELS; i++) {
+			chrtStatistics.getData().add(i,blankData);
 		}
-  	}
-    
-  	@FXML
-  	private void clearData(ActionEvent event) {
-  		//lblBestAdd.setText("change change change changing the score works");
-  		lblBestAdd.setText("Add / 10");
-		lblLastAdd.setText("Add / 10");
-		lblMeanAdd.setText("Add / 10");
-		lblGamesPlayedAdd.setText("");
-
-		lblBestSub.setText("Sub / 10");
-		lblLastSub.setText("Sub / 10");
-		lblMeanSub.setText("Sub / 10");
-		lblGamesPlayedSub.setText("");
-		
-		lblBestMul.setText("Mul / 10");
-		lblLastMul.setText("Mul / 10");
-		lblMeanMul.setText("Mul / 10");
-		lblGamesPlayedMul.setText("");
-		
-		lblBestDiv.setText("Div / 10");
-		lblLastDiv.setText("Div / 10");
-		lblMeanDiv.setText("Div / 10");
-		lblGamesPlayedDiv.setText("");
-		
-		lblBestHard.setText("Hard / 10");
-		lblLastHard.setText("Hard / 10");
-		lblMeanHard.setText("Hard / 10");
-		lblGamesPlayedHard.setText("");
-		
-		System.out.println("Statistics cleared.");
-  	}*/
+    }
 
 
 
