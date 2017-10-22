@@ -8,6 +8,8 @@ import com.jfoenix.effects.JFXDepthManager;
 
 import Tatai.view.game.GameController;
 import Tatai.view.welcome.LoginController;
+import javafx.beans.binding.Bindings;
+import javafx.beans.binding.IntegerBinding;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -96,12 +98,12 @@ public class StatsController implements Initializable{
 	    private boolean pracPressed=false;
 	    
 	    XYChart.Series blankData = new XYChart.Series();
-	    XYChart.Series addData;
-	    XYChart.Series subData;
-	    XYChart.Series mulData;
-	    XYChart.Series divData;
-	    XYChart.Series randData;
-	    XYChart.Series pracData;
+	    XYChart.Series addData = new XYChart.Series();
+	    XYChart.Series subData = new XYChart.Series();
+	    XYChart.Series mulData = new XYChart.Series();
+	    XYChart.Series divData = new XYChart.Series();
+	    XYChart.Series randData = new XYChart.Series();
+	    XYChart.Series pracData = new XYChart.Series();
 	    
 	    public static final int NUMOFLEVELS = 6;
 	
@@ -113,10 +115,12 @@ public class StatsController implements Initializable{
 		JFXDepthManager.setDepth(cardPane,  4);
 		JFXDepthManager.setDepth(statisticsPane, 2);
 		
+		/*
 		for (int i = 0; i < NUMOFLEVELS; i++) {
 			chrtStatistics.getData().add(i,blankData);
 		}
-		
+		*/
+		IntegerBinding sizeProperty = Bindings.size(chrtStatistics.getData());
 	}
 	
 	
@@ -139,22 +143,33 @@ public class StatsController implements Initializable{
     private void btnModeHandler(ActionEvent event) {
 
 		PersonalStats p1 = Tatai.view.welcome.LoginController.getCurrentPlayerStats();
-		//System.out.println("Hi " + p1.getBestAdd());
 		
     	if (event.getSource().equals(btnPractise)) {
-    		//removeButtonStyles();
-    		//btnPractise.getStyleClass().add("pressed");
     		
     		chrtStatistics.setTitle("Practise");
-    		pracData = new XYChart.Series();
-    		pracData.getData().add(new XYChart.Data("1", 1));
+    		XYChart.Series set1 = new XYChart.Series();
+			set1.getData().add(new XYChart.Data("1", 1));
+    		set1.getData().add(new XYChart.Data("2", 2));
+    		set1.getData().add(new XYChart.Data("3", 3));
+    		set1.getData().add(new XYChart.Data("4", 4));
+    		set1.getData().add(new XYChart.Data("5", 5));
+    		set1.getData().add(new XYChart.Data("6", 6));
+    		set1.getData().add(new XYChart.Data("7", 7));
+    		
+    		//Used for one line display
+    		removeButtonStyles();
+    		btnPractise.getStyleClass().add("pressed");
+    		chrtStatistics.getData().clear();
+    		chrtStatistics.getData().add(set1);
+    		
+    	/*	//Used for multi line display
+			pracData.getData().add(new XYChart.Data("1", 1));
     		pracData.getData().add(new XYChart.Data("2", 2));
     		pracData.getData().add(new XYChart.Data("3", 3));
     		pracData.getData().add(new XYChart.Data("4", 4));
     		pracData.getData().add(new XYChart.Data("5", 5));
     		pracData.getData().add(new XYChart.Data("6", 6));
     		pracData.getData().add(new XYChart.Data("7", 7));
-    		
     		if (pracPressed==false) {
     			btnPractise.getStyleClass().add("pressed");
     			chrtStatistics.getData().remove(0);
@@ -165,7 +180,7 @@ public class StatsController implements Initializable{
     			chrtStatistics.getData().remove(0);
     			chrtStatistics.getData().add(0, blankData);
     			pracPressed = false;
-    		}
+    		} 	*/
     		
     		lblBest.setText("Best Score: " + String.valueOf(p1.getBestPracE()) + " / 10");
 			lblPrevious.setText("Previous Score: " + p1.getLastPracE() + " / 10");
@@ -173,20 +188,34 @@ public class StatsController implements Initializable{
 			lblGames.setText("Games Played: " + p1.getGamesPlayedPracE() + "");
 			
     	} else if (event.getSource().equals(btnAddition)) {
-    		//removeButtonStyles();
-    		//btnAddition.getStyleClass().add("pressed");
     		
     		//Set up the chart
     		chrtStatistics.setTitle("Addition");
-    		addData = new XYChart.Series();
-    		addData.getData().add(new XYChart.Data("1", 2));
-    		addData.getData().add(new XYChart.Data("2", 1));
-    		addData.getData().add(new XYChart.Data("3", 4));
-    		addData.getData().add(new XYChart.Data("4", 3));
-    		addData.getData().add(new XYChart.Data("5", 4));
-    		addData.getData().add(new XYChart.Data("6", 5));
-    		addData.getData().add(new XYChart.Data("7", 2));
+    		XYChart.Series set1 = new XYChart.Series();
+    		set1.getData().add(new XYChart.Data("1", 2));
+			set1.getData().add(new XYChart.Data("2", 1));
+			set1.getData().add(new XYChart.Data("3", 4));
+			set1.getData().add(new XYChart.Data("4", 3));
+			set1.getData().add(new XYChart.Data("5", 4));
+			set1.getData().add(new XYChart.Data("6", 5));
+			set1.getData().add(new XYChart.Data("7", 2));
     		
+    		//Used for one line display
+    		removeButtonStyles();
+    		btnAddition.getStyleClass().add("pressed");
+    		chrtStatistics.getData().clear();
+    		chrtStatistics.getData().add(set1);
+    		
+    	/*	//Used for multi line display.
+
+			addData.getData().add(new XYChart.Data("1", 2));
+			addData.getData().add(new XYChart.Data("2", 1));
+			addData.getData().add(new XYChart.Data("3", 4));
+			addData.getData().add(new XYChart.Data("4", 3));
+			addData.getData().add(new XYChart.Data("5", 4));
+			addData.getData().add(new XYChart.Data("6", 5));
+			addData.getData().add(new XYChart.Data("7", 2));
+			
     		if (addPressed==false) {
     			btnAddition.getStyleClass().add("pressed");
     			chrtStatistics.getData().remove(1);
@@ -200,8 +229,8 @@ public class StatsController implements Initializable{
     			
     			if(subPressed==false && mulPressed==false && divPressed==false && randPressed==false && pracPressed==false){
     				resetGraph();
-    			}
-    		}
+    			}	
+    		} */
     		//Change the labels.
 			lblBest.setText("Best Score: " + String.valueOf(p1.getBestAdd()) + " / 10");
 			lblPrevious.setText("Previous Score: " + p1.getLastAdd() + " / 10");
@@ -209,11 +238,24 @@ public class StatsController implements Initializable{
 			lblGames.setText("Games Played: " + p1.getGamesPlayedAdd() + "");
 			
     	} else if (event.getSource().equals(btnSubtraction)) {
-    		//removeButtonStyles();
-    		//btnSubtraction.getStyleClass().add("pressed");
     		
     		chrtStatistics.setTitle("Subtraction");
-    		subData = new XYChart.Series();
+    		XYChart.Series set1 = new XYChart.Series();
+    		set1.getData().add(new XYChart.Data("1", 1));
+    		set1.getData().add(new XYChart.Data("2", 7));
+    		set1.getData().add(new XYChart.Data("3", 9));
+    		set1.getData().add(new XYChart.Data("4", 4));
+    		set1.getData().add(new XYChart.Data("5", 1));
+    		set1.getData().add(new XYChart.Data("6", 5));
+    		set1.getData().add(new XYChart.Data("7", 6));
+    		
+    		//Used for one line display
+    		removeButtonStyles();
+    		btnSubtraction.getStyleClass().add("pressed");
+    		chrtStatistics.getData().clear();
+    		chrtStatistics.getData().add(set1);
+    		
+    	/*	//Used for multi line display
     		subData.getData().add(new XYChart.Data("1", 1));
     		subData.getData().add(new XYChart.Data("2", 7));
     		subData.getData().add(new XYChart.Data("3", 9));
@@ -221,7 +263,6 @@ public class StatsController implements Initializable{
     		subData.getData().add(new XYChart.Data("5", 1));
     		subData.getData().add(new XYChart.Data("6", 5));
     		subData.getData().add(new XYChart.Data("7", 6));
-    		
     		if (subPressed==false) {
     			btnSubtraction.getStyleClass().add("pressed");
     			chrtStatistics.getData().remove(2);
@@ -232,7 +273,7 @@ public class StatsController implements Initializable{
     			chrtStatistics.getData().remove(2);
     			chrtStatistics.getData().add(2, blankData);
     			subPressed = false;
-    		}
+    		}	*/
     		
 			lblBest.setText("Best Score: " + p1.getBestSub() + " / 10");
 			lblPrevious.setText("Previous Score: " + p1.getLastSub() + " / 10");
@@ -240,11 +281,24 @@ public class StatsController implements Initializable{
 			lblGames.setText("Games Played: " + p1.getGamesPlayedSub() + "");
 			
     	} else if (event.getSource().equals(btnMultiplication)) {
-    		//removeButtonStyles();
-    		//btnMultiplication.getStyleClass().add("pressed");
     		
     		chrtStatistics.setTitle("Multiplication");
-    		mulData = new XYChart.Series();
+    		XYChart.Series set1 = new XYChart.Series();
+    		set1.getData().add(new XYChart.Data("1", 8));
+    		set1.getData().add(new XYChart.Data("2", 3));
+    		set1.getData().add(new XYChart.Data("3", 6));
+    		set1.getData().add(new XYChart.Data("4", 7));
+    		set1.getData().add(new XYChart.Data("5", 1));
+    		set1.getData().add(new XYChart.Data("6", 3));
+    		set1.getData().add(new XYChart.Data("7", 5));
+    		
+    		//Used for one line display
+    		removeButtonStyles();
+    		btnMultiplication.getStyleClass().add("pressed");
+    		chrtStatistics.getData().clear();
+    		chrtStatistics.getData().add(set1);
+    		
+    	/*	//Used for multi line display
     		mulData.getData().add(new XYChart.Data("1", 8));
     		mulData.getData().add(new XYChart.Data("2", 3));
     		mulData.getData().add(new XYChart.Data("3", 6));
@@ -252,7 +306,6 @@ public class StatsController implements Initializable{
     		mulData.getData().add(new XYChart.Data("5", 1));
     		mulData.getData().add(new XYChart.Data("6", 3));
     		mulData.getData().add(new XYChart.Data("7", 5));
-    		
     		if (mulPressed==false) {
     			btnMultiplication.getStyleClass().add("pressed");
     			chrtStatistics.getData().remove(3);
@@ -263,7 +316,7 @@ public class StatsController implements Initializable{
     			chrtStatistics.getData().remove(3);
     			chrtStatistics.getData().add(3, blankData);
     			mulPressed = false;
-    		}
+    		}	*/
     		
 			lblBest.setText("Best Score: " + p1.getBestMul() + " / 10");
 			lblPrevious.setText("Previous Score: " + p1.getLastMul() + " / 10");
@@ -271,11 +324,24 @@ public class StatsController implements Initializable{
 			lblGames.setText("Games Played: " + p1.getGamesPlayedMul() + "");
 
     	} else if (event.getSource().equals(btnDivision)) {
-    		//removeButtonStyles();
-    		//btnDivision.getStyleClass().add("pressed");
     		
     		chrtStatistics.setTitle("Division");
-    		divData = new XYChart.Series();
+    		XYChart.Series set1 = new XYChart.Series();
+    		set1.getData().add(new XYChart.Data("1", 2));
+    		set1.getData().add(new XYChart.Data("2", 6));
+    		set1.getData().add(new XYChart.Data("3", 8));
+    		set1.getData().add(new XYChart.Data("4", 3));
+    		set1.getData().add(new XYChart.Data("5", 2));
+    		set1.getData().add(new XYChart.Data("6", 4));
+    		set1.getData().add(new XYChart.Data("7", 3));
+    		
+    		//Used for one line display
+    		removeButtonStyles();
+    		btnDivision.getStyleClass().add("pressed");
+    		chrtStatistics.getData().clear();
+    		chrtStatistics.getData().add(set1);
+    		
+    	/*	//Used for multi line display.
     		divData.getData().add(new XYChart.Data("1", 2));
     		divData.getData().add(new XYChart.Data("2", 6));
     		divData.getData().add(new XYChart.Data("3", 8));
@@ -283,7 +349,6 @@ public class StatsController implements Initializable{
     		divData.getData().add(new XYChart.Data("5", 2));
     		divData.getData().add(new XYChart.Data("6", 4));
     		divData.getData().add(new XYChart.Data("7", 3));
-    		
     		if (divPressed==false) {
     			btnDivision.getStyleClass().add("pressed");
     			chrtStatistics.getData().remove(4);
@@ -294,7 +359,7 @@ public class StatsController implements Initializable{
     			chrtStatistics.getData().remove(4);
     			chrtStatistics.getData().add(4, blankData);
     			divPressed = false;
-    		}
+    		}	*/
     		
 			lblBest.setText("Best Score: " + p1.getBestDiv() + " / 10");
 			lblPrevious.setText("Previous Score: " + p1.getLastDiv() + " / 10");
@@ -302,19 +367,31 @@ public class StatsController implements Initializable{
 			lblGames.setText("Games Played: " + p1.getGamesPlayedDiv() + "");
 			
     	} else if (event.getSource().equals(btnRandom)) {
-    		//removeButtonStyles();
-    		//btnRandom.getStyleClass().add("pressed");
     		
     		chrtStatistics.setTitle("Random");
-    		randData = new XYChart.Series();
-    		randData.getData().add(new XYChart.Data("1", 1));
+    		XYChart.Series set1 = new XYChart.Series();
+    		set1.getData().add(new XYChart.Data("1", 1));	//Sample data.
+    		set1.getData().add(new XYChart.Data("2", 7));
+    		set1.getData().add(new XYChart.Data("3", 8));
+    		set1.getData().add(new XYChart.Data("4", 3));
+    		set1.getData().add(new XYChart.Data("5", 2));
+    		set1.getData().add(new XYChart.Data("6", 5));
+    		set1.getData().add(new XYChart.Data("7", 6));
+    		
+    		//Used if only displaying one line at a time.
+    		removeButtonStyles();
+    		btnRandom.getStyleClass().add("pressed");
+    		chrtStatistics.getData().clear();
+    		chrtStatistics.getData().add(set1);
+    		
+    	/*	//Used if implementing multiple line graphs feature
+    		randData.getData().add(new XYChart.Data("1", 1));	//Sample data.
     		randData.getData().add(new XYChart.Data("2", 7));
     		randData.getData().add(new XYChart.Data("3", 8));
     		randData.getData().add(new XYChart.Data("4", 3));
     		randData.getData().add(new XYChart.Data("5", 2));
     		randData.getData().add(new XYChart.Data("6", 5));
     		randData.getData().add(new XYChart.Data("7", 6));
-    		
     		if (randPressed==false) {
     			btnRandom.getStyleClass().add("pressed");
     			chrtStatistics.getData().remove(5);
@@ -325,7 +402,7 @@ public class StatsController implements Initializable{
     			chrtStatistics.getData().remove(5);
     			chrtStatistics.getData().add(5, blankData);
     			randPressed = false;
-    		}
+    		} */
        		
        		lblBest.setText("Best Score: " + p1.getBestRandE() + " / 10");
 			lblPrevious.setText("Previous Score: " + p1.getLastRandE() + " / 10");
@@ -333,7 +410,7 @@ public class StatsController implements Initializable{
 			lblGames.setText("Games Played: " + p1.getGamesPlayedRandE() + "");
     	}
     }
-    
+
     private void removeButtonStyles() {
     	btnPractise.getStyleClass().removeAll("pressed");
     	btnAddition.getStyleClass().removeAll("pressed");
@@ -344,6 +421,7 @@ public class StatsController implements Initializable{
     	
     }
     
+    //Remove the data, add in blank data.
     private void resetGraph(){
     	chrtStatistics.getData().remove(0, 5);
     	for (int i = 0; i < NUMOFLEVELS; i++) {
