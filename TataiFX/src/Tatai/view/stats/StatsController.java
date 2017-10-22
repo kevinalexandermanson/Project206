@@ -7,7 +7,6 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.effects.JFXDepthManager;
 
 import Tatai.view.game.GameController;
-import Tatai.view.stats.PersonalStats.gameMode;
 import Tatai.view.welcome.LoginController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -142,7 +141,7 @@ public class StatsController implements Initializable{
     @FXML 
     private void btnModeHandler(ActionEvent event) {
 
-		PersonalStats p1 = Tatai.view.Tatai.CurrentPlayer;
+		PersonalStats p1 = Tatai.view.welcome.LoginController.getCurrentPlayerStats();
 
 		
     	if (event.getSource().equals(btnPractise)) {
@@ -155,44 +154,45 @@ public class StatsController implements Initializable{
     		btnAddition.getStyleClass().add("pressed");
     		
     		chrtStatistics.setTitle("Addition");
-
+    		/*
 			lblBest.setText("Best Score: " + p1.getBestAdd() + " / 10");
 			lblPrevious.setText("Previous Score: " + p1.getLastAdd() + " / 10");
 			lblAverage.setText("Average Score: " + p1.getMeanAdd() + " / 10");
 			lblGames.setText("Games Played: " + p1.getGamesPlayedAdd() + "");
-
+			*/
     	} else if (event.getSource().equals(btnSubtraction)) {
     		removeButtonStyles();
     		btnSubtraction.getStyleClass().add("pressed");
     		
     		chrtStatistics.setTitle("Subtraction");
-
+    		/*
 			lblBest.setText("Best Score: " + p1.getBestSub() + " / 10");
 			lblPrevious.setText("Previous Score: " + p1.getLastSub() + " / 10");
 			lblAverage.setText("Average Score: " + p1.getMeanSub() + " / 10");
 			lblGames.setText("Games Played: " + p1.getGamesPlayedSub() + "");
-
+			*/
     	} else if (event.getSource().equals(btnMultiplication)) {
     		removeButtonStyles();
     		btnMultiplication.getStyleClass().add("pressed");
     		
     		chrtStatistics.setTitle("Multiplication");
-
+    		/*
 			lblBest.setText("Best Score: " + p1.getBestMul() + " / 10");
 			lblPrevious.setText("Previous Score: " + p1.getLastMul() + " / 10");
 			lblAverage.setText("Average Score: " + p1.getMeanMul() + " / 10");
 			lblGames.setText("Games Played: " + p1.getGamesPlayedMul() + "");
-
+*/
     	} else if (event.getSource().equals(btnDivision)) {
     		removeButtonStyles();
     		btnDivision.getStyleClass().add("pressed");
     		
     		chrtStatistics.setTitle("Division");
-    		
+    		/*
 			lblBest.setText("Best Score: " + p1.getBestDiv() + " / 10");
 			lblPrevious.setText("Previous Score: " + p1.getLastDiv() + " / 10");
 			lblAverage.setText("Average Score: " + p1.getMeanDiv() + " / 10");
 			lblGames.setText("Games Played: " + p1.getGamesPlayedDiv() + "");
+			*/
     	} else if (event.getSource().equals(btnRandom)) {
     		removeButtonStyles();
     		btnRandom.getStyleClass().add("pressed");

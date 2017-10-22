@@ -31,8 +31,8 @@ import javafx.stage.Stage;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.effects.JFXDepthManager;
 
+import Tatai.Levels.Levels;
 import Tatai.view.stats.PersonalStats;
-import Tatai.view.stats.PersonalStats.gameMode;
 import Tatai.view.stats.PersonalStats.statType;
 
 public class LoginController implements Initializable{
@@ -92,7 +92,7 @@ public class LoginController implements Initializable{
 			loadDataXML(cmbbxSelectUser.getValue());
 			Parent parentLevelSelect = FXMLLoader.load(getClass().getResource("/Tatai/view/levelselect/LevelSelect.fxml"));
 			Scene sceneLevelSelect = new Scene(parentLevelSelect);
-
+			
 			Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 			stage.setScene(sceneLevelSelect);
 		}
@@ -211,7 +211,7 @@ public class LoginController implements Initializable{
 	 * @param stat
 	 * @param Score
 	 */
-	public static void changeStatXML(PersonalStats player, gameMode mode, statType stat, int Score){
+	public static void changeStatXML(PersonalStats player, Levels mode, statType stat, int Score){
 		try{
 			player.setStats(mode, stat, Score);
 
@@ -249,7 +249,20 @@ public class LoginController implements Initializable{
 	}
 	
 	public static String getCurrentPlayer() {
-		return CurrentPlayer.getPlayerName();
+		if (CurrentPlayer!=null) {
+			return CurrentPlayer.getPlayerName();
+		} else {
+			System.out.println("No player loaded.");
+			return null;
+		}
+	}
+	public static PersonalStats getCurrentPlayerStats() {
+		if (CurrentPlayer!=null) {
+			return CurrentPlayer;
+		} else {
+			System.out.println("No player loaded.");
+			return null;
+		}
 	}
 
 
