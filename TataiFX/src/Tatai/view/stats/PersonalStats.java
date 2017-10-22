@@ -12,49 +12,49 @@ public class PersonalStats {
 	private int LastAdd = 0;
 	private int GamesPlayedAdd = 0;
 	private double MeanAdd = 0;
-	private int[] Last10Add;
+	private int[] Last10Add = new int[NUMOFGAMESRECORDED];
 
 	private int BestSub = 0;
 	private int LastSub = 0;
 	private int GamesPlayedSub = 0;
 	private double MeanSub = 0;
-	private int[] Last10Sub;
+	private int[] Last10Sub = new int[NUMOFGAMESRECORDED];
 
 	private int BestMul = 0;
 	private int LastMul = 0;
 	private int GamesPlayedMul = 0;
 	private double MeanMul = 0;
-	private int[] Last10Mul;
+	private int[] Last10Mul = new int[NUMOFGAMESRECORDED];
 
 	private int BestDiv = 0;
 	private int LastDiv = 0;
 	private int GamesPlayedDiv = 0;
 	private double MeanDiv = 0;
-	private int[] Last10Div;
+	private int[] Last10Div = new int[NUMOFGAMESRECORDED];
 	
 	private int BestPracE = 0;
 	private int LastPracE = 0;
 	private int GamesPlayedPracE = 0;
 	private double MeanPracE = 0;
-	private int[] Last10PracE;
+	private int[] Last10PracE = new int[NUMOFGAMESRECORDED];
 
 	private int BestPracH = 0;
 	private int LastPracH = 0;
 	private int GamesPlayedPracH = 0;
 	private double MeanPracH = 0;
-	private int[] Last10PracH;
+	private int[] Last10PracH = new int[NUMOFGAMESRECORDED];
 	
 	private int BestRandE = 0;
 	private int LastRandE = 0;
 	private int GamesPlayedRandE = 0;
 	private double MeanRandE = 0;
-	private int[] Last10RandE;
+	private int[] Last10RandE = new int[NUMOFGAMESRECORDED];
 	
 	private int BestRandH = 0;
 	private int LastRandH = 0;
 	private int GamesPlayedRandH = 0;
 	private double MeanRandH = 0;
-	private int[] Last10RandH;
+	private int[] Last10RandH = new int[NUMOFGAMESRECORDED];
 
 	private String PlayerName;
 	private static final int NUMOFGAMESRECORDED = 100;
@@ -120,7 +120,9 @@ public class PersonalStats {
 	/**
 	 * This should be called after you finish a game. It stores the last game
 	 * score into the array, then increments the number of games played, then
-	 * calculates a new mean value.
+	 * calculates a new mean value. NOTE: This save the data in the OBJECT, not
+	 * the .xml. Saving the .xml occurs in another method, in the
+	 * LoginController.class
 	 * 
 	 * @param m
 	 */

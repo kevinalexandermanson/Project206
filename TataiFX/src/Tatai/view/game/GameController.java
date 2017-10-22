@@ -168,6 +168,7 @@ public class GameController implements Initializable {
 		if(currentQuestion()==NUMOFQUESTIONS){
 			PersonalStats p1 = Tatai.view.welcome.LoginController.getCurrentPlayerStats();
 			p1.recordLastGame(level, currentScore());
+			Tatai.view.welcome.LoginController.saveCurrentPlayerXML();
 		}
 		
 		// Loads the level select screen
@@ -295,6 +296,7 @@ public class GameController implements Initializable {
 	private void btnPlayAgainHandler() {
 		PersonalStats p1 = Tatai.view.welcome.LoginController.getCurrentPlayerStats();
 		p1.recordLastGame(level, currentScore());
+		Tatai.view.welcome.LoginController.saveCurrentPlayerXML();
 		
 		// Sets up the game screen again
 		btnPlayAgain.setVisible(false);

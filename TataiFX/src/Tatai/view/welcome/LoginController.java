@@ -248,6 +248,26 @@ public class LoginController implements Initializable{
 		}
 	}
 	
+	/**
+	 * Overwrites the current players xml with their new statistics. Should be called to save their progress after each game.
+	 * @param name
+	 */
+	public static void saveCurrentPlayerXML(){
+		try{
+			PersonalStats p1 = getCurrentPlayerStats();
+
+			FileOutputStream fos = new FileOutputStream(new File("./" + p1.getPlayerName() + ".xml"));
+			XMLEncoder encoder = new XMLEncoder(fos);
+			encoder.writeObject(p1);
+			encoder.close();
+			fos.close();
+			System.out.println("Stats for "+ p1.getPlayerName() + " successfully saved.");
+
+		} catch(IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public static String getCurrentPlayer() {
 		if (CurrentPlayer!=null) {
 			System.out.println("Cool beans, " + CurrentPlayer.getPlayerName() + " loaded.");
