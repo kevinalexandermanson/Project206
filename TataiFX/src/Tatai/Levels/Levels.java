@@ -11,12 +11,13 @@ public enum Levels {
 	
 	private final String level;
 
-	private Levels(String level) {
+	private Levels (String level) {
 		this.level = level;
 	}
 
 	public String getLevel() {
 		return level;
 	}
+	
 
 }

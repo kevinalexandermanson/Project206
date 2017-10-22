@@ -27,6 +27,7 @@ import Tatai.Levels.RandomHard;
 import Tatai.Levels.Subtraction;
 import Tatai.model.AudioFeedBack;
 import Tatai.model.Recording;
+import Tatai.view.stats.PersonalStats;
 import Tatai.view.welcome.LoginController;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
@@ -110,6 +111,7 @@ public class GameController implements Initializable {
 	
 
 	private String level = "";
+	private Levels levelEnum;
 	private boolean secondAttempt = false;
 	private String currentQuestionNumber;
 	private Map<String, LevelInterface> map;
@@ -121,6 +123,7 @@ public class GameController implements Initializable {
 
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
+		//Get the player name
 		lblUser.setText(LoginController.getCurrentPlayer());
 		
 		JFXDepthManager.setDepth(userPane,  4);
@@ -161,6 +164,11 @@ public class GameController implements Initializable {
 	 */
 	@FXML
 	private void btnQuitHandler(ActionEvent event) throws IOException {
+		//If the last question has been played, then record the stats first, before exiting.
+		if(currentQuestion()==NUMOFQUESTIONS){
+			PersonalStats p1 = Tatai.view.welcome.LoginController.getCurrentPlayerStats();
+			p1.recordLastGame(level, currentScore());
+		}
 		
 		// Loads the level select screen
 		Parent parentLevelSelect = FXMLLoader.load(getClass().getResource("/Tatai/view/levelselect/LevelSelect.fxml"));
@@ -285,7 +293,9 @@ public class GameController implements Initializable {
 	 */
 	@FXML
 	private void btnPlayAgainHandler() {
-
+		PersonalStats p1 = Tatai.view.welcome.LoginController.getCurrentPlayerStats();
+		p1.recordLastGame(level, currentScore());
+		
 		// Sets up the game screen again
 		btnPlayAgain.setVisible(false);
 		btnReturnToMenu.setVisible(false);

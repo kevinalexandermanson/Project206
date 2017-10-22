@@ -195,7 +195,7 @@ public class LoginController implements Initializable{
 			decoder.close();
 			fis.close();
 			System.out.println(CurrentPlayer.getPlayerName() + " currently loaded.");
-			//System.out.println(CurrentPlayer.getPlayerName() +" scored " +CurrentPlayer.getELast() +" points on " + gameMode.EASY.toString()+".");
+			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -250,6 +250,7 @@ public class LoginController implements Initializable{
 	
 	public static String getCurrentPlayer() {
 		if (CurrentPlayer!=null) {
+			System.out.println("Cool beans, " + CurrentPlayer.getPlayerName() + " loaded.");
 			return CurrentPlayer.getPlayerName();
 		} else {
 			System.out.println("No player loaded.");
@@ -258,6 +259,7 @@ public class LoginController implements Initializable{
 	}
 	public static PersonalStats getCurrentPlayerStats() {
 		if (CurrentPlayer!=null) {
+			System.out.println("Cool beans, " + CurrentPlayer.getPlayerName() + " stats loaded.");
 			return CurrentPlayer;
 		} else {
 			System.out.println("No player loaded.");
