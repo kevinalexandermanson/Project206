@@ -139,7 +139,7 @@
                   <String fx:value="bebasneue" />
                </styleClass>
             </JFXButton>
-            <JFXButton fx:id="btnTutorial" alignment="CENTER_RIGHT" layoutX="332.0" layoutY="348.0" onAction="#btnTutorialHandler" prefHeight="37.0" prefWidth="104.0" stylesheets="@levelselect.css" text="Tutorial   ">
+            <JFXButton fx:id="btnTutorial" alignment="CENTER_RIGHT" layoutX="362.0" layoutY="348.0" onAction="#btnTutorialHandler" prefHeight="37.0" prefWidth="74.0" stylesheets="@levelselect.css" text="Help  ">
                <font>
                   <Font size="14.0" />
                </font>

@@ -23,7 +23,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 public class TutorialController implements Initializable {
-	@FXML
+	 @FXML
     private AnchorPane root;
 
     @FXML
@@ -59,6 +59,25 @@ public class TutorialController implements Initializable {
     @FXML
     private ImageView image;
 
+    @FXML
+    private Label lblImage;
+
+    @FXML
+    private JFXButton btnPrev;
+
+    @FXML
+    private JFXButton btnNext;
+
+    private boolean btnGameBasicsPressed;
+    private boolean btnPracticeModePressed;
+    private boolean btnMathsModePressed;
+    private boolean btnAboutTataiPressed;
+    
+	private final Image NowPlaying = new Image(getClass().getResourceAsStream("/Tatai/resources/GameBasics/NowPlaying.png"));
+	private final Image Player = new Image(getClass().getResourceAsStream("/Tatai/resources/GameBasics/Player.png"));
+	private final Image QuestionScore = new Image(getClass().getResourceAsStream("/Tatai/resources/GameBasics/QuestionScore.png"));
+	private final Image EndGame = new Image(getClass().getResourceAsStream("/Tatai/resources/GameBasics/EndGame.png"));
+	private final Image Instructions = new Image(getClass().getResourceAsStream("/Tatai/resources/GameBasics/Instructions.png"));
 
 	/**
 	 * Initializes the buttons on the screen
@@ -68,8 +87,12 @@ public class TutorialController implements Initializable {
 		lblUser.setText("Logged in as: " + LoginController.getCurrentPlayer());
 		JFXDepthManager.setDepth(cardPane,  4);
 		JFXDepthManager.setDepth(topPane, 5);
-		Image selectMode = new Image(getClass().getResourceAsStream("/Tatai/resources/SelectMode.PNG"));
-		image.setImage(selectMode);
+		
+
+		image.setImage(NowPlaying);
+		
+		btnGameBasics.getStyleClass().add("pressed");
+		btnGameBasicsPressed = true;
 		
 	}
 	
@@ -89,12 +112,85 @@ public class TutorialController implements Initializable {
 
 	}
 	
+	/** Handles mode selection **/
 	@FXML
 	private void btnModeHandler(ActionEvent event) throws IOException {
-
-
+		if (event.getSource().equals(btnGameBasics)) {
+			removeButtonStyles();
+			btnGameBasics.getStyleClass().add("pressed");
+			btnGameBasicsPressed = true;
+			
+			Image selectMode = new Image(getClass().getResourceAsStream("/Tatai/resources/NowPlaying.png"));
+			image.setImage(selectMode);
+		} else if (event.getSource().equals(btnPracticeMode)) {
+			removeButtonStyles();
+			btnPracticeMode.getStyleClass().add("pressed");
+			btnPracticeModePressed = true;
+		} else if (event.getSource().equals(btnMathsMode)) {
+			removeButtonStyles();
+			btnMathsMode.getStyleClass().add("pressed");		
+			btnMathsModePressed = true;
+		} else if (event.getSource().equals(btnAboutTatai)) {
+			removeButtonStyles();
+			btnAboutTatai.getStyleClass().add("pressed");	
+			btnAboutTataiPressed = true;
+		}
 	}
 	
+	/** Handles the next image button **/
+	@FXML
+	private void btnNextHandler(ActionEvent event) throws IOException {
+		//if we are currently on the Game Basics tab
+		if (btnGameBasicsPressed) {
+			if (image.getImage().equals(NowPlaying)) {
+				image.setImage(Player);
+				lblImage.setText("2/10");
+			} else if (image.getImage().equals(Player)) {
+				image.setImage(QuestionScore);
+				lblImage.setText("3/10");
+			} else if (image.getImage().equals(QuestionScore)) {
+				image.setImage(EndGame);
+				lblImage.setText("4/10");
+			} else if (image.getImage().equals(EndGame)) {
+				image.setImage(Instructions);
+				lblImage.setText("5/10");
+			}
+		}
+	}
+	
+	/** Handles the prev image button **/
+	@FXML
+	private void btnPrevHandler(ActionEvent event) throws IOException {
+		//if we are currently on the Game Basics tab
+		if (btnGameBasicsPressed) {
+			if (image.getImage().equals(Instructions)) {
+				image.setImage(EndGame);
+				lblImage.setText("4/10");
+			} else if (image.getImage().equals(EndGame)) {
+				image.setImage(QuestionScore);
+				lblImage.setText("3/10");
+			} else if (image.getImage().equals(QuestionScore)) {
+				image.setImage(Player);
+				lblImage.setText("2/10");
+			} else if (image.getImage().equals(Player)) {
+				image.setImage(NowPlaying);
+				lblImage.setText("1/10");
+			}
+		}
+	}
+	
+	/** Removes blue style from all buttons and sets pressed to false.**/
+    private void removeButtonStyles() {
+    	btnGameBasicsPressed = false;
+    	btnPracticeModePressed = false;
+    	btnMathsModePressed = false;
+    	btnAboutTataiPressed = false;
+    	btnPracticeMode.getStyleClass().removeAll("pressed");
+    	btnGameBasics.getStyleClass().removeAll("pressed");
+    	btnMathsMode.getStyleClass().removeAll("pressed");
+    	btnAboutTatai.getStyleClass().removeAll("pressed");
+    	
+    }
 	
 
 }

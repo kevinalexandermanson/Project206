@@ -52,6 +52,13 @@
                </styleClass>
             </JFXButton>
             <ImageView fx:id="image" fitHeight="375.0" fitWidth="500.0" layoutX="176.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="20.0" />
+            <Label fx:id="lblImage" layoutX="402.0" layoutY="410.0" styleClass="bebasneue" text="1/ 10">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <JFXButton fx:id="btnPrev" layoutX="336.0" layoutY="409.0" onAction="#btnPrevHandler" text="Prev" />
+            <JFXButton fx:id="btnNext" layoutX="461.0" layoutY="409.0" onAction="#btnNextHandler" text="Next" />
          </children>
       </AnchorPane>
    </children>
