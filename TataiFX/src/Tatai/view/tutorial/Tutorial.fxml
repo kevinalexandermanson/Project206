@@ -59,6 +59,11 @@
             </Label>
             <JFXButton fx:id="btnPrev" layoutX="336.0" layoutY="409.0" onAction="#btnPrevHandler" text="Prev" />
             <JFXButton fx:id="btnNext" layoutX="461.0" layoutY="409.0" onAction="#btnNextHandler" text="Next" />
+            <Label fx:id="lblAbout" alignment="CENTER" layoutX="200.0" layoutY="52.0" prefHeight="289.0" prefWidth="447.0" styleClass="bebasneue" text="- SOFTENG 206 -&#10;Kevin Manson, Yianni Bares &amp; Raymond Young&#10;- 2017 -&#10;&#10;Targeted user base: &#10;Young adults aged 18-25&#10;&#10;Libraries used:&#10;JFoenix&#10;FontAwesomeFX&#10;&#10;&#10;&#10;&#10;&#10;&#10;" textAlignment="CENTER">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
    </children>

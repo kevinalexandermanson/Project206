@@ -67,6 +67,9 @@ public class TutorialController implements Initializable {
 
     @FXML
     private JFXButton btnNext;
+    
+    @FXML
+    private Label lblAbout;
 
     private boolean btnGameBasicsPressed;
     private boolean btnPracticeModePressed;
@@ -91,6 +94,8 @@ public class TutorialController implements Initializable {
 	public void initialize(URL url, ResourceBundle rb) {
 		lblUser.setText("Logged in as: " + LoginController.getCurrentPlayer());
 		lblImage.setText("1/9");
+		lblAbout.setVisible(false);
+		
 		JFXDepthManager.setDepth(cardPane,  4);
 		JFXDepthManager.setDepth(topPane, 5);
 		
@@ -122,6 +127,7 @@ public class TutorialController implements Initializable {
 	@FXML
 	private void btnModeHandler(ActionEvent event) throws IOException {
 		if (event.getSource().equals(btnGameBasics)) {
+			lblAbout.setVisible(false);
 			image.setVisible(true);
 			btnNext.setVisible(true);
 			btnPrev.setVisible(true);
@@ -138,6 +144,7 @@ public class TutorialController implements Initializable {
 			Image selectMode = new Image(getClass().getResourceAsStream("/Tatai/resources/NowPlaying.png"));
 			image.setImage(selectMode);
 		} else if (event.getSource().equals(btnPracticeMode)) {
+			lblAbout.setVisible(false);
 			image.setVisible(true);
 			btnNext.setVisible(true);
 			btnPrev.setVisible(true);
@@ -148,6 +155,7 @@ public class TutorialController implements Initializable {
 			
 			btnPracticeModePressed = true;
 		} else if (event.getSource().equals(btnMathsMode)) {
+			lblAbout.setVisible(false);
 			image.setVisible(true);
 			btnNext.setVisible(true);
 			btnPrev.setVisible(true);
@@ -158,6 +166,7 @@ public class TutorialController implements Initializable {
 			
 			btnMathsModePressed = true;
 		} else if (event.getSource().equals(btnAboutTatai)) {
+			lblAbout.setVisible(true);
 			image.setVisible(false);
 			btnNext.setVisible(false);
 			btnPrev.setVisible(false);
