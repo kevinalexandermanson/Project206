@@ -12,7 +12,7 @@
    <children>
       <AnchorPane fx:id="topPane" prefHeight="186.0" prefWidth="800.0" styleClass="topPane" stylesheets="@stats.css" AnchorPane.bottomAnchor="414.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Label fx:id="lblHowToPlay" alignment="CENTER" contentDisplay="CENTER" layoutX="261.0" layoutY="2.0" styleClass="bebasneue" stylesheets="@stats.css" text="How to Play" textAlignment="CENTER" textFill="#212121">
+            <Label fx:id="lblHowToPlay" alignment="CENTER" contentDisplay="CENTER" layoutX="347.0" styleClass="bebasneue" stylesheets="@stats.css" text="HELP" textAlignment="CENTER" textFill="#212121">
                <font>
                   <Font size="70.0" />
                </font>
@@ -51,7 +51,6 @@
                   <String fx:value="bebasneue" />
                </styleClass>
             </JFXButton>
-            <ImageView fx:id="image" fitHeight="375.0" fitWidth="500.0" layoutX="176.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="20.0" />
             <Label fx:id="lblImage" layoutX="402.0" layoutY="410.0" styleClass="bebasneue" text="1/ 10">
                <font>
                   <Font size="24.0" />
@@ -59,11 +58,16 @@
             </Label>
             <JFXButton fx:id="btnPrev" layoutX="336.0" layoutY="409.0" onAction="#btnPrevHandler" text="Prev" />
             <JFXButton fx:id="btnNext" layoutX="461.0" layoutY="409.0" onAction="#btnNextHandler" text="Next" />
-            <Label fx:id="lblAbout" alignment="CENTER" layoutX="200.0" layoutY="52.0" prefHeight="289.0" prefWidth="447.0" styleClass="bebasneue" text="- SOFTENG 206 -&#10;Kevin Manson, Yianni Bares &amp; Raymond Young&#10;- 2017 -&#10;&#10;Targeted user base: &#10;Young adults aged 18-25&#10;&#10;Libraries used:&#10;JFoenix&#10;FontAwesomeFX&#10;&#10;&#10;&#10;&#10;&#10;&#10;" textAlignment="CENTER">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Label>
+            <AnchorPane fx:id="imagePane" layoutX="176.0" layoutY="21.0" prefHeight="375.0" prefWidth="500.0" styleClass="statsPane" AnchorPane.rightAnchor="20.0">
+               <children>
+                  <ImageView fx:id="image" fitHeight="356.25" fitWidth="475.0" layoutX="13.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="12.0" />
+                  <Label fx:id="lblAbout" alignment="CENTER" layoutX="27.0" layoutY="44.0" prefHeight="289.0" prefWidth="447.0" styleClass="bebasneue" text="- SOFTENG 206 -&#10;Kevin Manson, Yianni Bares &amp; Raymond Young&#10;- 2017 -&#10;&#10;Targeted user base: &#10;Young adults aged 18-25&#10;&#10;Libraries used:&#10;JFoenix&#10;FontAwesomeFX&#10;&#10;&#10;&#10;&#10;&#10;&#10;" textAlignment="CENTER">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
          </children>
       </AnchorPane>
    </children>

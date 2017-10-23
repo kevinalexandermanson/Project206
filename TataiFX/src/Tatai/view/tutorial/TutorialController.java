@@ -70,6 +70,9 @@ public class TutorialController implements Initializable {
     
     @FXML
     private Label lblAbout;
+    
+    @FXML
+    private AnchorPane imagePane;
 
     private boolean btnGameBasicsPressed;
     private boolean btnPracticeModePressed;
@@ -98,6 +101,7 @@ public class TutorialController implements Initializable {
 		
 		JFXDepthManager.setDepth(cardPane,  4);
 		JFXDepthManager.setDepth(topPane, 5);
+		JFXDepthManager.setDepth(imagePane,  2);
 		
 
 		image.setImage(NowPlaying);
