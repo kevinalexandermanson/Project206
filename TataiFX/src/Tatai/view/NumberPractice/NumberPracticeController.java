@@ -249,7 +249,7 @@ public class NumberPracticeController implements Initializable {
 
 				//check if numbers are equivalent
 				boolean answer = (recording.getCorrectNumber(number).equals(recording.getRecordedNumber()));
-				answer = true;
+				
 				if (answer == true) {
 					lblCurrentGameNumber.setText("Correct");
 					root.getStyleClass().removeAll("rootWrong");
