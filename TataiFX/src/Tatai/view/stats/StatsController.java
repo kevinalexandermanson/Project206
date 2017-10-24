@@ -148,13 +148,10 @@ public class StatsController implements Initializable{
     		
     		chrtStatistics.setTitle("Practise (Easy)");
     		XYChart.Series set1 = new XYChart.Series();
-			set1.getData().add(new XYChart.Data("1", 1));
-    		set1.getData().add(new XYChart.Data("2", 2));
-    		set1.getData().add(new XYChart.Data("3", 3));
-    		set1.getData().add(new XYChart.Data("4", 4));
-    		set1.getData().add(new XYChart.Data("5", 5));
-    		set1.getData().add(new XYChart.Data("6", 6));
-    		set1.getData().add(new XYChart.Data("7", 7));
+    		int[] results = p1.getLast10PracE();
+    		for(int i=0; i<p1.getGamesPlayedPracE(); i++){
+    			set1.getData().add(new XYChart.Data(""+ (i+1),results[i]));
+    		}
     		
     		//Used for one line display
     		removeButtonStyles();
@@ -192,7 +189,7 @@ public class StatsController implements Initializable{
     		chrtStatistics.setTitle("Practise (Hard)");
     		XYChart.Series set1 = new XYChart.Series();
     		int[] results = p1.getLast10PracH();
-    		for(int i=0; i<p1.getGamesPlayedRandH(); i++){
+    		for(int i=0; i<p1.getGamesPlayedPracH(); i++){
     			set1.getData().add(new XYChart.Data(""+ (i+1),results[i]));
     		}
     		
@@ -212,13 +209,10 @@ public class StatsController implements Initializable{
     		//Set up the chart
     		chrtStatistics.setTitle("Addition");
     		XYChart.Series set1 = new XYChart.Series();
-    		set1.getData().add(new XYChart.Data("1", 2));
-			set1.getData().add(new XYChart.Data("2", 1));
-			set1.getData().add(new XYChart.Data("3", 4));
-			set1.getData().add(new XYChart.Data("4", 3));
-			set1.getData().add(new XYChart.Data("5", 4));
-			set1.getData().add(new XYChart.Data("6", 5));
-			set1.getData().add(new XYChart.Data("7", 2));
+    		int[] results = p1.getLast10Add();
+    		for(int i=0; i<p1.getGamesPlayedAdd(); i++){
+    			set1.getData().add(new XYChart.Data(""+ (i+1),results[i]));
+    		}
     		
     		//Used for one line display
     		removeButtonStyles();
@@ -228,7 +222,7 @@ public class StatsController implements Initializable{
     		
     	/*	//Used for multi line display.
 
-			addData.getData().add(new XYChart.Data("1", 2));
+			addData.getData().add(new XYChart.Data("1", 2));	//Sample data
 			addData.getData().add(new XYChart.Data("2", 1));
 			addData.getData().add(new XYChart.Data("3", 4));
 			addData.getData().add(new XYChart.Data("4", 3));
@@ -261,13 +255,10 @@ public class StatsController implements Initializable{
     		
     		chrtStatistics.setTitle("Subtraction");
     		XYChart.Series set1 = new XYChart.Series();
-    		set1.getData().add(new XYChart.Data("1", 1));
-    		set1.getData().add(new XYChart.Data("2", 7));
-    		set1.getData().add(new XYChart.Data("3", 9));
-    		set1.getData().add(new XYChart.Data("4", 4));
-    		set1.getData().add(new XYChart.Data("5", 1));
-    		set1.getData().add(new XYChart.Data("6", 5));
-    		set1.getData().add(new XYChart.Data("7", 6));
+    		int[] results = p1.getLast10Sub();
+    		for(int i=0; i<p1.getGamesPlayedSub(); i++){
+    			set1.getData().add(new XYChart.Data(""+ (i+1),results[i]));
+    		}
     		
     		//Used for one line display
     		removeButtonStyles();
@@ -276,7 +267,7 @@ public class StatsController implements Initializable{
     		chrtStatistics.getData().add(set1);
     		
     	/*	//Used for multi line display
-    		subData.getData().add(new XYChart.Data("1", 1));
+    		subData.getData().add(new XYChart.Data("1", 1));	//Sample data
     		subData.getData().add(new XYChart.Data("2", 7));
     		subData.getData().add(new XYChart.Data("3", 9));
     		subData.getData().add(new XYChart.Data("4", 4));
@@ -304,13 +295,10 @@ public class StatsController implements Initializable{
     		
     		chrtStatistics.setTitle("Multiplication");
     		XYChart.Series set1 = new XYChart.Series();
-    		set1.getData().add(new XYChart.Data("1", 8));
-    		set1.getData().add(new XYChart.Data("2", 3));
-    		set1.getData().add(new XYChart.Data("3", 6));
-    		set1.getData().add(new XYChart.Data("4", 7));
-    		set1.getData().add(new XYChart.Data("5", 1));
-    		set1.getData().add(new XYChart.Data("6", 3));
-    		set1.getData().add(new XYChart.Data("7", 5));
+    		int[] results = p1.getLast10Mul();
+    		for(int i=0; i<p1.getGamesPlayedMul(); i++){
+    			set1.getData().add(new XYChart.Data(""+ (i+1),results[i]));
+    		}
     		
     		//Used for one line display
     		removeButtonStyles();
@@ -319,7 +307,7 @@ public class StatsController implements Initializable{
     		chrtStatistics.getData().add(set1);
     		
     	/*	//Used for multi line display
-    		mulData.getData().add(new XYChart.Data("1", 8));
+    		mulData.getData().add(new XYChart.Data("1", 8));	//Sample data
     		mulData.getData().add(new XYChart.Data("2", 3));
     		mulData.getData().add(new XYChart.Data("3", 6));
     		mulData.getData().add(new XYChart.Data("4", 7));
@@ -347,13 +335,10 @@ public class StatsController implements Initializable{
     		
     		chrtStatistics.setTitle("Division");
     		XYChart.Series set1 = new XYChart.Series();
-    		set1.getData().add(new XYChart.Data("1", 2));
-    		set1.getData().add(new XYChart.Data("2", 6));
-    		set1.getData().add(new XYChart.Data("3", 8));
-    		set1.getData().add(new XYChart.Data("4", 3));
-    		set1.getData().add(new XYChart.Data("5", 2));
-    		set1.getData().add(new XYChart.Data("6", 4));
-    		set1.getData().add(new XYChart.Data("7", 3));
+    		int[] results = p1.getLast10Div();
+    		for(int i=0; i<p1.getGamesPlayedDiv(); i++){
+    			set1.getData().add(new XYChart.Data(""+ (i+1),results[i]));
+    		}
     		
     		//Used for one line display
     		removeButtonStyles();
@@ -362,7 +347,7 @@ public class StatsController implements Initializable{
     		chrtStatistics.getData().add(set1);
     		
     	/*	//Used for multi line display.
-    		divData.getData().add(new XYChart.Data("1", 2));
+    		divData.getData().add(new XYChart.Data("1", 2));	//Sample data
     		divData.getData().add(new XYChart.Data("2", 6));
     		divData.getData().add(new XYChart.Data("3", 8));
     		divData.getData().add(new XYChart.Data("4", 3));
@@ -388,15 +373,12 @@ public class StatsController implements Initializable{
 			
     	} else if (event.getSource().equals(btnRandom)) {
     		
-    		chrtStatistics.setTitle("Random");
+    		chrtStatistics.setTitle("Random (Easy)");
     		XYChart.Series set1 = new XYChart.Series();
-    		set1.getData().add(new XYChart.Data("1", 1));	//Sample data.
-    		set1.getData().add(new XYChart.Data("2", 7));
-    		set1.getData().add(new XYChart.Data("3", 8));
-    		set1.getData().add(new XYChart.Data("4", 3));
-    		set1.getData().add(new XYChart.Data("5", 2));
-    		set1.getData().add(new XYChart.Data("6", 5));
-    		set1.getData().add(new XYChart.Data("7", 6));
+    		int[] results = p1.getLast10RandE();	
+    		for(int i=0; i<p1.getGamesPlayedRandE(); i++){
+    			set1.getData().add(new XYChart.Data(""+ (i+1),results[i]));
+    		}
     		
     		//Used if only displaying one line at a time.
     		removeButtonStyles();
