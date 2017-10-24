@@ -75,7 +75,7 @@
                </font>
             </JFXButton>
             <JFXButton fx:id="btnPronunciation" layoutX="188.0" layoutY="409.0" onAction="#btnPronunciationHanlder" prefHeight="53.0" prefWidth="161.0" styleClass="buttonGame" text="Pronunciation" />
-            <JFXProgressBar fx:id="progressBar" layoutX="170.0" layoutY="298.0" prefHeight="11.0" />
+            <JFXProgressBar fx:id="progressBar" layoutX="170.0" layoutY="282.0" prefHeight="27.0" />
          </children>
       </AnchorPane>
       <AnchorPane fx:id="scorePane" layoutX="591.0" layoutY="300.0" prefHeight="180.0" prefWidth="195.0" styleClass="score" stylesheets="@game.css">
