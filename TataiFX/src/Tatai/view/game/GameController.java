@@ -203,20 +203,23 @@ public class GameController implements Initializable {
 		lblRecording.setText("Recording in progress...");
 		currentQuestionNumber = lblCurrentGameNumber.getText();
 
-		// New Timeline to handle process bar timing
-		Timeline timeline = new Timeline(
-				new KeyFrame(Duration.ZERO, new KeyValue(progressBar.progressProperty(), 0)),
-				new KeyFrame(Duration.seconds(3), e-> {
 
-				}, new KeyValue(progressBar.progressProperty(), 1))    
-				);    
-		timeline.play();
 
 		// Opens a new recording thread and starts the recording as a background task
 		RecordingTask task = new RecordingTask();
 		Thread thread = new Thread(task);
 		thread.start();
-
+		
+		// New Timeline to handle process bar timing
+		Timeline timeline = new Timeline(
+				new KeyFrame(Duration.ZERO, new KeyValue(progressBar.progressProperty(), 0)),
+				new KeyFrame(Duration.seconds(3.5), e-> {
+					if (thread.isAlive() != true) {
+						progressBar.setVisible(false);
+					}
+				}, new KeyValue(progressBar.progressProperty(), 1))    
+				);    
+		timeline.play();
 
 
 	}
