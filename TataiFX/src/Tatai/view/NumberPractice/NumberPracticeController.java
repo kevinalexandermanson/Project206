@@ -77,6 +77,9 @@ public class NumberPracticeController implements Initializable {
 	
 	private int currentNum = 1;
 	
+	/**
+	 * Initializes the buttons
+	 */
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		progressBar.setVisible(false);
@@ -86,6 +89,9 @@ public class NumberPracticeController implements Initializable {
 	}
 	
 	
+	/**
+	 * Handles try again button
+	 */
 	@FXML
 	private void btnTryAgainHandler(){
 		btnTryAgain.setVisible(false);
@@ -95,6 +101,9 @@ public class NumberPracticeController implements Initializable {
 		lblRecording.setText("");
 	}
 	
+	/**
+	 * Handles play recording button
+	 */
 	@FXML
 	private void btnPlayRecordingHandler() {
 		btnPlayRecording.setDisable(true);
@@ -105,6 +114,9 @@ public class NumberPracticeController implements Initializable {
 		thread.start();
 	}
 	
+	/**
+	 * Handles pronunciation button
+	 */
 	@FXML
 	private void btnPronunciationHandler() {
 		btnPronunciation.setDisable(true);
@@ -114,6 +126,9 @@ public class NumberPracticeController implements Initializable {
 		thread.start();
 	}
 	
+	/**
+	 * Handles Menu button
+	 */
 	@FXML
 	private void btnMenuHandler(ActionEvent event) throws IOException {
 		Parent parentLevelSelect = FXMLLoader.load(getClass().getResource("/Tatai/view/levelselect/LevelSelect.fxml"));
@@ -123,6 +138,9 @@ public class NumberPracticeController implements Initializable {
 		stage.setScene(sceneLevelSelect);
 	}
 	
+	/**
+	 * Handles recording button
+	 */
 	@FXML
 	private void btnRecordHandler() {
 		
@@ -149,6 +167,9 @@ public class NumberPracticeController implements Initializable {
 		
 	}
 	
+	/**
+	 * Handles Enter button
+	 */
 	@FXML
 	private void btnEnterHandler() {
 		String number = txtField.getText();
@@ -162,6 +183,11 @@ public class NumberPracticeController implements Initializable {
 
 	}
 	
+	/**
+	 * Determinds if the string inputed is an integer
+	 * @param s
+	 * @return
+	 */
 	private boolean isInteger(String s) {
 	    try { 
 	        Integer.parseInt(s); 
@@ -173,6 +199,12 @@ public class NumberPracticeController implements Initializable {
 	    return true;
 	}
 
+	
+	//------------------------------Threads------------------------------------------------------//
+	
+	/**
+	 * Handles Pronunciation
+	 */
 	private class PronunciationThread extends Task<Void>  {
 
 		@Override
@@ -189,6 +221,9 @@ public class NumberPracticeController implements Initializable {
 		}
 	}
 	
+	/**
+	 * Handles Playing recordings
+	 */
 	private class PlayingThread extends Task<Void>  {
 
 		@Override
@@ -206,8 +241,10 @@ public class NumberPracticeController implements Initializable {
 		}
 	}
 	
+	/**
+	 * Handles Recording recordings
+	 */
 	private class RecordingTask extends Task<Recording> {
-
 
 		@Override
 		protected Recording call() throws Exception {
