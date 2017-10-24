@@ -146,7 +146,7 @@ public class StatsController implements Initializable{
 		
     	if (event.getSource().equals(btnPractise)) {
     		
-    		chrtStatistics.setTitle("Practise");
+    		chrtStatistics.setTitle("Practise (Easy)");
     		XYChart.Series set1 = new XYChart.Series();
 			set1.getData().add(new XYChart.Data("1", 1));
     		set1.getData().add(new XYChart.Data("2", 2));
@@ -187,7 +187,27 @@ public class StatsController implements Initializable{
 			lblAverage.setText("Average Score: " + p1.getMeanPracE() + " / 10");
 			lblGames.setText("Games Played: " + p1.getGamesPlayedPracE() + "");
 			
-    	} else if (event.getSource().equals(btnAddition)) {
+    	} /*else if (event.getSource().equals(btnPractiseHard)) {	//TODO: Uncomment this when the GUI is updated.
+    		
+    		chrtStatistics.setTitle("Practise (Hard)");
+    		XYChart.Series set1 = new XYChart.Series();
+    		int[] results = p1.getLast10PracH();
+    		for(int i=0; i<p1.getGamesPlayedRandH(); i++){
+    			set1.getData().add(new XYChart.Data(""+ (i+1),results[i]));
+    		}
+    		
+    		//Used for one line display
+    		removeButtonStyles();
+    		btnPractiseHard.getStyleClass().add("pressed");
+    		chrtStatistics.getData().clear();
+    		chrtStatistics.getData().add(set1);
+    		
+    		lblBest.setText("Best Score: " + String.valueOf(p1.getBestPracH()) + " / 10");
+			lblPrevious.setText("Previous Score: " + p1.getLastPracH() + " / 10");
+			lblAverage.setText("Average Score: " + p1.getMeanPracH() + " / 10");
+			lblGames.setText("Games Played: " + p1.getGamesPlayedPracH() + "");
+							
+    	} */else if (event.getSource().equals(btnAddition)) {		//End of comment
     		
     		//Set up the chart
     		chrtStatistics.setTitle("Addition");
@@ -408,7 +428,26 @@ public class StatsController implements Initializable{
 			lblPrevious.setText("Previous Score: " + p1.getLastRandE() + " / 10");
 			lblAverage.setText("Average Score: " + p1.getMeanRandE() + " / 10");
 			lblGames.setText("Games Played: " + p1.getGamesPlayedRandE() + "");
-    	}
+    	} /*else if (event.getSource().equals(btnRandomHard)) {		//TODO: UNCOMMENT THIS IF STATEMENT WHEN NEW GUI IS DONE
+    																
+    		chrtStatistics.setTitle("Random (Hard)");
+    		XYChart.Series set1 = new XYChart.Series();
+    		int[] results = p1.getLast10RandH();
+    		for(int i=0; i<p1.getGamesPlayedRandH(); i++){
+    			set1.getData().add(new XYChart.Data(""+ (i+1),results[i]));
+    		}
+    		
+    		//Used if only displaying one line at a time.
+    		removeButtonStyles();
+    		btnRandom.getStyleClass().add("pressed");
+    		chrtStatistics.getData().clear();
+    		chrtStatistics.getData().add(set1);
+       		
+       		lblBest.setText("Best Score: " + p1.getBestRandH() + " / 10");
+			lblPrevious.setText("Previous Score: " + p1.getLastRandH() + " / 10");
+			lblAverage.setText("Average Score: " + p1.getMeanRandH() + " / 10");
+			lblGames.setText("Games Played: " + p1.getGamesPlayedRandH() + "");
+    	}*/														//End of if statement.
     }
 
     private void removeButtonStyles() {
