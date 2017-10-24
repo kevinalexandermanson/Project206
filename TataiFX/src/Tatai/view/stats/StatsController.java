@@ -134,9 +134,17 @@ public class StatsController implements Initializable{
 		stage.setScene(sceneLevelSelect);
     }
     
-/*    public void setPersonData(){
-    	
-    }*/
+    /**
+     * Handles reset button
+     * @param event
+     * @throws IOException
+     */
+    @FXML
+    private void btnResetHandler(ActionEvent event) throws IOException {
+    	PersonalStats p1 = Tatai.view.welcome.LoginController.getCurrentPlayerStats();
+    	p1.resetScores();
+    	Tatai.view.welcome.LoginController.saveCurrentPlayerXML();
+    }
     
     /* Handles which game mode to display stats for */
     @FXML 
@@ -181,7 +189,7 @@ public class StatsController implements Initializable{
     		
     		lblBest.setText("Best Score: " + String.valueOf(p1.getBestPracE()) + " / 10");
 			lblPrevious.setText("Previous Score: " + p1.getLastPracE() + " / 10");
-			lblAverage.setText("Average Score: " + p1.getMeanPracE() + " / 10");
+			lblAverage.setText("Average Score: " + String.format("%.2f", p1.getMeanPracE()) + " / 10");
 			lblGames.setText("Games Played: " + p1.getGamesPlayedPracE() + "");
 			
     	} /*else if (event.getSource().equals(btnPractiseHard)) {	//TODO: Uncomment this when the GUI is updated.
@@ -201,7 +209,7 @@ public class StatsController implements Initializable{
     		
     		lblBest.setText("Best Score: " + String.valueOf(p1.getBestPracH()) + " / 10");
 			lblPrevious.setText("Previous Score: " + p1.getLastPracH() + " / 10");
-			lblAverage.setText("Average Score: " + p1.getMeanPracH() + " / 10");
+			lblAverage.setText("Average Score: " + String.format("%.2f", p1.getMeanPracH()) + " / 10");
 			lblGames.setText("Games Played: " + p1.getGamesPlayedPracH() + "");
 							
     	} */else if (event.getSource().equals(btnAddition)) {		//End of comment
@@ -248,7 +256,7 @@ public class StatsController implements Initializable{
     		//Change the labels.
 			lblBest.setText("Best Score: " + String.valueOf(p1.getBestAdd()) + " / 10");
 			lblPrevious.setText("Previous Score: " + p1.getLastAdd() + " / 10");
-			lblAverage.setText("Average Score: " + p1.getMeanAdd() + " / 10");
+			lblAverage.setText("Average Score: " + String.format("%.2f", p1.getMeanAdd()) + " / 10");
 			lblGames.setText("Games Played: " + p1.getGamesPlayedAdd() + "");
 			
     	} else if (event.getSource().equals(btnSubtraction)) {
@@ -288,7 +296,7 @@ public class StatsController implements Initializable{
     		
 			lblBest.setText("Best Score: " + p1.getBestSub() + " / 10");
 			lblPrevious.setText("Previous Score: " + p1.getLastSub() + " / 10");
-			lblAverage.setText("Average Score: " + p1.getMeanSub() + " / 10");
+			lblAverage.setText("Average Score: " + String.format("%.2f", p1.getMeanSub()) + " / 10");
 			lblGames.setText("Games Played: " + p1.getGamesPlayedSub() + "");
 			
     	} else if (event.getSource().equals(btnMultiplication)) {
@@ -328,7 +336,7 @@ public class StatsController implements Initializable{
     		
 			lblBest.setText("Best Score: " + p1.getBestMul() + " / 10");
 			lblPrevious.setText("Previous Score: " + p1.getLastMul() + " / 10");
-			lblAverage.setText("Average Score: " + p1.getMeanMul() + " / 10");
+			lblAverage.setText("Average Score: " + String.format("%.2f", p1.getMeanMul()) + " / 10");
 			lblGames.setText("Games Played: " + p1.getGamesPlayedMul() + "");
 
     	} else if (event.getSource().equals(btnDivision)) {
@@ -368,7 +376,7 @@ public class StatsController implements Initializable{
     		
 			lblBest.setText("Best Score: " + p1.getBestDiv() + " / 10");
 			lblPrevious.setText("Previous Score: " + p1.getLastDiv() + " / 10");
-			lblAverage.setText("Average Score: " + p1.getMeanDiv() + " / 10");
+			lblAverage.setText("Average Score: " + String.format("%.2f", p1.getMeanDiv()) + " / 10");
 			lblGames.setText("Games Played: " + p1.getGamesPlayedDiv() + "");
 			
     	} else if (event.getSource().equals(btnRandom)) {
@@ -408,7 +416,7 @@ public class StatsController implements Initializable{
        		
        		lblBest.setText("Best Score: " + p1.getBestRandE() + " / 10");
 			lblPrevious.setText("Previous Score: " + p1.getLastRandE() + " / 10");
-			lblAverage.setText("Average Score: " + p1.getMeanRandE() + " / 10");
+			lblAverage.setText("Average Score: " + String.format("%.2f", p1.getMeanRandE()) + " / 10");
 			lblGames.setText("Games Played: " + p1.getGamesPlayedRandE() + "");
     	} /*else if (event.getSource().equals(btnRandomHard)) {		//TODO: UNCOMMENT THIS IF STATEMENT WHEN NEW GUI IS DONE
     																
@@ -427,7 +435,7 @@ public class StatsController implements Initializable{
        		
        		lblBest.setText("Best Score: " + p1.getBestRandH() + " / 10");
 			lblPrevious.setText("Previous Score: " + p1.getLastRandH() + " / 10");
-			lblAverage.setText("Average Score: " + p1.getMeanRandH() + " / 10");
+			lblAverage.setText("Average Score: " + String.format("%.2f", p1.getMeanRandH()) + " / 10");
 			lblGames.setText("Games Played: " + p1.getGamesPlayedRandH() + "");
     	}*/														//End of if statement.
     }
