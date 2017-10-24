@@ -81,6 +81,8 @@ public class NumberPracticeController implements Initializable {
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		progressBar.setVisible(false);
 		btnTryAgain.setVisible(false);
+		btnPlayRecording.setDisable(true);
+		btnPronunciation.setDisable(true);
 	}
 	
 	
@@ -175,7 +177,7 @@ public class NumberPracticeController implements Initializable {
 
 		@Override
 		protected Void call() throws Exception {
-			AudioFeedBack.playFeedBackAudio(5);
+			AudioFeedBack.playFeedBackAudio(currentNum);
 			return null;
 		}
 
@@ -274,6 +276,8 @@ public class NumberPracticeController implements Initializable {
 				e.printStackTrace();
 			}
 			
+			btnPlayRecording.setDisable(false);
+			btnPronunciation.setDisable(false);
 
 		}
 
