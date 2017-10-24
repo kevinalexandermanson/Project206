@@ -89,6 +89,8 @@ public class NumberPracticeController implements Initializable {
 		btnTryAgain.setVisible(false);
 		btnRecord.setVisible(true);
 		lblCurrentGameNumber.setText(Integer.toString(currentNum));
+		btnEnter.setDisable(false);
+		lblRecording.setText("");
 	}
 	
 	@FXML
@@ -122,6 +124,7 @@ public class NumberPracticeController implements Initializable {
 	@FXML
 	private void btnRecordHandler() {
 		
+		btnEnter.setDisable(true);
 		progressBar.setVisible(true);
 		btnRecord.setVisible(false);
 		lblRecording.setText("Recording in progress...");
@@ -262,8 +265,8 @@ public class NumberPracticeController implements Initializable {
 				correctNumber = correctNumber.replace("maa", "ma");
 				recordedNumber = recordedNumber.replace("whaa", "wha");
 				recordedNumber = recordedNumber.replace("maa", "ma");
-
-				lblRecording.setText("");
+				
+				lblRecording.setText("The correct answer was: " + correctNumber + "\n You said: " + recordedNumber);
 
 			} catch (InterruptedException e) {
 				e.printStackTrace();
