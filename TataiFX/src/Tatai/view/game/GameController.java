@@ -13,6 +13,7 @@ import javax.script.ScriptEngineManager;
 import javax.script.ScriptException;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXProgressBar;
 import com.jfoenix.effects.JFXDepthManager;
 
 import Tatai.Levels.Addition;
@@ -40,6 +41,11 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import javafx.util.Duration;
+import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
 
 public class GameController implements Initializable {
 
@@ -96,19 +102,22 @@ public class GameController implements Initializable {
 
 	@FXML
 	private JFXButton btnNextLevel;
-	
+
 	@FXML
 	private AnchorPane buttonPane;
-	
+
 	@FXML
 	private JFXButton btnPronunciation;
-	
+
 	@FXML
 	private Label lblUser;
-	
+
 	@FXML
 	private AnchorPane userPane;
-	
+
+	@FXML
+	private JFXProgressBar progressBar;
+
 
 	private String level = "";
 	private Levels levelEnum;
@@ -125,7 +134,7 @@ public class GameController implements Initializable {
 	public void initialize(URL url, ResourceBundle rb) {
 		//Get the player name
 		lblUser.setText(LoginController.getCurrentPlayer());
-		
+
 		JFXDepthManager.setDepth(userPane,  4);
 		JFXDepthManager.setDepth(cardPane,  4);
 		JFXDepthManager.setDepth(scorePane, 4);
@@ -141,7 +150,8 @@ public class GameController implements Initializable {
 		btnReturnToMenu.setVisible(false);
 		btnNextLevel.setVisible(false);
 		btnPronunciation.setVisible(false);
-		
+		progressBar.setVisible(false);
+
 		// Creates map of all possible levels
 		map = new HashMap<String, LevelInterface>();
 		map.put(Levels.Addition.getLevel(), new Addition());
@@ -170,7 +180,7 @@ public class GameController implements Initializable {
 			p1.recordLastGame(level, currentScore());
 			Tatai.view.welcome.LoginController.saveCurrentPlayerXML();
 		}
-		
+
 		// Loads the level select screen
 		Parent parentLevelSelect = FXMLLoader.load(getClass().getResource("/Tatai/view/levelselect/LevelSelect.fxml"));
 		Scene sceneLevelSelect = new Scene(parentLevelSelect);
@@ -187,10 +197,20 @@ public class GameController implements Initializable {
 	 */
 	@FXML
 	private void btnRecordHandler(ActionEvent event) {
-		
+
+		progressBar.setVisible(true);
 		btnRecord.setVisible(false);
 		lblRecording.setText("Recording in progress...");
 		currentQuestionNumber = lblCurrentGameNumber.getText();
+
+		// New Timeline to handle process bar timing
+		Timeline timeline = new Timeline(
+				new KeyFrame(Duration.ZERO, new KeyValue(progressBar.progressProperty(), 0)),
+				new KeyFrame(Duration.seconds(3), e-> {
+
+				}, new KeyValue(progressBar.progressProperty(), 1))    
+				);    
+		timeline.play();
 
 		// Opens a new recording thread and starts the recording as a background task
 		RecordingTask task = new RecordingTask();
@@ -225,7 +245,7 @@ public class GameController implements Initializable {
 			if ((level.equals(Levels.PractiseEasy.getLevel()) && (currentScore() >= 8))) {
 				btnNextLevel.setVisible(true);
 			}
-			
+
 			// Shows game over screen
 			lblScoreNumber.setText("0/" + NUMOFQUESTIONSSTRING);
 			lblQuestionNumber.setText("1");
@@ -259,13 +279,13 @@ public class GameController implements Initializable {
 	@FXML
 	private void btnPlayRecordingHandler() {
 		btnPlayRecording.setDisable(true);
-		
+
 		// Sets up a new recording thread to play the recording
 		PlayingThread task = new PlayingThread();
 		Thread thread = new Thread(task);
 		thread.start();
 	}
-	
+
 	/**
 	 * Handles the try again button
 	 */
@@ -276,7 +296,7 @@ public class GameController implements Initializable {
 		if (secondAttempt == false) {
 
 			lblRecording.setText("");
-			
+
 			lblCurrentGameNumber.setText(currentQuestionNumber);
 
 			btnRecord.setVisible(true);
@@ -297,7 +317,7 @@ public class GameController implements Initializable {
 		PersonalStats p1 = Tatai.view.welcome.LoginController.getCurrentPlayerStats();
 		p1.recordLastGame(level, currentScore());
 		Tatai.view.welcome.LoginController.saveCurrentPlayerXML();
-		
+
 		// Sets up the game screen again
 		btnPlayAgain.setVisible(false);
 		btnReturnToMenu.setVisible(false);
@@ -307,7 +327,7 @@ public class GameController implements Initializable {
 		// Calculates a new equation depending on the level
 		map.get(level).calculate();
 		lblCurrentGameNumber.setText(map.get(level).getEquation());
-		
+
 		lblRecording.setText(INTRO);
 
 	}
@@ -329,7 +349,7 @@ public class GameController implements Initializable {
 		map.get(level).calculate();
 		lblCurrentGameNumber.setText(map.get(level).getEquation());
 		lblNowPlaying.setText(map.get(level).getLabel());
-		
+
 		lblRecording.setText(INTRO);
 
 	}
@@ -338,15 +358,15 @@ public class GameController implements Initializable {
 	 */
 	@FXML
 	private void btnPronunciationHanlder() {
-		
+
 		btnPronunciation.setDisable(true);
 		//Sets up a new pronunciation thread task
 		PronunciationThread task = new PronunciationThread();
 		Thread thread = new Thread(task);
 		thread.start();
-		
+
 	}
-	
+
 
 	/*---------- Threads ------------------------------------------------------------------------*/
 
@@ -361,6 +381,7 @@ public class GameController implements Initializable {
 		protected Recording call() throws Exception {
 			Recording recording = new Recording();
 			// Uncomment when testing on linex
+
 			recording.record();
 			return recording;
 		}
@@ -368,7 +389,7 @@ public class GameController implements Initializable {
 		@Override 
 		protected void succeeded() {
 			super.succeeded();
-
+			progressBar.setVisible(false);
 			// Calculates the equation
 			ScriptEngineManager manager = new ScriptEngineManager();
 			ScriptEngine engine = manager.getEngineByName("js");
@@ -395,7 +416,7 @@ public class GameController implements Initializable {
 
 				//check if numbers are equivalent
 				boolean answer = (recording.getCorrectNumber(number).equals(recording.getRecordedNumber()));
-				//answer = true;
+				answer = true;
 				if (answer == true) {
 					lblCurrentGameNumber.setText("Correct");
 					root.getStyleClass().removeAll("rootWrong");
@@ -463,10 +484,10 @@ public class GameController implements Initializable {
 		protected void succeeded() {
 			btnPlayRecording.setDisable(false);
 			super.succeeded();
-			
+
 		}
 	}
-	
+
 	/**
 	 * Handles prounciation in a different thread
 	 *
@@ -483,10 +504,10 @@ public class GameController implements Initializable {
 		protected void succeeded() {
 			btnPronunciation.setDisable(false);
 			super.succeeded();
-			
+
 		}
 	}
-	
+
 	/*---------- Other Methods ------------------------------------------------------------------------*/
 
 	/**
