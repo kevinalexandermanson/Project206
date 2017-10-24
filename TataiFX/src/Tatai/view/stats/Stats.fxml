@@ -72,9 +72,21 @@
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <JFXButton fx:id="btnBack" layoutX="404.0" layoutY="185.0" onAction="#btnBackHandler" stylesheets="@../levelselect/levelselect.css" text="Back">
+                  <JFXButton fx:id="btnBack" layoutX="379.0" layoutY="191.0" onAction="#btnBackHandler" prefWidth="100.0" stylesheets="@../levelselect/levelselect.css" text="Back">
                      <graphic>
                         <MaterialDesignIconView fx:id="btnBack" glyphName="ARROW_LEFT_BOLD" size="16" styleClass="root" />
+                     </graphic>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <styleClass>
+                        <String fx:value="root" />
+                        <String fx:value="bebasneue" />
+                     </styleClass>
+                  </JFXButton>
+                  <JFXButton fx:id="btnReset" layoutX="379.0" layoutY="137.0" onAction="#btnResetHandler" prefWidth="100.0" stylesheets="@../levelselect/levelselect.css" text="Reset">
+                     <graphic>
+                        <MaterialDesignIconView fx:id="btnBack1" glyphName="REPLAY" size="16" styleClass="root" />
                      </graphic>
                      <font>
                         <Font size="14.0" />

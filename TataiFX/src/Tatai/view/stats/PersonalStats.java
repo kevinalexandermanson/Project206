@@ -71,52 +71,64 @@ public class PersonalStats {
 	//The int and double are just filler. For some reason the xml file will only save if the constructor modified the field with a parameter.
 	public PersonalStats(String name) {
 		this.PlayerName = name;
+		this.resetScores();
 		
-		this. BestAdd = 0;
-		this. LastAdd = 0;
-		this. GamesPlayedAdd = 0;
-		this. MeanAdd = 0;
-
-		this. BestSub = 0;
-		this. LastSub = 0;
-		this. GamesPlayedSub = 0;
-		this. MeanSub = 0;
-
-		this. BestMul = 0;
-		this. LastMul = 0;
-		this. GamesPlayedMul = 0;
-		this. MeanMul = 0;
-
-		this. BestDiv = 0;
-		this. LastDiv = 0;
-		this. GamesPlayedDiv = 0;
-		this. MeanDiv = 0;
-		
-		this. BestPracE = 0;
-		this. LastPracE = 0;
-		this. GamesPlayedPracE = 0;
-		this. MeanPracE = 0;
-
-		this. BestPracH = 0;
-		this. LastPracH = 0;
-		this. GamesPlayedPracH = 0;
-		this. MeanPracH = 0;
-		
-		this. BestRandE = 0;
-		this. LastRandE = 0;
-		this. GamesPlayedRandE = 0;
-		this. MeanRandE = 0;
-		
-		this. BestRandH = 0;
-		this. LastRandH = 0;
-		this. GamesPlayedRandH = 0;
-		this. MeanRandH = 0;
 		//System.out.println("Name is: " + this.PlayerName);
 		//System.out.println("getPlayerName test: " + this.getPlayerName());
 		//System.out.println("Best add is " + this.BestAdd);
 		//System.out.println("Best add is " + this.getBestAdd());
 	}
 
+	public void resetScores() {
+		this. BestAdd = 0;
+		this. LastAdd = 0;
+		this. GamesPlayedAdd = 0;
+		this. MeanAdd = 0;
+		this. Last10Add = new int[NUMOFGAMESRECORDED];
+
+		this. BestSub = 0;
+		this. LastSub = 0;
+		this. GamesPlayedSub = 0;
+		this. MeanSub = 0;
+		this. Last10Sub = new int[NUMOFGAMESRECORDED];
+
+		this. BestMul = 0;
+		this. LastMul = 0;
+		this. GamesPlayedMul = 0;
+		this. MeanMul = 0;
+		this. Last10Mul = new int[NUMOFGAMESRECORDED];
+
+		this. BestDiv = 0;
+		this. LastDiv = 0;
+		this. GamesPlayedDiv = 0;
+		this. MeanDiv = 0;
+		this. Last10Div = new int[NUMOFGAMESRECORDED];
+		
+		this. BestPracE = 0;
+		this. LastPracE = 0;
+		this. GamesPlayedPracE = 0;
+		this. MeanPracE = 0;
+		this. Last10PracE = new int[NUMOFGAMESRECORDED];
+
+		this. BestPracH = 0;
+		this. LastPracH = 0;
+		this. GamesPlayedPracH = 0;
+		this. MeanPracH = 0;
+		this. Last10PracH = new int[NUMOFGAMESRECORDED];
+		
+		this. BestRandE = 0;
+		this. LastRandE = 0;
+		this. GamesPlayedRandE = 0;
+		this. MeanRandE = 0;
+		this. Last10RandE = new int[NUMOFGAMESRECORDED];
+		
+		this. BestRandH = 0;
+		this. LastRandH = 0;
+		this. GamesPlayedRandH = 0;
+		this. MeanRandH = 0;
+		this. Last10RandH = new int[NUMOFGAMESRECORDED];
+	}
+	
 	/**
 	 * This should be called after you finish a game. It stores the last game
 	 * score into the array, then increments the number of games played, then

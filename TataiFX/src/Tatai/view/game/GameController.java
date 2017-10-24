@@ -125,6 +125,7 @@ public class GameController implements Initializable {
 	private String currentQuestionNumber;
 	private Map<String, LevelInterface> map;
 	private int currentNum;
+	private boolean gameOver = false;
 
 	private static final int NUMOFQUESTIONS = 10;
 	private static final String NUMOFQUESTIONSSTRING = String.valueOf(NUMOFQUESTIONS);
@@ -239,11 +240,16 @@ public class GameController implements Initializable {
 		secondAttempt = false;
 		int num = currentQuestion();
 
-		// Checks to see if the the numebr of questions is 10
+		// Checks to see if the the number of questions is 10
 		if (num == NUMOFQUESTIONS) {
 			lblRecording.setText("");
 			lblCurrentGameNumber.setText("Game Over");
-
+			
+			//Save the score
+			PersonalStats p1 = Tatai.view.welcome.LoginController.getCurrentPlayerStats();
+			p1.recordLastGame(level, currentScore());
+			Tatai.view.welcome.LoginController.saveCurrentPlayerXML();
+			
 			// If on practise mode, offer chance to go to next level
 			if ((level.equals(Levels.PractiseEasy.getLevel()) && (currentScore() >= 8))) {
 				btnNextLevel.setVisible(true);
@@ -317,9 +323,6 @@ public class GameController implements Initializable {
 	 */
 	@FXML
 	private void btnPlayAgainHandler() {
-		PersonalStats p1 = Tatai.view.welcome.LoginController.getCurrentPlayerStats();
-		p1.recordLastGame(level, currentScore());
-		Tatai.view.welcome.LoginController.saveCurrentPlayerXML();
 
 		// Sets up the game screen again
 		btnPlayAgain.setVisible(false);
