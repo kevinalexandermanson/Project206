@@ -72,6 +72,9 @@ public class LevelSelectController implements Initializable {
 	    
 	    @FXML
 	    private JFXButton btnTutorial;
+	    
+	    @FXML
+	    private JFXButton btnNumberPractice;
 
 	/**
 	 * Initializes the buttons on the screen
@@ -90,6 +93,7 @@ public class LevelSelectController implements Initializable {
 		btnDivision.setVisible(false);
 		btnRandom.setVisible(false);
 		btnRandomHard.setVisible(false);
+		btnNumberPractice.setVisible(false);
 	}
 	
 	/**
@@ -117,6 +121,7 @@ public class LevelSelectController implements Initializable {
 			btnRandomHard.setVisible(false);
 			btnPractise.setVisible(true);
 			btnMaths.setVisible(true);
+			btnNumberPractice.setVisible(false);
 			
 			
 		}
@@ -185,6 +190,7 @@ public class LevelSelectController implements Initializable {
 		if (event.getSource().equals(btnPractise)) {
 			btnPractiseEasy.setVisible(true);
 			btnPractiseHard.setVisible(true);
+			btnNumberPractice.setVisible(true);
 		} else {
 			btnAddition.setVisible(true);
 			btnSubtraction.setVisible(true);
@@ -221,6 +227,16 @@ public class LevelSelectController implements Initializable {
 		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		stage.setScene(sceneTutorial);
 		
+	}
+	
+	@FXML
+	private void btnNumberPracticeHandler(ActionEvent event) throws IOException {
+		
+		Parent numberPractice = FXMLLoader.load(getClass().getResource("/Tatai/view/NumberPractice/PracticeGameScreen.fxml"));
+		Scene scene = new Scene(numberPractice);
+
+		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		stage.setScene(scene);
 	}
 
 }
