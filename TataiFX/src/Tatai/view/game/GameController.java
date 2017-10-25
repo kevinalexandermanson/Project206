@@ -38,7 +38,10 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -125,7 +128,6 @@ public class GameController implements Initializable {
 	private String currentQuestionNumber;
 	private Map<String, LevelInterface> map;
 	private int currentNum;
-	private boolean gameOver = false;
 
 	private static final int NUMOFQUESTIONS = 10;
 	private static final String NUMOFQUESTIONSSTRING = String.valueOf(NUMOFQUESTIONS);
@@ -177,18 +179,34 @@ public class GameController implements Initializable {
 	private void btnQuitHandler(ActionEvent event) throws IOException {
 		//If the last question has been played, then record the stats first, before exiting.
 		if(currentQuestion()==NUMOFQUESTIONS){
+			
 			PersonalStats p1 = Tatai.view.welcome.LoginController.getCurrentPlayerStats();
 			p1.recordLastGame(level, currentScore());
 			Tatai.view.welcome.LoginController.saveCurrentPlayerXML();
+			
+			// Loads the level select screen
+			Parent parentLevelSelect = FXMLLoader.load(getClass().getResource("/Tatai/view/levelselect/LevelSelect.fxml"));
+			Scene sceneLevelSelect = new Scene(parentLevelSelect);
+
+			Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+			stage.setScene(sceneLevelSelect);
+			
+		} else {
+			Alert alert = new Alert(AlertType.CONFIRMATION, "Do you wish to quit? Your progress for the current game will not be saved.", ButtonType.YES, ButtonType.NO);
+			alert.showAndWait();
+
+			if (alert.getResult() == ButtonType.YES) {
+				// Loads the level select screen
+				Parent parentLevelSelect = FXMLLoader.load(getClass().getResource("/Tatai/view/levelselect/LevelSelect.fxml"));
+				Scene sceneLevelSelect = new Scene(parentLevelSelect);
+
+				Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+				stage.setScene(sceneLevelSelect);
+
+			} else if (alert.getResult() == ButtonType.NO || alert.getResult() == ButtonType.CANCEL) {
+				//Do nothing
+			}
 		}
-
-		// Loads the level select screen
-		Parent parentLevelSelect = FXMLLoader.load(getClass().getResource("/Tatai/view/levelselect/LevelSelect.fxml"));
-		Scene sceneLevelSelect = new Scene(parentLevelSelect);
-
-		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-		stage.setScene(sceneLevelSelect);
-
 
 	}
 

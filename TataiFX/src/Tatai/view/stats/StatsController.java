@@ -1,4 +1,5 @@
 package Tatai.view.stats;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -21,11 +22,14 @@ import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -189,10 +193,35 @@ public class StatsController implements Initializable{
      */
     @FXML
     private void btnResetHandler(ActionEvent event) throws IOException {
-    	PersonalStats p1 = Tatai.view.welcome.LoginController.getCurrentPlayerStats();
+    /*	PersonalStats p1 = Tatai.view.welcome.LoginController.getCurrentPlayerStats();
     	p1.resetScores();
-    	Tatai.view.welcome.LoginController.saveCurrentPlayerXML();
-    }
+    	Tatai.view.welcome.LoginController.saveCurrentPlayerXML();	*/
+    	
+    	Alert alert = new Alert(AlertType.CONFIRMATION, "Are you sure you wish to reset the current players data to zero? This cannot be undone.", ButtonType.YES, ButtonType.NO, ButtonType.CANCEL);
+		alert.showAndWait();
+
+		if (alert.getResult() == ButtonType.YES) {
+			//Delete their data
+			PersonalStats p1 = Tatai.view.welcome.LoginController.getCurrentPlayerStats();
+			p1.resetScores();
+			Tatai.view.welcome.LoginController.saveCurrentPlayerXML();
+			
+			Alert deleteData = new Alert(AlertType.INFORMATION);
+			deleteData.setTitle("Reset data");
+			deleteData.setHeaderText("");
+			deleteData.setContentText("Data deleted");
+
+			deleteData.showAndWait();
+
+		} else if (alert.getResult() == ButtonType.NO || alert.getResult() == ButtonType.CANCEL) {
+			Alert deleteCancel = new Alert(AlertType.INFORMATION);
+			deleteCancel.setTitle("Delete User");
+			deleteCancel.setHeaderText("");
+			deleteCancel.setContentText("Cancelled");
+
+			deleteCancel.showAndWait();
+		}
+	}
     
     /* Handles which game mode to display stats for */
     @FXML 
@@ -240,7 +269,7 @@ public class StatsController implements Initializable{
 			lblAverage.setText("Average Score: " + String.format("%.2f", p1.getMeanPracE()) + " / 10");
 			lblGames.setText("Games Played: " + p1.getGamesPlayedPracE() + "");
 			
-    	} else if (event.getSource().equals(btnPractiseHard)) {	//TODO: Uncomment this when the GUI is updated.
+    	} else if (event.getSource().equals(btnPractiseHard)) {
     		
     		chrtStatistics.setTitle("Practise (Hard)");
     		XYChart.Series set1 = new XYChart.Series();
@@ -466,7 +495,7 @@ public class StatsController implements Initializable{
 			lblPrevious.setText("Previous Score: " + p1.getLastRandE() + " / 10");
 			lblAverage.setText("Average Score: " + String.format("%.2f", p1.getMeanRandE()) + " / 10");
 			lblGames.setText("Games Played: " + p1.getGamesPlayedRandE() + "");
-    	} else if (event.getSource().equals(btnRandomHard)) {		//TODO: UNCOMMENT THIS IF STATEMENT WHEN NEW GUI IS DONE
+    	} else if (event.getSource().equals(btnRandomHard)) {
     																
     		chrtStatistics.setTitle("Random (Hard)");
     		XYChart.Series set1 = new XYChart.Series();
