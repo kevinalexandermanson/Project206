@@ -49,20 +49,10 @@
 	-fx-background-radius: 8px;
 }
 
-
-.tab{
-	-fx-background-color: #E0E0E0;
-	-fx-font-size: 14px;
-	-fx-font-family: "Bebas Neue";
+.chart-series-line {    
+    -fx-stroke-width: 2px;
+    -fx-effect: null;
 }
 
-.tab:hover{
-	-fx-background-color: #BDBDBD;
-	-fx-font-size: 14px;
-	-fx-font-family: "Bebas Neue";
-}
-
-.tab:selected{
-    -fx-background:   yellow;
-}
+.default-color0.chart-series-line { -fx-stroke: blue; } 
 

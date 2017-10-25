@@ -51,7 +51,7 @@
                </yAxis>
                <styleClass>
                   <String fx:value="bebasneue" />
-                  <String fx:value="cardPane" />
+                  <String fx:value="chart-series-line" />
                </styleClass>
             </LineChart>
             <AnchorPane fx:id="statisticsPane" layoutX="197.0" layoutY="210.0" prefHeight="236.0" prefWidth="490.0" styleClass="statsPane">

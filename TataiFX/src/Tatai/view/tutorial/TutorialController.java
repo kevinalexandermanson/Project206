@@ -94,6 +94,11 @@ public class TutorialController implements Initializable {
 	private final Image Easy = new Image(getClass().getResourceAsStream("/Tatai/resources/Practice/Easy.png"));
 	private final Image Hard = new Image(getClass().getResourceAsStream("/Tatai/resources/Practice/Hard.png"));
 	private final Image Numbers = new Image(getClass().getResourceAsStream("/Tatai/resources/Practice/Numbers.png"));
+	
+	/*Images for Maths */
+	private final Image Addition = new Image(getClass().getResourceAsStream("/Tatai/resources/Maths/Addition.png"));
+	private final Image RandomEasy = new Image(getClass().getResourceAsStream("/Tatai/resources/Maths/RandomEasy.png"));
+	private final Image RandomHard = new Image(getClass().getResourceAsStream("/Tatai/resources/Maths/RandomHard.png"));
 
 	/**
 	 * Initializes the buttons on the screen
@@ -173,6 +178,9 @@ public class TutorialController implements Initializable {
 			btnPrev.setVisible(true);
 			lblImage.setVisible(true);
 			
+			lblImage.setText("1/3");
+			image.setImage(Addition);
+			
 			removeButtonStyles();
 			btnMathsMode.getStyleClass().add("pressed");	
 			
@@ -230,6 +238,15 @@ public class TutorialController implements Initializable {
 				lblImage.setText("3/3");
 			} 
 			
+		} else if (btnMathsModePressed) {
+			if (image.getImage().equals(Addition)) {
+				image.setImage(RandomEasy);
+				lblImage.setText("2/3");
+			} else if (image.getImage().equals(RandomEasy)) {
+				image.setImage(RandomHard);
+				lblImage.setText("3/3");
+			} 
+			
 		}
 	}
 	
@@ -272,6 +289,14 @@ public class TutorialController implements Initializable {
 				lblImage.setText("1/3");
 			} 
 			
+		} else if (btnMathsModePressed) {
+			if (image.getImage().equals(RandomHard)) {
+				image.setImage(RandomEasy);
+				lblImage.setText("2/3");
+			} else if (image.getImage().equals(RandomEasy)) {
+				image.setImage(Addition);
+				lblImage.setText("1/3");
+			} 	
 		}
 	}
 	
