@@ -89,6 +89,11 @@ public class TutorialController implements Initializable {
 	private final Image TryAgain = new Image(getClass().getResourceAsStream("/Tatai/resources/GameBasics/TryAgain.png"));
 	private final Image CorrectAnswer = new Image(getClass().getResourceAsStream("/Tatai/resources/GameBasics/CorrectAnswer.png"));
 	private final Image Pronunciation = new Image(getClass().getResourceAsStream("/Tatai/resources/GameBasics/Pronunciation.png"));
+	
+	/*Images for Practice */
+	private final Image Easy = new Image(getClass().getResourceAsStream("/Tatai/resources/Practice/Easy.png"));
+	private final Image Hard = new Image(getClass().getResourceAsStream("/Tatai/resources/Practice/Hard.png"));
+	private final Image Numbers = new Image(getClass().getResourceAsStream("/Tatai/resources/Practice/Numbers.png"));
 
 	/**
 	 * Initializes the buttons on the screen
@@ -154,6 +159,9 @@ public class TutorialController implements Initializable {
 			btnPrev.setVisible(true);
 			lblImage.setVisible(true);
 			
+			lblImage.setText("1/3");
+			image.setImage(Easy);
+			
 			removeButtonStyles();
 			btnPracticeMode.getStyleClass().add("pressed");
 			
@@ -213,6 +221,15 @@ public class TutorialController implements Initializable {
 				image.setImage(Pronunciation);
 				lblImage.setText("9/9");
 			}
+		} else if (btnPracticeModePressed) {
+			if (image.getImage().equals(Easy)) {
+				image.setImage(Hard);
+				lblImage.setText("2/3");
+			} else if (image.getImage().equals(Hard)) {
+				image.setImage(Numbers);
+				lblImage.setText("3/3");
+			} 
+			
 		}
 	}
 	
@@ -246,6 +263,15 @@ public class TutorialController implements Initializable {
 				image.setImage(NowPlaying);
 				lblImage.setText("1/9");
 			}
+		} else if (btnPracticeModePressed) {
+			if (image.getImage().equals(Numbers)) {
+				image.setImage(Hard);
+				lblImage.setText("2/3");
+			} else if (image.getImage().equals(Hard)) {
+				image.setImage(Easy);
+				lblImage.setText("1/3");
+			} 
+			
 		}
 	}
 	
