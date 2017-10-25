@@ -78,7 +78,7 @@ public class NewUserController implements Initializable{
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("User Creation");
 			alert.setHeaderText("Invalid Name");
-			alert.setContentText("Please enter a valid name.");
+			alert.setContentText("Username cannot be blank!");
 
 			alert.showAndWait(); 
 		} else if (userNames.contains(user)) {
