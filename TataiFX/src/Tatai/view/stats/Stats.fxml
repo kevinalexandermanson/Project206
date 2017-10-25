@@ -24,18 +24,22 @@
          <children>
             <AnchorPane fx:id="buttonPane" prefHeight="460.0" prefWidth="180.0" styleClass="buttonPane">
                <children>
-                  <JFXButton fx:id="btnPractise" alignment="CENTER_RIGHT" layoutY="6.0" onAction="#btnModeHandler" prefHeight="69.0" prefWidth="180.0" text="Practice" />
-                  <JFXButton fx:id="btnAddition" alignment="CENTER_RIGHT" layoutY="81.0" onAction="#btnModeHandler" prefHeight="69.0" prefWidth="180.0" text="Addition" />
-                  <JFXButton fx:id="btnSubtraction" alignment="CENTER_RIGHT" layoutY="157.0" onAction="#btnModeHandler" prefHeight="69.0" prefWidth="180.0" text="Subtraction" />
-                  <JFXButton fx:id="btnMultiplication" alignment="CENTER_RIGHT" layoutY="233.0" onAction="#btnModeHandler" prefHeight="69.0" prefWidth="180.0" text="Multiplication" />
-                  <JFXButton fx:id="btnDivision" alignment="CENTER_RIGHT" layoutY="310.0" onAction="#btnModeHandler" prefHeight="69.0" prefWidth="180.0" text="Division" />
-                  <JFXButton fx:id="btnRandom" alignment="CENTER_RIGHT" layoutY="385.0" onAction="#btnModeHandler" prefHeight="69.0" prefWidth="180.0" text="Random" />
-                  <MaterialDesignIconView glyphName="FOOD_APPLE" layoutX="14.0" layoutY="52.0" size="30" text="" wrappingWidth="31.0" />
-                  <MaterialDesignIconView glyphName="PLUS" layoutX="15.0" layoutY="127.0" size="30" />
-                  <MaterialDesignIconView glyphName="MINUS" layoutX="15.0" layoutY="203.0" size="30" />
-                  <MaterialDesignIconView glyphName="MULTIPLICATION" layoutX="15.0" layoutY="279.0" size="30" />
-                  <MaterialDesignIconView glyphName="DIVISION" layoutX="15.0" layoutY="355.0" size="30" />
-                  <MaterialDesignIconView glyphName="DICE_5" layoutX="15.0" layoutY="431.0" size="30" />
+                  <JFXButton fx:id="btnPractise" alignment="CENTER_RIGHT" layoutY="2.0" onAction="#btnModeHandler" prefHeight="50.0" prefWidth="180.0" text="Practice (Easy)" />
+                  <JFXButton fx:id="btnPractiseHard" alignment="CENTER_RIGHT" layoutY="58.57" onAction="#btnModeHandler" prefHeight="50.0" prefWidth="180.0" text="Practice (Hard)" />
+                  <JFXButton fx:id="btnAddition" alignment="CENTER_RIGHT" layoutY="117.14" onAction="#btnModeHandler" prefHeight="50.0" prefWidth="180.0" text="Addition" />
+                  <JFXButton fx:id="btnSubtraction" alignment="CENTER_RIGHT" layoutY="175.71" onAction="#btnModeHandler" prefHeight="50.0" prefWidth="180.0" text="Subtraction" />
+                  <JFXButton fx:id="btnMultiplication" alignment="CENTER_RIGHT" layoutY="234.28" onAction="#btnModeHandler" prefHeight="50.0" prefWidth="180.0" text="Multiplication" />
+                  <JFXButton fx:id="btnDivision" alignment="CENTER_RIGHT" layoutY="292.85" onAction="#btnModeHandler" prefHeight="50.0" prefWidth="180.0" text="Division" />
+                  <JFXButton fx:id="btnRandom" alignment="CENTER_RIGHT" layoutY="351.42" onAction="#btnModeHandler" prefHeight="50.0" prefWidth="180.0" text="Random (Easy)" />
+                  <JFXButton fx:id="btnRandomHard" alignment="CENTER_RIGHT" layoutY="408.0" onAction="#btnModeHandler" prefHeight="50.0" prefWidth="180.0" text="Random (Hard)" />
+                  <MaterialDesignIconView glyphName="FOOD_APPLE" layoutX="15.0" layoutY="36.0" size="30" text="" wrappingWidth="31.0" />
+                  <MaterialDesignIconView glyphName="PLUS" layoutX="15.0" layoutY="153.0" size="30" />
+                  <MaterialDesignIconView glyphName="MINUS" layoutX="15.0" layoutY="211.0" size="30" />
+                  <MaterialDesignIconView glyphName="MULTIPLICATION" layoutX="15.0" layoutY="270.0" size="30" />
+                  <MaterialDesignIconView glyphName="DIVISION" layoutX="15.0" layoutY="329.0" size="30" />
+                  <MaterialDesignIconView glyphName="DICE_5" layoutX="16.0" layoutY="446.0" size="30" />
+                  <MaterialDesignIconView glyphName="DICE_2" layoutX="15.0" layoutY="387.0" size="30" />
+                  <MaterialDesignIconView glyphName="FISH" layoutX="15.0" layoutY="94.0" size="30" />
                </children>
             </AnchorPane>
             <LineChart fx:id="chrtStatistics" layoutX="182.0" prefHeight="220.0" prefWidth="520.0" title="Statistics">

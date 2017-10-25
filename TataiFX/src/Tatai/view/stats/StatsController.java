@@ -49,6 +49,9 @@ public class StatsController implements Initializable{
 
 	    @FXML
 	    private JFXButton btnPractise;
+	    
+	    @FXML
+	    private JFXButton btnPractiseHard;
 
 	    @FXML
 	    private JFXButton btnAddition;
@@ -64,6 +67,9 @@ public class StatsController implements Initializable{
 
 	    @FXML
 	    private JFXButton btnRandom;
+	    
+	    @FXML
+	    private JFXButton btnRandomHard;
 
 	    @FXML
 	    private LineChart<?, ?> chrtStatistics;
@@ -88,6 +94,7 @@ public class StatsController implements Initializable{
 	    
 	    @FXML
 	    private AnchorPane statisticsPane;
+	    
 
 	    //Keep track of if a button has been pressed already
 	    private boolean addPressed=false;
@@ -192,7 +199,7 @@ public class StatsController implements Initializable{
 			lblAverage.setText("Average Score: " + String.format("%.2f", p1.getMeanPracE()) + " / 10");
 			lblGames.setText("Games Played: " + p1.getGamesPlayedPracE() + "");
 			
-    	} /*else if (event.getSource().equals(btnPractiseHard)) {	//TODO: Uncomment this when the GUI is updated.
+    	} else if (event.getSource().equals(btnPractiseHard)) {	//TODO: Uncomment this when the GUI is updated.
     		
     		chrtStatistics.setTitle("Practise (Hard)");
     		XYChart.Series set1 = new XYChart.Series();
@@ -212,7 +219,7 @@ public class StatsController implements Initializable{
 			lblAverage.setText("Average Score: " + String.format("%.2f", p1.getMeanPracH()) + " / 10");
 			lblGames.setText("Games Played: " + p1.getGamesPlayedPracH() + "");
 							
-    	} */else if (event.getSource().equals(btnAddition)) {		//End of comment
+    	} else if (event.getSource().equals(btnAddition)) {		//End of comment
     		
     		//Set up the chart
     		chrtStatistics.setTitle("Addition");
@@ -418,7 +425,7 @@ public class StatsController implements Initializable{
 			lblPrevious.setText("Previous Score: " + p1.getLastRandE() + " / 10");
 			lblAverage.setText("Average Score: " + String.format("%.2f", p1.getMeanRandE()) + " / 10");
 			lblGames.setText("Games Played: " + p1.getGamesPlayedRandE() + "");
-    	} /*else if (event.getSource().equals(btnRandomHard)) {		//TODO: UNCOMMENT THIS IF STATEMENT WHEN NEW GUI IS DONE
+    	} else if (event.getSource().equals(btnRandomHard)) {		//TODO: UNCOMMENT THIS IF STATEMENT WHEN NEW GUI IS DONE
     																
     		chrtStatistics.setTitle("Random (Hard)");
     		XYChart.Series set1 = new XYChart.Series();
@@ -429,7 +436,7 @@ public class StatsController implements Initializable{
     		
     		//Used if only displaying one line at a time.
     		removeButtonStyles();
-    		btnRandom.getStyleClass().add("pressed");
+    		btnRandomHard.getStyleClass().add("pressed");
     		chrtStatistics.getData().clear();
     		chrtStatistics.getData().add(set1);
        		
@@ -437,16 +444,18 @@ public class StatsController implements Initializable{
 			lblPrevious.setText("Previous Score: " + p1.getLastRandH() + " / 10");
 			lblAverage.setText("Average Score: " + String.format("%.2f", p1.getMeanRandH()) + " / 10");
 			lblGames.setText("Games Played: " + p1.getGamesPlayedRandH() + "");
-    	}*/														//End of if statement.
+    	}													//End of if statement.
     }
 
     private void removeButtonStyles() {
     	btnPractise.getStyleClass().removeAll("pressed");
+    	btnPractiseHard.getStyleClass().removeAll("pressed");
     	btnAddition.getStyleClass().removeAll("pressed");
     	btnSubtraction.getStyleClass().removeAll("pressed");
     	btnMultiplication.getStyleClass().removeAll("pressed");
     	btnDivision.getStyleClass().removeAll("pressed");
     	btnRandom.getStyleClass().removeAll("pressed");
+    	btnRandomHard.getStyleClass().removeAll("pressed");
     	
     }
     
