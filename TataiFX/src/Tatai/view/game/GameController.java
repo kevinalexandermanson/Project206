@@ -242,13 +242,44 @@ public class GameController implements Initializable {
 
 		// Checks to see if the the number of questions is 10
 		if (num == NUMOFQUESTIONS) {
-			lblRecording.setText("");
 			lblCurrentGameNumber.setText("Game Over");
 			
 			//Save the score
 			PersonalStats p1 = Tatai.view.welcome.LoginController.getCurrentPlayerStats();
 			p1.recordLastGame(level, currentScore());
 			Tatai.view.welcome.LoginController.saveCurrentPlayerXML();
+			
+			//Show results
+			String bestScore = "";
+			String recentScore = "";
+			
+			if ((level.equals(Levels.PractiseEasy.getLevel()))) {
+				bestScore = p1.getBestPracE() + "";
+				recentScore = p1.getLastPracE() + "";
+			} else if ((level.equals(Levels.PractiseHard.getLevel()))) {
+				bestScore = p1.getBestPracH() + "";
+				recentScore = p1.getLastPracH() + "";		
+			} else if ((level.equals(Levels.Addition.getLevel()))) {
+				bestScore = p1.getBestAdd() + "";
+				recentScore = p1.getLastAdd() + "";		
+			} else if ((level.equals(Levels.Subtraction.getLevel()))) {
+				bestScore = p1.getBestSub() + "";
+				recentScore = p1.getLastSub() + "";	
+			} else if ((level.equals(Levels.Multiplication.getLevel()))) {
+				bestScore = p1.getBestMul() + "";
+				recentScore = p1.getLastMul() + "";	
+			} else if ((level.equals(Levels.Division.getLevel()))) {
+				bestScore = p1.getBestDiv() + "";
+				recentScore = p1.getLastDiv() + "";	
+			} else if ((level.equals(Levels.Random.getLevel()))) {
+				bestScore = p1.getBestRandE() + "";
+				recentScore = p1.getLastRandE() + "";	
+			} else if ((level.equals(Levels.RandomHard.getLevel()))) {
+				bestScore = p1.getBestRandH() + "";
+				recentScore = p1.getLastRandH() + "";	
+			} 
+			
+			lblRecording.setText("Your previous best score was: " + bestScore + "\nYour score this time was: " + recentScore + "\nSee statistics in the main menu for more details. " );
 			
 			// If on practise mode, offer chance to go to next level
 			if ((level.equals(Levels.PractiseEasy.getLevel()) && (currentScore() >= 8))) {
