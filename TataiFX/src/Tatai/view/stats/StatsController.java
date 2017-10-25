@@ -1,4 +1,5 @@
 package Tatai.view.stats;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -21,11 +22,14 @@ import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -189,9 +193,22 @@ public class StatsController implements Initializable{
      */
     @FXML
     private void btnResetHandler(ActionEvent event) throws IOException {
-    	PersonalStats p1 = Tatai.view.welcome.LoginController.getCurrentPlayerStats();
-    	p1.resetScores();
-    	Tatai.view.welcome.LoginController.saveCurrentPlayerXML();
+		Alert alert = new Alert(AlertType.CONFIRMATION, "Are you sure you want to reset the statistics for " + LoginController.getCurrentPlayer() + "?", ButtonType.YES, ButtonType.NO, ButtonType.CANCEL);
+		alert.showAndWait();
+
+		if (alert.getResult() == ButtonType.YES) {
+	    	PersonalStats p1 = Tatai.view.welcome.LoginController.getCurrentPlayerStats();
+	    	p1.resetScores();
+	    	Tatai.view.welcome.LoginController.saveCurrentPlayerXML();
+	    	
+	    	//reset stage
+			Parent parentStats = FXMLLoader.load(getClass().getResource("/Tatai/view/stats/Stats.fxml"));
+			Scene sceneStats = new Scene(parentStats);
+
+			Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+			stage.setScene(sceneStats);
+		} 
+
     }
     
     /* Handles which game mode to display stats for */
