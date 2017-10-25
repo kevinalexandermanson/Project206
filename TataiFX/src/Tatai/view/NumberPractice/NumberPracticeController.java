@@ -33,7 +33,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
-public class NumberPracticeController implements Initializable {
+public class NumberPracticeController extends RT implements Initializable {
 	
 	 @FXML
     private AnchorPane root;
@@ -132,7 +132,7 @@ public class NumberPracticeController implements Initializable {
 		btnPlayRecording.setDisable(true);
 
 		// Sets up a new recording thread to play the recording
-		PlayingThread task = new PlayingThread();
+		PlayingThread task = new PlayingThread(btnPlayRecording);
 		Thread thread = new Thread(task);
 		thread.start();
 	}
@@ -144,7 +144,7 @@ public class NumberPracticeController implements Initializable {
 	private void btnPronunciationHandler() {
 		btnPronunciation.setDisable(true);
 		//Sets up a new pronunciation thread task
-		PronunciationThread task = new PronunciationThread();
+		PronunciationThread task = new PronunciationThread(btnPronunciation, currentNum);
 		Thread thread = new Thread(task);
 		thread.start();
 	}
@@ -173,7 +173,7 @@ public class NumberPracticeController implements Initializable {
 		lblRecording.setText("Recording in progress...");
 
 		// Opens a new recording thread and starts the recording as a background task
-		RecordingTask task = new RecordingTask();
+		RT task = new RT();
 		Thread thread = new Thread(task);
 		thread.start();
 		
@@ -228,7 +228,7 @@ public class NumberPracticeController implements Initializable {
 	/**
 	 * Handles Pronunciation
 	 */
-	private class PronunciationThread extends Task<Void>  {
+	/*private class PronunciationThread extends Task<Void>  {
 
 		@Override
 		protected Void call() throws Exception {
@@ -242,12 +242,12 @@ public class NumberPracticeController implements Initializable {
 			super.succeeded();
 
 		}
-	}
+	}*/
 	
 	/**
 	 * Handles Playing recordings
 	 */
-	private class PlayingThread extends Task<Void>  {
+	/*private class PlayingThread extends Task<Void>  {
 
 		@Override
 		protected Void call() throws Exception {
@@ -262,25 +262,10 @@ public class NumberPracticeController implements Initializable {
 			super.succeeded();
 
 		}
-	}
+	}*/
 	
-	/**
-	 * Handles Recording recordings
-	 */
-	private class RecordingTask extends Task<Recording> {
-
-		@Override
-		protected Recording call() throws Exception {
-			Recording recording = new Recording();
-			// Uncomment when testing on linex
-
-			recording.record();
-			return recording;
-		}
-
-		@Override 
-		protected void succeeded() {
-			super.succeeded();
+	@Override
+	protected void succeeded() {
 			
 			progressBar.setVisible(false);
 			btnTryAgain.setVisible(true);
@@ -340,15 +325,6 @@ public class NumberPracticeController implements Initializable {
 			btnPronunciation.setDisable(false);
 
 		}
-
-		@Override protected void cancelled() {
-			super.cancelled();
-			updateMessage("Cancelled!");
-		}
-
-		@Override protected void failed() {
-			super.failed();
-			updateMessage("Failed!");
-		}
-	}
+	
+	
 }
