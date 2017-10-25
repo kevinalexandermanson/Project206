@@ -193,12 +193,8 @@ public class StatsController implements Initializable{
      */
     @FXML
     private void btnResetHandler(ActionEvent event) throws IOException {
-    /*	PersonalStats p1 = Tatai.view.welcome.LoginController.getCurrentPlayerStats();
-    	p1.resetScores();
-    	Tatai.view.welcome.LoginController.saveCurrentPlayerXML();	*/
-    	
-    	Alert alert = new Alert(AlertType.CONFIRMATION, "Are you sure you wish to reset the current players data to zero? This cannot be undone.", ButtonType.YES, ButtonType.NO, ButtonType.CANCEL);
-		alert.showAndWait();
+    	Alert alert = new Alert(AlertType.CONFIRMATION, "Are you sure you want to reset the statistics for " + LoginController.getCurrentPlayer() + "? This cannot be reversed.", ButtonType.YES, ButtonType.NO, ButtonType.CANCEL);
+	alert.showAndWait();
 
 		if (alert.getResult() == ButtonType.YES) {
 			//Delete their data
@@ -210,10 +206,15 @@ public class StatsController implements Initializable{
 			deleteData.setTitle("Reset data");
 			deleteData.setHeaderText("");
 			deleteData.setContentText("Data deleted");
-
 			deleteData.showAndWait();
+			
+			//reset stage
+			Parent parentStats = FXMLLoader.load(getClass().getResource("/Tatai/view/stats/Stats.fxml"));
+			Scene sceneStats = new Scene(parentStats);
+			Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+			stage.setScene(sceneStats);
 
-		} else if (alert.getResult() == ButtonType.NO || alert.getResult() == ButtonType.CANCEL) {
+		} else {
 			Alert deleteCancel = new Alert(AlertType.INFORMATION);
 			deleteCancel.setTitle("Delete User");
 			deleteCancel.setHeaderText("");
