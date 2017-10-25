@@ -128,6 +128,47 @@ public class StatsController implements Initializable{
 		}
 		*/
 		IntegerBinding sizeProperty = Bindings.size(chrtStatistics.getData());
+		
+		//Set Practice Easy as default pressed when entering
+		PersonalStats p1 = Tatai.view.welcome.LoginController.getCurrentPlayerStats();
+		
+		chrtStatistics.setTitle("Practise (Easy)");
+		XYChart.Series set1 = new XYChart.Series();
+		int[] results = p1.getLast10PracE();
+		for(int i=0; i<p1.getGamesPlayedPracE(); i++){
+			set1.getData().add(new XYChart.Data(""+ (i+1),results[i]));
+		}
+		
+		//Used for one line display
+		removeButtonStyles();
+		btnPractise.getStyleClass().add("pressed");
+		chrtStatistics.getData().clear();
+		chrtStatistics.getData().add(set1);
+		
+	/*	//Used for multi line display
+		pracData.getData().add(new XYChart.Data("1", 1));
+		pracData.getData().add(new XYChart.Data("2", 2));
+		pracData.getData().add(new XYChart.Data("3", 3));
+		pracData.getData().add(new XYChart.Data("4", 4));
+		pracData.getData().add(new XYChart.Data("5", 5));
+		pracData.getData().add(new XYChart.Data("6", 6));
+		pracData.getData().add(new XYChart.Data("7", 7));
+		if (pracPressed==false) {
+			btnPractise.getStyleClass().add("pressed");
+			chrtStatistics.getData().remove(0);
+			chrtStatistics.getData().add(0, pracData);
+			pracPressed = true;
+		} else {
+			btnPractise.getStyleClass().removeAll("pressed");
+			chrtStatistics.getData().remove(0);
+			chrtStatistics.getData().add(0, blankData);
+			pracPressed = false;
+		} 	*/
+		
+		lblBest.setText("Best Score: " + String.valueOf(p1.getBestPracE()) + " / 10");
+		lblPrevious.setText("Previous Score: " + p1.getLastPracE() + " / 10");
+		lblAverage.setText("Average Score: " + String.format("%.2f", p1.getMeanPracE()) + " / 10");
+		lblGames.setText("Games Played: " + p1.getGamesPlayedPracE() + "");
 	}
 	
 	
