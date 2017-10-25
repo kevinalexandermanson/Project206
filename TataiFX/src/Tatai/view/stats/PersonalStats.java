@@ -355,7 +355,7 @@ public class PersonalStats {
 				for (int i = 0; i < GamesPlayedMul; i++) {
 					total = total + Last10Mul[i];
 				}
-				MeanSub = ((double) total / (double) GamesPlayedMul);
+				MeanMul = ((double) total / (double) GamesPlayedMul);
 			}
 			break;
 		case Division:
@@ -363,7 +363,7 @@ public class PersonalStats {
 				for (int i = 0; i < GamesPlayedDiv; i++) {
 					total = total + Last10Div[i];
 				}
-				MeanSub = ((double) total / (double) GamesPlayedDiv);
+				MeanDiv = ((double) total / (double) GamesPlayedDiv);
 			}
 			break;
 		case Random:
@@ -371,7 +371,7 @@ public class PersonalStats {
 				for (int i = 0; i < GamesPlayedRandE; i++) {
 					total = total + Last10RandE[i];
 				}
-				MeanSub = ((double) total / (double) GamesPlayedRandE);
+				MeanRandE = ((double) total / (double) GamesPlayedRandE);
 			}
 			break;
 		case RandomHard:
@@ -379,7 +379,7 @@ public class PersonalStats {
 				for (int i = 0; i < GamesPlayedRandH; i++) {
 					total = total + Last10RandH[i];
 				}
-				MeanSub = ((double) total / (double) GamesPlayedRandH);
+				MeanRandH = ((double) total / (double) GamesPlayedRandH);
 			}
 			break;
 		case PractiseEasy:
@@ -387,7 +387,7 @@ public class PersonalStats {
 				for (int i = 0; i < GamesPlayedPracE; i++) {
 					total = total + Last10PracE[i];
 				}
-				MeanSub = ((double) total / (double) GamesPlayedPracE);
+				MeanPracE = ((double) total / (double) GamesPlayedPracE);
 			}
 			break;
 		case PractiseHard:
@@ -395,7 +395,7 @@ public class PersonalStats {
 				for (int i = 0; i < GamesPlayedPracH; i++) {
 					total = total + Last10PracH[i];
 				}
-				MeanSub = ((double) total / (double) GamesPlayedPracH);
+				MeanPracH = ((double) total / (double) GamesPlayedPracH);
 			}
 			break;
 		}
