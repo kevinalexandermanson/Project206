@@ -28,6 +28,11 @@ import Tatai.Levels.RandomHard;
 import Tatai.Levels.Subtraction;
 import Tatai.model.AudioFeedBack;
 import Tatai.model.Recording;
+import Tatai.model.threads.EquationThread;
+import Tatai.model.threads.PlayingThread;
+import Tatai.model.threads.PronunciationThread;
+import Tatai.model.threads.RecordingThread;
+import Tatai.model.threads.GUIUpdate;
 import Tatai.view.stats.PersonalStats;
 import Tatai.view.welcome.LoginController;
 import javafx.concurrent.Task;
@@ -50,7 +55,7 @@ import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
 
-public class GameController implements Initializable {
+public class GameController implements Initializable, GUIUpdate {
 
 	@FXML
 	private AnchorPane root;
@@ -179,18 +184,18 @@ public class GameController implements Initializable {
 	private void btnQuitHandler(ActionEvent event) throws IOException {
 		//If the last question has been played, then record the stats first, before exiting.
 		if(currentQuestion()==NUMOFQUESTIONS){
-			
+
 			PersonalStats p1 = Tatai.view.welcome.LoginController.getCurrentPlayerStats();
 			p1.recordLastGame(level, currentScore());
 			Tatai.view.welcome.LoginController.saveCurrentPlayerXML();
-			
+
 			// Loads the level select screen
 			Parent parentLevelSelect = FXMLLoader.load(getClass().getResource("/Tatai/view/levelselect/LevelSelect.fxml"));
 			Scene sceneLevelSelect = new Scene(parentLevelSelect);
 
 			Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 			stage.setScene(sceneLevelSelect);
-			
+
 		} else {
 			Alert alert = new Alert(AlertType.CONFIRMATION, "Do you wish to quit? Your progress for the current game will not be saved.", ButtonType.YES, ButtonType.NO);
 			alert.showAndWait();
@@ -225,10 +230,10 @@ public class GameController implements Initializable {
 
 
 		// Opens a new recording thread and starts the recording as a background task
-		RecordingTask task = new RecordingTask();
+		RecordingThread task = new RecordingThread(this);
 		Thread thread = new Thread(task);
 		thread.start();
-		
+
 		// New Timeline to handle process bar timing
 		Timeline timeline = new Timeline(
 				new KeyFrame(Duration.ZERO, new KeyValue(progressBar.progressProperty(), 0)),
@@ -261,16 +266,16 @@ public class GameController implements Initializable {
 		// Checks to see if the the number of questions is 10
 		if (num == NUMOFQUESTIONS) {
 			lblCurrentGameNumber.setText("Game Over");
-			
+
 			//Save the score
 			PersonalStats p1 = Tatai.view.welcome.LoginController.getCurrentPlayerStats();
 			p1.recordLastGame(level, currentScore());
 			Tatai.view.welcome.LoginController.saveCurrentPlayerXML();
-			
+
 			//Show results
 			String bestScore = "";
 			String recentScore = "";
-			
+
 			if ((level.equals(Levels.PractiseEasy.getLevel()))) {
 				bestScore = p1.getBestPracE() + "";
 				recentScore = p1.getLastPracE() + "";
@@ -296,9 +301,9 @@ public class GameController implements Initializable {
 				bestScore = p1.getBestRandH() + "";
 				recentScore = p1.getLastRandH() + "";	
 			} 
-			
+
 			lblRecording.setText("Your previous best score was: " + bestScore + "\nYour score this time was: " + recentScore + "\nSee statistics in the main menu for more details. " );
-			
+
 			// If on practise mode, offer chance to go to next level
 			if ((level.equals(Levels.PractiseEasy.getLevel()) && (currentScore() >= 8))) {
 				btnNextLevel.setVisible(true);
@@ -313,10 +318,10 @@ public class GameController implements Initializable {
 		} 
 		else {
 			// Calculates next question
-			EquationThread task = new EquationThread();
+			EquationThread task = new EquationThread(map, this.level, lblCurrentGameNumber, lblNowPlaying);
 			Thread thread = new Thread(task);
 			thread.start();
-			
+
 			// Changes the question number
 			questionNumChange();
 
@@ -339,7 +344,7 @@ public class GameController implements Initializable {
 		btnPlayRecording.setDisable(true);
 
 		// Sets up a new recording thread to play the recording
-		PlayingThread task = new PlayingThread();
+		PlayingThread task = new PlayingThread(btnPlayRecording);
 		Thread thread = new Thread(task);
 		thread.start();
 	}
@@ -380,7 +385,7 @@ public class GameController implements Initializable {
 		btnRecord.setVisible(true);
 
 		// Calculates a new equation depending on the level
-		EquationThread task = new EquationThread();
+		EquationThread task = new EquationThread(map, this.level, lblCurrentGameNumber, lblNowPlaying);
 		Thread thread = new Thread(task);
 		thread.start();
 
@@ -417,168 +422,74 @@ public class GameController implements Initializable {
 
 		btnPronunciation.setDisable(true);
 		//Sets up a new pronunciation thread task
-		PronunciationThread task = new PronunciationThread();
+		PronunciationThread task = new PronunciationThread(btnPronunciation, currentNum);
 		Thread thread = new Thread(task);
 		thread.start();
 
 	}
 
-
-	/*---------- Threads ------------------------------------------------------------------------*/
-
 	/**
-	 * Handles the recording thread
-	 *
+	 * Implemented from GUIUpdate interface to handle updating the GUI when recording is finished
 	 */
-	private class RecordingTask extends Task<Recording> {
+	public void updateGUI(Recording recording) {
 
-
-		@Override
-		protected Recording call() throws Exception {
-			Recording recording = new Recording();
-			// Uncomment when testing on linex
-
-			recording.record();
-			return recording;
+		progressBar.setVisible(false);
+		// Calculates the equation
+		ScriptEngineManager manager = new ScriptEngineManager();
+		ScriptEngine engine = manager.getEngineByName("js");
+		Object result = null;
+		try {
+			result = engine.eval(lblCurrentGameNumber.getText());
+		} catch (ScriptException e) {
+			e.printStackTrace();
 		}
 
-		@Override 
-		protected void succeeded() {
-			super.succeeded();
-			progressBar.setVisible(false);
-			// Calculates the equation
-			ScriptEngineManager manager = new ScriptEngineManager();
-			ScriptEngine engine = manager.getEngineByName("js");
-			Object result = null;
-			try {
-				result = engine.eval(lblCurrentGameNumber.getText());
-			} catch (ScriptException e) {
-				e.printStackTrace();
-			}
-
-			int number = (int) result;
-			currentNum = number;
-
-			//gets the recording object
-			Recording recording;
-			try {
-				recording = get();
-
-				// Uncomment when testing on linux
-
-				//get correct number and recorded number
-				String correctNumber = recording.getCorrectNumber(number);
-				String recordedNumber = recording.getRecordedNumber();
-
-				//check if numbers are equivalent
-				boolean answer = (recording.getCorrectNumber(number).equals(recording.getRecordedNumber()));
-				
-				if (answer == true) {
-					lblCurrentGameNumber.setText("Correct");
-					root.getStyleClass().removeAll("rootWrong");
-					root.getStyleClass().add("rootCorrect");
-					scoreNumChange();
-				} else {
-					lblCurrentGameNumber.setText("Wrong");
-					root.getStyleClass().removeAll("rootCorrect");
-					root.getStyleClass().add("rootWrong");
-				}
-
-				//prepare for output
-				correctNumber = correctNumber.replace("whaa", "wha");
-				correctNumber = correctNumber.replace("maa", "ma");
-				recordedNumber = recordedNumber.replace("whaa", "wha");
-				recordedNumber = recordedNumber.replace("maa", "ma");
-
-				lblRecording.setText("");
-
-				if (secondAttempt && !(answer)) {
-					lblRecording.setText("The correct answer was: " + correctNumber + "\n You said: " + recordedNumber);
-					btnPronunciation.setVisible(true);
-				}
-
-				if (!(secondAttempt) && (!(answer))) {
-					lblRecording.setText("Try again to see the correct answer");
-					btnTryAgain.setVisible(true);
-				}
-				btnNextQuestion.setVisible(true);
-				btnPlayRecording.setVisible(true);
-
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			} catch (ExecutionException e) {
-				e.printStackTrace();
-			}
+		int number = (int) result;
+		currentNum = number;
 
 
+		// Uncomment when testing on linux
+
+		//get correct number and recorded number
+		String correctNumber = recording.getCorrectNumber(number);
+		String recordedNumber = recording.getRecordedNumber();
+
+		//check if numbers are equivalent
+		boolean answer = (recording.getCorrectNumber(number).equals(recording.getRecordedNumber()));
+
+		if (answer == true) {
+			lblCurrentGameNumber.setText("Correct");
+			root.getStyleClass().removeAll("rootWrong");
+			root.getStyleClass().add("rootCorrect");
+			scoreNumChange();
+		} else {
+			lblCurrentGameNumber.setText("Wrong");
+			root.getStyleClass().removeAll("rootCorrect");
+			root.getStyleClass().add("rootWrong");
 		}
 
-		@Override protected void cancelled() {
-			super.cancelled();
-			updateMessage("Cancelled!");
+		//prepare for output
+		correctNumber = correctNumber.replace("whaa", "wha");
+		correctNumber = correctNumber.replace("maa", "ma");
+		recordedNumber = recordedNumber.replace("whaa", "wha");
+		recordedNumber = recordedNumber.replace("maa", "ma");
+
+		lblRecording.setText("");
+
+		if (secondAttempt && !(answer)) {
+			lblRecording.setText("The correct answer was: " + correctNumber + "\n You said: " + recordedNumber);
+			btnPronunciation.setVisible(true);
 		}
 
-		@Override protected void failed() {
-			super.failed();
-			updateMessage("Failed!");
+		if (!(secondAttempt) && (!(answer))) {
+			lblRecording.setText("Try again to see the correct answer");
+			btnTryAgain.setVisible(true);
 		}
+		btnNextQuestion.setVisible(true);
+		btnPlayRecording.setVisible(true);
+
 	}
 
-	/*
-	 * Handles playback in separate thread
-	 */
-	private class PlayingThread extends Task<Void>  {
-
-		@Override
-		protected Void call() throws Exception {
-			Recording recording = new Recording();
-			recording.playRecording();
-			return null;
-		}
-
-		@Override 
-		protected void succeeded() {
-			btnPlayRecording.setDisable(false);
-			super.succeeded();
-
-		}
-	}
-
-	/**
-	 * Handles prounciation in a different thread
-	 *
-	 */
-	private class PronunciationThread extends Task<Void>  {
-
-		@Override
-		protected Void call() throws Exception {
-			AudioFeedBack.playFeedBackAudio(currentNum);
-			return null;
-		}
-
-		@Override 
-		protected void succeeded() {
-			btnPronunciation.setDisable(false);
-			super.succeeded();
-
-		}
-	}
-
-	private class EquationThread extends Task<Void> {
-		@Override
-		protected Void call() throws Exception {
-			// Calculates the apporpriate question depending on the level
-			map.get(level).calculate();
-			return null;
-		}
-		
-		@Override 
-		protected void succeeded() {
-			lblCurrentGameNumber.setText(map.get(level).getEquation());
-			lblNowPlaying.setText(map.get(level).getLabel());
-		}
-		
-	}
 	/*---------- Other Methods ------------------------------------------------------------------------*/
 
 	/**
@@ -587,8 +498,8 @@ public class GameController implements Initializable {
 	 */
 	public void setLevel(String level) {
 		this.level = level;
-		
-		EquationThread task = new EquationThread();
+
+		EquationThread task = new EquationThread(map, this.level, lblCurrentGameNumber, lblNowPlaying);
 		Thread thread = new Thread(task);
 		thread.start();
 	}

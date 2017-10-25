@@ -1,4 +1,4 @@
-package Tatai.view.NumberPractice;
+package Tatai.model.threads;
 
 import com.jfoenix.controls.JFXButton;
 
