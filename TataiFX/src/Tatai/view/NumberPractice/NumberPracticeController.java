@@ -12,9 +12,11 @@ import javax.script.ScriptException;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXProgressBar;
 import com.jfoenix.controls.JFXTextField;
+import com.jfoenix.effects.JFXDepthManager;
 
 import Tatai.model.AudioFeedBack;
 import Tatai.model.Recording;
+import Tatai.view.welcome.LoginController;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
@@ -33,47 +35,59 @@ import javafx.util.Duration;
 
 public class NumberPracticeController implements Initializable {
 	
-	@FXML
-	private AnchorPane root;
+	 @FXML
+    private AnchorPane root;
 
-	@FXML
-	private AnchorPane topPane;
+    @FXML
+    private AnchorPane topPane;
 
-	@FXML
-	private Label lblNowPlaying;
+    @FXML
+    private Label lblNowPlaying;
 
-	@FXML
-	private AnchorPane cardPane;
+    @FXML
+    private AnchorPane userPane;
 
-	@FXML
-	private Label lblCurrentGameNumber;
+    @FXML
+    private Label lblUser;
 
-	@FXML
-	private JFXButton btnRecord;
+    @FXML
+    private AnchorPane cardPane;
 
-	@FXML
-	private Label lblRecording;
+    @FXML
+    private Label lblCurrentGameNumber;
 
-	@FXML
-	private JFXButton btnPlayRecording;
+    @FXML
+    private JFXButton btnRecord;
 
-	@FXML
-	private JFXButton btnMenu;
-	
-	@FXML
-	private JFXButton btnPronunciation;
-	
-	@FXML
-	private JFXProgressBar progressBar;
-	
-	@FXML
-	private JFXButton btnEnter;
-	
-	@FXML
-	private JFXTextField txtField;
-	
-	@FXML
-	private JFXButton btnTryAgain;
+    @FXML
+    private Label lblRecording;
+
+    @FXML
+    private JFXButton btnPlayRecording;
+
+    @FXML
+    private JFXButton btnPronunciation;
+
+    @FXML
+    private JFXProgressBar progressBar;
+
+    @FXML
+    private JFXButton btnTryAgain;
+
+    @FXML
+    private AnchorPane enterPane;
+
+    @FXML
+    private JFXTextField txtField;
+
+    @FXML
+    private JFXButton btnEnter;
+
+    @FXML
+    private AnchorPane buttonPane;
+
+    @FXML
+    private JFXButton btnQuit;
 	
 	private int currentNum = 1;
 	
@@ -82,6 +96,15 @@ public class NumberPracticeController implements Initializable {
 	 */
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+		//Get the player name
+		lblUser.setText(LoginController.getCurrentPlayer());
+		
+		JFXDepthManager.setDepth(topPane, 5);
+		JFXDepthManager.setDepth(cardPane,  4);
+		JFXDepthManager.setDepth(userPane,  4);
+		JFXDepthManager.setDepth(enterPane,  4);
+		JFXDepthManager.setDepth(buttonPane,  4);
+		
 		progressBar.setVisible(false);
 		btnTryAgain.setVisible(false);
 		btnPlayRecording.setDisable(true);
@@ -130,7 +153,7 @@ public class NumberPracticeController implements Initializable {
 	 * Handles Menu button
 	 */
 	@FXML
-	private void btnMenuHandler(ActionEvent event) throws IOException {
+	private void btnQuitHandler(ActionEvent event) throws IOException {
 		Parent parentLevelSelect = FXMLLoader.load(getClass().getResource("/Tatai/view/levelselect/LevelSelect.fxml"));
 		Scene sceneLevelSelect = new Scene(parentLevelSelect);
 
