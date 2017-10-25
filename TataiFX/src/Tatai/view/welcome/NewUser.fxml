@@ -31,7 +31,7 @@
                   <Font size="48.0" />
                </font>
             </Label>
-            <JFXTextField fx:id="txtCreateUser" alignment="CENTER" layoutX="116.0" layoutY="134.0" prefHeight="25.0" prefWidth="196.0" promptText="Enter Name (12 characters or less)" />
+            <JFXTextField fx:id="txtCreateUser" alignment="CENTER" layoutX="116.0" layoutY="134.0" prefHeight="25.0" prefWidth="196.0" promptText="Enter Name (12 characters or less)" styleClass="bebasneue" />
             <JFXButton fx:id="btnBack" layoutX="14.0" layoutY="315.0" onAction="#btnBackHandler" stylesheets="@Login.css" text="Back">
                <graphic>
                   <MaterialDesignIconView glyphName="ARROW_LEFT_BOLD" size="16" styleClass="root" />

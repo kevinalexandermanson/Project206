@@ -19,7 +19,7 @@
       </AnchorPane>
       <AnchorPane fx:id="cardPane" layoutX="186.0" layoutY="145.0" prefHeight="357.0" prefWidth="428.0" styleClass="cardPane" stylesheets="@Login.css">
          <children>
-            <JFXComboBox fx:id="cmbbxSelectUser" layoutX="116.0" layoutY="127.0" prefHeight="34.0" prefWidth="196.0" />
+            <JFXComboBox fx:id="cmbbxSelectUser" layoutX="116.0" layoutY="127.0" prefHeight="34.0" prefWidth="196.0" promptText="Please choose a user" styleClass="bebasneue" />
             <JFXButton fx:id="btnLogin" layoutX="116.0" layoutY="179.0" onAction="#btnLoginHandler" prefHeight="34.0" prefWidth="196.0" stylesheets="@Login.css" text="Login">
                <font>
                   <Font size="18.0" />
