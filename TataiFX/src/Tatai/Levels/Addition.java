@@ -25,7 +25,7 @@ public class Addition implements LevelInterface {
 
 	public void calculate() {
 		// Calculates level as Addition
-		label = "Now Playing - [Practise Mode - Addition]";
+		label = "Now Playing - [Maths Mode - Addition]";
 		model.newEquation(Levels.Addition.getLevel());
 	}
 	

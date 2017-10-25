@@ -25,7 +25,7 @@ public class Division implements LevelInterface {
 
 	public void calculate() {
 		// Calculates level as division
-		label = "Now Playing - [Practise Mode - Division]";
+		label = "Now Playing - [Maths Mode - Division]";
 		model.newEquation(Levels.Division.getLevel());
 	}
 }

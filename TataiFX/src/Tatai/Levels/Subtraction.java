@@ -17,7 +17,7 @@ public class Subtraction implements LevelInterface {
 	
 	public void calculate() {
 		//Calculates subtraction question
-		label = "Now Playing - [Practise Mode - Subtraction]";
+		label = "Now Playing - [Maths Mode - Subtraction]";
 		model.newEquation(Levels.Subtraction.getLevel());
 	}
 

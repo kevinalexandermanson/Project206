@@ -26,7 +26,7 @@ public class RandomEasy implements LevelInterface {
 
 	public void calculate() {
 		//Calulates random easy level question
-		label = "Now Playing - [Practise Mode - Random Easy]";
+		label = "Now Playing - [Maths Mode - Random Easy]";
 		model.newEquation(Levels.Random.getLevel());
 	}
 }

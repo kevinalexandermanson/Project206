@@ -25,7 +25,7 @@ public class Multiplication implements LevelInterface {
 
 	public void calculate() {
 		// Calculates level as Multiplication
-		label = "Now Playing - [Practise Mode - Multiplication]";
+		label = "Now Playing - [Maths Mode - Multiplication]";
 		model.newEquation(Levels.Multiplication.getLevel());
 	}
 }

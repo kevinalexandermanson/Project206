@@ -26,7 +26,7 @@ public class RandomHard implements LevelInterface{
 
 	public void calculate() {
 		//Calculates random hard level
-		label = "Now Playing - [Practise Mode - Random Hard]";
+		label = "Now Playing - [Maths Mode - Random Hard]";
 		model.randNumHard();
 	}
 }
