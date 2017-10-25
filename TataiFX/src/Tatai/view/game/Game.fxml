@@ -19,7 +19,7 @@
             <AnchorPane fx:id="userPane" layoutX="591.0" layoutY="14.0" prefHeight="72.0" prefWidth="195.0" styleClass="score">
                <children>
                   <MaterialDesignIconView glyphName="ACCOUNT_CIRCLE" layoutX="14.0" layoutY="55.0" size="50" />
-                  <Label fx:id="lblUser" layoutX="72.0" layoutY="24.0" prefHeight="25.0" prefWidth="70.0" styleClass="bebasneue" text="User" textAlignment="CENTER">
+                  <Label fx:id="lblUser" layoutX="72.0" layoutY="24.0" prefHeight="25.0" prefWidth="105.0" styleClass="bebasneue" text="User" textAlignment="CENTER">
                      <font>
                         <Font size="18.0" />
                      </font>

@@ -88,6 +88,13 @@ public class NewUserController implements Initializable{
 			alert.setContentText("Please enter a different name.");
 
 			alert.showAndWait(); 
+		} else if (user.length() > 12) {
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setTitle("User Creation");
+			alert.setHeaderText("Name too long");
+			alert.setContentText("Please enter a name that is 12 characters or less.");
+			
+			alert.showAndWait(); 
 		} else {
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("User Creation");
