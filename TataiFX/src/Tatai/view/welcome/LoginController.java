@@ -73,17 +73,13 @@ public class LoginController implements Initializable{
 		JFXDepthManager.setDepth(topPane, 5);
 
 		userNames = FXCollections.observableArrayList();
-		File[] files = new File("./").listFiles();
-		for(int i = 0; i < files.length; i++){
-			String fileName = files[i].getName();
-			if(fileName.endsWith(".xml")||fileName.endsWith(".XML")) {
-				fileName = fileName.substring(0, fileName.lastIndexOf("."));
-				userNames.add(fileName);
-			}
-		}
+		loadUsers();
 		cmbbxSelectUser.setItems(userNames);
 	}
 
+	
+	//-----------------------------------Button Handlers---------------------------------//
+	
 	/* Login Handler */
 	@FXML
 	private void btnLoginHandler(ActionEvent event) throws IOException {
@@ -167,6 +163,25 @@ public class LoginController implements Initializable{
 
 	}
 	
+	//---------------------------Other methods-------------------------------------//
+	
+	
+	/**
+	 * Loads users from files
+	 */
+	private void loadUsers() {
+		
+		File[] files = new File("./").listFiles();
+		for(int i = 0; i < files.length; i++){
+			String fileName = files[i].getName();
+			if(fileName.endsWith(".xml")||fileName.endsWith(".XML")) {
+				fileName = fileName.substring(0, fileName.lastIndexOf("."));
+				userNames.add(fileName);
+			}
+		}
+	}
+	
+	
 	/* Returns list of users */
 	protected ObservableList<String> getUsers() {
 		return this.userNames;
@@ -176,8 +191,6 @@ public class LoginController implements Initializable{
 	protected void addUser(String user) {
 		userNames.add(user);
 	}
-
-
 
 
 	/**

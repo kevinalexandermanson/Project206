@@ -1,6 +1,5 @@
 package Tatai.view;
 
-import Tatai.view.stats.PersonalStats;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -10,10 +9,7 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 public class Tatai extends Application {
-	
-	public static PersonalStats CurrentPlayer;
-	public static final String GUEST = "guest";
-	
+
 	@Override
 	public void start(Stage stage) throws Exception {
 		Parent root = FXMLLoader.load(getClass().getResource("/Tatai/view/welcome/Login.fxml"));
