@@ -313,10 +313,10 @@ public class GameController implements Initializable {
 		} 
 		else {
 			// Calculates next question
-			map.get(level).calculate();
-			lblCurrentGameNumber.setText(map.get(level).getEquation());
-			lblNowPlaying.setText(map.get(level).getLabel());
-
+			EquationThread task = new EquationThread();
+			Thread thread = new Thread(task);
+			thread.start();
+			
 			// Changes the question number
 			questionNumChange();
 
@@ -380,8 +380,9 @@ public class GameController implements Initializable {
 		btnRecord.setVisible(true);
 
 		// Calculates a new equation depending on the level
-		map.get(level).calculate();
-		lblCurrentGameNumber.setText(map.get(level).getEquation());
+		EquationThread task = new EquationThread();
+		Thread thread = new Thread(task);
+		thread.start();
 
 		lblRecording.setText(INTRO);
 
@@ -563,6 +564,21 @@ public class GameController implements Initializable {
 		}
 	}
 
+	private class EquationThread extends Task<Void> {
+		@Override
+		protected Void call() throws Exception {
+			// Calculates the apporpriate question depending on the level
+			map.get(level).calculate();
+			return null;
+		}
+		
+		@Override 
+		protected void succeeded() {
+			lblCurrentGameNumber.setText(map.get(level).getEquation());
+			lblNowPlaying.setText(map.get(level).getLabel());
+		}
+		
+	}
 	/*---------- Other Methods ------------------------------------------------------------------------*/
 
 	/**
@@ -571,11 +587,10 @@ public class GameController implements Initializable {
 	 */
 	public void setLevel(String level) {
 		this.level = level;
-
-		// Calculates the apporpriate question depending on the level
-		map.get(level).calculate();
-		lblCurrentGameNumber.setText(map.get(level).getEquation());
-		lblNowPlaying.setText(map.get(level).getLabel());
+		
+		EquationThread task = new EquationThread();
+		Thread thread = new Thread(task);
+		thread.start();
 	}
 
 	/**
