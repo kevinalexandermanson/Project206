@@ -127,11 +127,6 @@ public class StatsController implements Initializable{
 		JFXDepthManager.setDepth(cardPane,  4);
 		JFXDepthManager.setDepth(statisticsPane, 2);
 		
-		/*
-		for (int i = 0; i < NUMOFLEVELS; i++) {
-			chrtStatistics.getData().add(i,blankData);
-		}
-		*/
 		IntegerBinding sizeProperty = Bindings.size(chrtStatistics.getData());
 		
 		//Set Practice Easy as default pressed when entering
@@ -150,26 +145,7 @@ public class StatsController implements Initializable{
 		chrtStatistics.getData().clear();
 		chrtStatistics.getData().add(set1);
 		
-	/*	//Used for multi line display
-		pracData.getData().add(new XYChart.Data("1", 1));
-		pracData.getData().add(new XYChart.Data("2", 2));
-		pracData.getData().add(new XYChart.Data("3", 3));
-		pracData.getData().add(new XYChart.Data("4", 4));
-		pracData.getData().add(new XYChart.Data("5", 5));
-		pracData.getData().add(new XYChart.Data("6", 6));
-		pracData.getData().add(new XYChart.Data("7", 7));
-		if (pracPressed==false) {
-			btnPractise.getStyleClass().add("pressed");
-			chrtStatistics.getData().remove(0);
-			chrtStatistics.getData().add(0, pracData);
-			pracPressed = true;
-		} else {
-			btnPractise.getStyleClass().removeAll("pressed");
-			chrtStatistics.getData().remove(0);
-			chrtStatistics.getData().add(0, blankData);
-			pracPressed = false;
-		} 	*/
-		
+		//Changes the labels for each score.
 		lblBest.setText("Best Score: " + String.valueOf(p1.getBestPracE()) + " / 10");
 		lblPrevious.setText("Previous Score: " + p1.getLastPracE() + " / 10");
 		lblAverage.setText("Average Score: " + String.format("%.2f", p1.getMeanPracE()) + " / 10");
@@ -245,27 +221,7 @@ public class StatsController implements Initializable{
     		btnPractise.getStyleClass().add("pressed");
     		chrtStatistics.getData().clear();
     		chrtStatistics.getData().add(set1);
-    		
-    	/*	//Used for multi line display
-			pracData.getData().add(new XYChart.Data("1", 1));
-    		pracData.getData().add(new XYChart.Data("2", 2));
-    		pracData.getData().add(new XYChart.Data("3", 3));
-    		pracData.getData().add(new XYChart.Data("4", 4));
-    		pracData.getData().add(new XYChart.Data("5", 5));
-    		pracData.getData().add(new XYChart.Data("6", 6));
-    		pracData.getData().add(new XYChart.Data("7", 7));
-    		if (pracPressed==false) {
-    			btnPractise.getStyleClass().add("pressed");
-    			chrtStatistics.getData().remove(0);
-    			chrtStatistics.getData().add(0, pracData);
-    			pracPressed = true;
-    		} else {
-    			btnPractise.getStyleClass().removeAll("pressed");
-    			chrtStatistics.getData().remove(0);
-    			chrtStatistics.getData().add(0, blankData);
-    			pracPressed = false;
-    		} 	*/
-    		
+   
     		lblBest.setText("Best Score: " + String.valueOf(p1.getBestPracE()) + " / 10");
 			lblPrevious.setText("Previous Score: " + p1.getLastPracE() + " / 10");
 			lblAverage.setText("Average Score: " + String.format("%.2f", p1.getMeanPracE()) + " / 10");
@@ -307,31 +263,6 @@ public class StatsController implements Initializable{
     		chrtStatistics.getData().clear();
     		chrtStatistics.getData().add(set1);
     		
-    	/*	//Used for multi line display.
-
-			addData.getData().add(new XYChart.Data("1", 2));	//Sample data
-			addData.getData().add(new XYChart.Data("2", 1));
-			addData.getData().add(new XYChart.Data("3", 4));
-			addData.getData().add(new XYChart.Data("4", 3));
-			addData.getData().add(new XYChart.Data("5", 4));
-			addData.getData().add(new XYChart.Data("6", 5));
-			addData.getData().add(new XYChart.Data("7", 2));
-			
-    		if (addPressed==false) {
-    			btnAddition.getStyleClass().add("pressed");
-    			chrtStatistics.getData().remove(1);
-    			chrtStatistics.getData().add(1, addData);
-    			addPressed = true;
-    		} else {
-    			btnAddition.getStyleClass().removeAll("pressed");
-    			chrtStatistics.getData().remove(1);
-    			chrtStatistics.getData().add(1, blankData);
-    			addPressed = false;
-    			
-    			if(subPressed==false && mulPressed==false && divPressed==false && randPressed==false && pracPressed==false){
-    				resetGraph();
-    			}	
-    		} */
     		//Change the labels.
 			lblBest.setText("Best Score: " + String.valueOf(p1.getBestAdd()) + " / 10");
 			lblPrevious.setText("Previous Score: " + p1.getLastAdd() + " / 10");
@@ -353,26 +284,6 @@ public class StatsController implements Initializable{
     		chrtStatistics.getData().clear();
     		chrtStatistics.getData().add(set1);
     		
-    	/*	//Used for multi line display
-    		subData.getData().add(new XYChart.Data("1", 1));	//Sample data
-    		subData.getData().add(new XYChart.Data("2", 7));
-    		subData.getData().add(new XYChart.Data("3", 9));
-    		subData.getData().add(new XYChart.Data("4", 4));
-    		subData.getData().add(new XYChart.Data("5", 1));
-    		subData.getData().add(new XYChart.Data("6", 5));
-    		subData.getData().add(new XYChart.Data("7", 6));
-    		if (subPressed==false) {
-    			btnSubtraction.getStyleClass().add("pressed");
-    			chrtStatistics.getData().remove(2);
-    			chrtStatistics.getData().add(2, subData);
-    			subPressed = true;
-    		} else {
-    			btnSubtraction.getStyleClass().removeAll("pressed");
-    			chrtStatistics.getData().remove(2);
-    			chrtStatistics.getData().add(2, blankData);
-    			subPressed = false;
-    		}	*/
-    		
 			lblBest.setText("Best Score: " + p1.getBestSub() + " / 10");
 			lblPrevious.setText("Previous Score: " + p1.getLastSub() + " / 10");
 			lblAverage.setText("Average Score: " + String.format("%.2f", p1.getMeanSub()) + " / 10");
@@ -392,26 +303,6 @@ public class StatsController implements Initializable{
     		btnMultiplication.getStyleClass().add("pressed");
     		chrtStatistics.getData().clear();
     		chrtStatistics.getData().add(set1);
-    		
-    	/*	//Used for multi line display
-    		mulData.getData().add(new XYChart.Data("1", 8));	//Sample data
-    		mulData.getData().add(new XYChart.Data("2", 3));
-    		mulData.getData().add(new XYChart.Data("3", 6));
-    		mulData.getData().add(new XYChart.Data("4", 7));
-    		mulData.getData().add(new XYChart.Data("5", 1));
-    		mulData.getData().add(new XYChart.Data("6", 3));
-    		mulData.getData().add(new XYChart.Data("7", 5));
-    		if (mulPressed==false) {
-    			btnMultiplication.getStyleClass().add("pressed");
-    			chrtStatistics.getData().remove(3);
-    			chrtStatistics.getData().add(3, mulData);
-    			mulPressed = true;
-    		} else {
-    			btnMultiplication.getStyleClass().removeAll("pressed");
-    			chrtStatistics.getData().remove(3);
-    			chrtStatistics.getData().add(3, blankData);
-    			mulPressed = false;
-    		}	*/
     		
 			lblBest.setText("Best Score: " + p1.getBestMul() + " / 10");
 			lblPrevious.setText("Previous Score: " + p1.getLastMul() + " / 10");
@@ -433,26 +324,6 @@ public class StatsController implements Initializable{
     		chrtStatistics.getData().clear();
     		chrtStatistics.getData().add(set1);
     		
-    	/*	//Used for multi line display.
-    		divData.getData().add(new XYChart.Data("1", 2));	//Sample data
-    		divData.getData().add(new XYChart.Data("2", 6));
-    		divData.getData().add(new XYChart.Data("3", 8));
-    		divData.getData().add(new XYChart.Data("4", 3));
-    		divData.getData().add(new XYChart.Data("5", 2));
-    		divData.getData().add(new XYChart.Data("6", 4));
-    		divData.getData().add(new XYChart.Data("7", 3));
-    		if (divPressed==false) {
-    			btnDivision.getStyleClass().add("pressed");
-    			chrtStatistics.getData().remove(4);
-    			chrtStatistics.getData().add(4, divData);
-    			divPressed = true;
-    		} else {
-    			btnDivision.getStyleClass().removeAll("pressed");
-    			chrtStatistics.getData().remove(4);
-    			chrtStatistics.getData().add(4, blankData);
-    			divPressed = false;
-    		}	*/
-    		
 			lblBest.setText("Best Score: " + p1.getBestDiv() + " / 10");
 			lblPrevious.setText("Previous Score: " + p1.getLastDiv() + " / 10");
 			lblAverage.setText("Average Score: " + String.format("%.2f", p1.getMeanDiv()) + " / 10");
@@ -472,26 +343,6 @@ public class StatsController implements Initializable{
     		btnRandom.getStyleClass().add("pressed");
     		chrtStatistics.getData().clear();
     		chrtStatistics.getData().add(set1);
-    		
-    	/*	//Used if implementing multiple line graphs feature
-    		randData.getData().add(new XYChart.Data("1", 1));	//Sample data.
-    		randData.getData().add(new XYChart.Data("2", 7));
-    		randData.getData().add(new XYChart.Data("3", 8));
-    		randData.getData().add(new XYChart.Data("4", 3));
-    		randData.getData().add(new XYChart.Data("5", 2));
-    		randData.getData().add(new XYChart.Data("6", 5));
-    		randData.getData().add(new XYChart.Data("7", 6));
-    		if (randPressed==false) {
-    			btnRandom.getStyleClass().add("pressed");
-    			chrtStatistics.getData().remove(5);
-    			chrtStatistics.getData().add(5, randData);
-    			randPressed = true;
-    		} else {
-    			btnRandom.getStyleClass().removeAll("pressed");
-    			chrtStatistics.getData().remove(5);
-    			chrtStatistics.getData().add(5, blankData);
-    			randPressed = false;
-    		} */
        		
        		lblBest.setText("Best Score: " + p1.getBestRandE() + " / 10");
 			lblPrevious.setText("Previous Score: " + p1.getLastRandE() + " / 10");

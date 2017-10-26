@@ -70,8 +70,6 @@ public class NewUserController implements Initializable{
 		
 		ObservableList<String> userNames = controller.getUsers();
 		
-		
-		
 		String user = txtCreateUser.getText();
 		
 		if (user.equals("")) {
