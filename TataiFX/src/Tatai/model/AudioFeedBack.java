@@ -1,12 +1,6 @@
 package Tatai.model;
 
-import java.io.File;
-import java.io.IOException;
-
-import com.sun.media.jfxmedia.MediaPlayer;
-
 import javafx.scene.media.AudioClip;
-import javafx.scene.media.Media;
 
 /** Handles playback of pronunciation **/
 public class AudioFeedBack {
@@ -78,10 +72,5 @@ public class AudioFeedBack {
 		}
 	}
 	
-	
-	private static String getJarPath() {
-		File jarLocation = new File(ClassLoader.getSystemClassLoader().getResource(".").getPath());
-		return jarLocation.getAbsolutePath();
-	}
 	
 }

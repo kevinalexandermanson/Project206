@@ -3,7 +3,6 @@ package Tatai.view.NumberPractice;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.concurrent.ExecutionException;
 
 import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
@@ -14,7 +13,6 @@ import com.jfoenix.controls.JFXProgressBar;
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.effects.JFXDepthManager;
 
-import Tatai.model.AudioFeedBack;
 import Tatai.model.Recording;
 import Tatai.model.threads.PlayingThread;
 import Tatai.model.threads.PronunciationThread;
@@ -24,7 +22,6 @@ import Tatai.view.welcome.LoginController;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
-import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

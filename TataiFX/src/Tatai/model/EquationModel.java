@@ -4,7 +4,6 @@ import java.util.Random;
 
 import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
-import javax.script.ScriptException;
 
 import Tatai.Levels.Levels;
 

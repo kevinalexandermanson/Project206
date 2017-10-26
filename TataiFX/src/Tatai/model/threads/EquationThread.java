@@ -3,7 +3,6 @@ package Tatai.model.threads;
 import java.util.Map;
 
 import Tatai.Levels.LevelInterface;
-import Tatai.view.game.GameController;
 import javafx.concurrent.Task;
 import javafx.scene.control.Label;
 

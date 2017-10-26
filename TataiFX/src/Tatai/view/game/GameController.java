@@ -4,9 +4,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Random;
 import java.util.ResourceBundle;
-import java.util.concurrent.ExecutionException;
 
 import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
@@ -26,7 +24,6 @@ import Tatai.Levels.PractiseHard;
 import Tatai.Levels.RandomEasy;
 import Tatai.Levels.RandomHard;
 import Tatai.Levels.Subtraction;
-import Tatai.model.AudioFeedBack;
 import Tatai.model.Recording;
 import Tatai.model.threads.EquationThread;
 import Tatai.model.threads.PlayingThread;
@@ -35,7 +32,7 @@ import Tatai.model.threads.RecordingThread;
 import Tatai.model.threads.GUIUpdate;
 import Tatai.view.stats.PersonalStats;
 import Tatai.view.welcome.LoginController;
-import javafx.concurrent.Task;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -50,7 +47,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-import javafx.animation.Animation;
+
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
@@ -128,7 +125,6 @@ public class GameController implements Initializable, GUIUpdate {
 
 
 	private String level = "";
-	private Levels levelEnum;
 	private boolean secondAttempt = false;
 	private String currentQuestionNumber;
 	private Map<String, LevelInterface> map;
