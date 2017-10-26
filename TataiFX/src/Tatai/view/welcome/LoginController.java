@@ -68,19 +68,21 @@ public class LoginController implements Initializable{
 	private static PersonalStats CurrentPlayer;
 	private ObservableList<String> userNames;
 	private static String sep = java.io.File.separator;
+	static String jPath;
 	
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
 		JFXDepthManager.setDepth(cardPane,  4);
 		JFXDepthManager.setDepth(topPane, 5);
 
+		jPath = getJarPath();
 		// Create a folder named PlayerData if it doesn't already exist.
-		File PlayerData = new File(getJarPath() + sep + "PlayerData");
+		File PlayerData = new File(jPath + sep + "PlayerData");
 		if (!PlayerData.exists()) {
 			PlayerData.mkdir();
 			System.out.print("PlayerData folder created");
 		}
-
+		
 		userNames = FXCollections.observableArrayList();
 		loadUsers();
 		cmbbxSelectUser.setItems(userNames);
@@ -183,7 +185,7 @@ public class LoginController implements Initializable{
 	 */
 	private void loadUsers() {
 		//Get an array of players from the PlayerData folder. Found via .xml files.
-		File[] files = new File(getJarPath() + sep + "PlayerData").listFiles();
+		File[] files = new File(jPath + sep + "PlayerData").listFiles();
 		
 		for(int i = 0; i < files.length; i++){
 			String fileName = files[i].getName();
@@ -211,7 +213,7 @@ public class LoginController implements Initializable{
 	 */
 	public static void loadDataXML(String fileName){
 		try{
-			File file = new File(getJarPath() + sep + "PlayerData" + sep + fileName + ".xml");
+			File file = new File(jPath + sep + "PlayerData" + sep + fileName + ".xml");
 			
 			FileInputStream fis = new FileInputStream(file);
 			XMLDecoder decoder = new XMLDecoder(fis);
@@ -236,7 +238,7 @@ public class LoginController implements Initializable{
 			//Create the new player object.
 			PersonalStats p1 = new PersonalStats(name);
 			
-			FileOutputStream fos = new FileOutputStream(new File(getJarPath() + sep + "PlayerData" + sep + p1.getPlayerName() + ".xml"));
+			FileOutputStream fos = new FileOutputStream(new File(jPath + sep + "PlayerData" + sep + p1.getPlayerName() + ".xml"));
 			
 			XMLEncoder encoder = new XMLEncoder(fos);
 			encoder.writeObject(p1);
@@ -256,8 +258,8 @@ public class LoginController implements Initializable{
 		try{
 			PersonalStats p1 = getCurrentPlayerStats();
 			
-			FileOutputStream fos = new FileOutputStream(new File(getJarPath() + sep + "PlayerData" + sep + p1.getPlayerName() + ".xml"));
-			System.out.println("The folder path is: " + getJarPath() + sep + "PlayerData" + sep + p1.getPlayerName() + ".xml");
+			FileOutputStream fos = new FileOutputStream(new File(jPath + sep + "PlayerData" + sep + p1.getPlayerName() + ".xml"));
+			System.out.println("The folder path is: " + jPath + sep + "PlayerData" + sep + p1.getPlayerName() + ".xml");
 			
 			XMLEncoder encoder = new XMLEncoder(fos);
 			encoder.writeObject(p1);
