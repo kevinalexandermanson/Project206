@@ -3,6 +3,11 @@ package Tatai.model;
 import java.io.File;
 import java.io.IOException;
 
+import com.sun.media.jfxmedia.MediaPlayer;
+
+import javafx.scene.media.AudioClip;
+import javafx.scene.media.Media;
+
 public class AudioFeedBack {
 
 	private static final String MA = "ma";
@@ -60,20 +65,16 @@ public class AudioFeedBack {
 		
 	}
 	private static void playAudio(String number) {
-		try {
-			String cmd = "aplay " + getJarPath() + "/Recordings/" + number + ".wav";
-
-			ProcessBuilder builder = new ProcessBuilder("/bin/bash", "-c", cmd);
-
-			Process process = builder.start();
+		String musicFile =  "/Tatai/resources/Recordings/" + number + ".wav";
+		
+		AudioClip sound = new AudioClip(Tatai.view.Tatai.class.getResource(musicFile).toExternalForm());
+		
+		sound.play(); 
+		
+		//wait until sound finishes.
+		while (sound.isPlaying()) {
 			
-			process.waitFor();
-
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		} 
+		}
 	}
 	
 	
