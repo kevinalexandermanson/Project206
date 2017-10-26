@@ -15,8 +15,24 @@ public class Recording {
 	 * Records user using ffmpeg
 	 */
 	public void record() {
+		
+		//Creates directory if it does not exist
 		try {
-			String cmd = "ffmpeg -f alsa -i default -t 3 -acodec pcm_s16le -ar 22050 -ac 1 -y "+ getJarPath() + "/out.wav";
+			String cmd = "mkdir -p " + getJarPath() + "/RecordingData";
+
+			ProcessBuilder builder = new ProcessBuilder("/bin/bash", "-c", cmd);
+
+			Process process = builder.start();
+
+			process.waitFor();
+		}catch (Exception e) {
+			
+		}
+		
+		
+		// Record with ffmpeg
+		try {
+			String cmd = "ffmpeg -f alsa -i default -t 3 -acodec pcm_s16le -ar 22050 -ac 1 -y "+ getJarPath() + "/RecordingData/out.wav";
 
 			ProcessBuilder builder = new ProcessBuilder("/bin/bash", "-c", cmd);
 
@@ -32,7 +48,7 @@ public class Recording {
 
 		// HTK command
 		try {
-			String cmd = "HVite -H /home/se206/Documents/HTK/MaoriNumbers/HMMs/hmm15/macros -H /home/se206/Documents/HTK/MaoriNumbers/HMMs/hmm15/hmmdefs -C /home/se206/Documents/HTK/MaoriNumbers/user/configLR -w /home/se206/Documents/HTK/MaoriNumbers/user/wordNetworkNum -o SWT -l '*' -i " + getJarPath() + "/recout.mlf -p 0.0 -s 5.0  /home/se206/Documents/HTK/MaoriNumbers/user/dictionaryD /home/se206/Documents/HTK/MaoriNumbers/user/tiedList " + getJarPath() + "/out.wav";
+			String cmd = "HVite -H /home/se206/Documents/HTK/MaoriNumbers/HMMs/hmm15/macros -H /home/se206/Documents/HTK/MaoriNumbers/HMMs/hmm15/hmmdefs -C /home/se206/Documents/HTK/MaoriNumbers/user/configLR -w /home/se206/Documents/HTK/MaoriNumbers/user/wordNetworkNum -o SWT -l '*' -i " + getJarPath() + "/RecordingData/recout.mlf -p 0.0 -s 5.0  /home/se206/Documents/HTK/MaoriNumbers/user/dictionaryD /home/se206/Documents/HTK/MaoriNumbers/user/tiedList " + getJarPath() + "/RecordingData/out.wav";
 
 			ProcessBuilder builder = new ProcessBuilder("/bin/bash", "-c", cmd);
 
@@ -52,7 +68,7 @@ public class Recording {
 	 */
 	public void playRecording() {
 		try {
-			String cmd = "aplay " + getJarPath() + "/out.wav";
+			String cmd = "aplay " + getJarPath() + "/RecordingData/out.wav";
 
 			ProcessBuilder builder = new ProcessBuilder("/bin/bash", "-c", cmd);
 
@@ -142,7 +158,7 @@ public class Recording {
 		String recordedNumber = "";
 		
 		try {
-			String cmd = "sed '/sil/,/sil/!d' " + getJarPath() + "/recout.mlf";
+			String cmd = "sed '/sil/,/sil/!d' " + getJarPath() + "/RecordingData/recout.mlf";
 
 			ProcessBuilder builder = new ProcessBuilder("/bin/bash", "-c", cmd);
 
