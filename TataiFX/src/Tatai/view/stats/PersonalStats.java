@@ -8,56 +8,56 @@ import Tatai.Levels.Levels;
 
 //@XmlRootElement(name="personalStats")
 public class PersonalStats {
-	private int BestAdd = 0;
-	private int LastAdd = 0;
-	private int GamesPlayedAdd = 0;
-	private double MeanAdd = 0;
+	private int BestAdd;
+	private int LastAdd;
+	private int GamesPlayedAdd;
+	private double MeanAdd;
 	private int[] Last10Add = new int[NUMOFGAMESRECORDED];
 
-	private int BestSub = 0;
-	private int LastSub = 0;
-	private int GamesPlayedSub = 0;
-	private double MeanSub = 0;
+	private int BestSub;
+	private int LastSub;
+	private int GamesPlayedSub;
+	private double MeanSub;
 	private int[] Last10Sub = new int[NUMOFGAMESRECORDED];
 
-	private int BestMul = 0;
-	private int LastMul = 0;
-	private int GamesPlayedMul = 0;
-	private double MeanMul = 0;
+	private int BestMul;
+	private int LastMul;
+	private int GamesPlayedMul;
+	private double MeanMul;
 	private int[] Last10Mul = new int[NUMOFGAMESRECORDED];
 
-	private int BestDiv = 0;
-	private int LastDiv = 0;
-	private int GamesPlayedDiv = 0;
-	private double MeanDiv = 0;
+	private int BestDiv;
+	private int LastDiv;
+	private int GamesPlayedDiv;
+	private double MeanDiv;
 	private int[] Last10Div = new int[NUMOFGAMESRECORDED];
 	
-	private int BestPracE = 0;
-	private int LastPracE = 0;
-	private int GamesPlayedPracE = 0;
-	private double MeanPracE = 0;
+	private int BestPracE;
+	private int LastPracE;
+	private int GamesPlayedPracE;
+	private double MeanPracE;
 	private int[] Last10PracE = new int[NUMOFGAMESRECORDED];
 
-	private int BestPracH = 0;
-	private int LastPracH = 0;
-	private int GamesPlayedPracH = 0;
-	private double MeanPracH = 0;
+	private int BestPracH;
+	private int LastPracH;
+	private int GamesPlayedPracH;
+	private double MeanPracH;
 	private int[] Last10PracH = new int[NUMOFGAMESRECORDED];
 	
-	private int BestRandE = 0;
-	private int LastRandE = 0;
-	private int GamesPlayedRandE = 0;
-	private double MeanRandE = 0;
+	private int BestRandE;
+	private int LastRandE;
+	private int GamesPlayedRandE;
+	private double MeanRandE;
 	private int[] Last10RandE = new int[NUMOFGAMESRECORDED];
 	
-	private int BestRandH = 0;
-	private int LastRandH = 0;
-	private int GamesPlayedRandH = 0;
-	private double MeanRandH = 0;
+	private int BestRandH;
+	private int LastRandH;
+	private int GamesPlayedRandH;
+	private double MeanRandH;
 	private int[] Last10RandH = new int[NUMOFGAMESRECORDED];
 
 	private String PlayerName;
-	private static final int NUMOFGAMESRECORDED = 100;
+	private static final int NUMOFGAMESRECORDED = 10000;
 	
 	private ArrayList allLevels = new ArrayList();
 	
@@ -68,15 +68,12 @@ public class PersonalStats {
 	public PersonalStats() {
 	}
 
-	//The int and double are just filler. For some reason the xml file will only save if the constructor modified the field with a parameter.
 	public PersonalStats(String name) {
 		this.PlayerName = name;
 		this.resetScores();
 		
 		//System.out.println("Name is: " + this.PlayerName);
 		//System.out.println("getPlayerName test: " + this.getPlayerName());
-		//System.out.println("Best add is " + this.BestAdd);
-		//System.out.println("Best add is " + this.getBestAdd());
 	}
 
 	public void resetScores() {
@@ -135,18 +132,21 @@ public class PersonalStats {
 	 * calculates a new mean value. NOTE: This save the data in the OBJECT, not
 	 * the .xml. Saving the .xml occurs in another method, in the
 	 * LoginController.class
-	 * 
-	 * @param m
+	 * @param s: the level of the last game, as a string.
+	 * @param Score: the score for the latest game.
 	 */
 	public void recordLastGame(String s, int Score) {
-		Levels m = stringToLevels(s);// 0. Convert the string to a game mode enum.
-		setLast(m, Score);			// 1. Update the 'last' score.
-		checkBest(m, Score);		// 2. Check if the score beats the 'best' score. If so, update.
-		recordLastScore(m);			// 4. Add the new score to the array of recorded scores.
-		incrementGamesPlayed(m);	// 3. Update the number of games played.
-		newMean(m);					// 5. Update the mean.
+		Levels m = stringToLevels(s);	// 0. Convert the string to a game mode enum.
+		setLast(m, Score);				// 1. Update the 'last' score.
+		checkBest(m, Score);			// 2. Check if the score beats the 'best' score. If so, update.
+		recordLastScore(m);				// 4. Add the new score to the array of recorded scores.
+		incrementGamesPlayed(m);		// 3. Update the number of games played.
+		newMean(m);						// 5. Update the mean.
 	}
 
+	/**
+	 * Converts a string to a Levels enum. The opposite of the Levels.getLevel() method.
+	 */
 	private Levels stringToLevels(String s) {
 		switch (s) {
 		case "+":
@@ -170,9 +170,7 @@ public class PersonalStats {
 	}
 
 	/**
-	 * See recordLastGame for details...
-	 * @param m
-	 * @param Score
+	 * This sets the last score for a level to a parameter integer.
 	 */
 	private void setLast(Levels m, int Score) {
 		switch (m) {
@@ -206,8 +204,6 @@ public class PersonalStats {
 
 	/**
 	 * Check if the parameter score is better than the current best for a particular level.
-	 * @param m
-	 * @param Score
 	 */
 	public void checkBest(Levels m, int Score) {
 		switch (m) {
@@ -255,10 +251,7 @@ public class PersonalStats {
 	}
 
 	/**
-	 * This increases the gamesPlayed field for any Levels by 1.
-	 * 
-	 * @param m
-	 *            the Levels you wish to increment.
+	 * This increases the gamesPlayed field for a Levels by 1.
 	 */
 	public void incrementGamesPlayed(Levels m) {
 		switch (m) {
@@ -292,8 +285,6 @@ public class PersonalStats {
 	/**
 	 * This gets the last score you got, and puts it into the Last10 array for
 	 * whichever Levels you choose.
-	 * 
-	 * @param m
 	 */
 	public void recordLastScore(Levels m) {
 		switch (m) {
@@ -325,11 +316,8 @@ public class PersonalStats {
 	}
 
 	/**
-	 * Calculates the mean based on the number of games played and previous
-	 * scores.
-	 * 
-	 * @param m
-	 *            The Levels you wish to calculate the mean for.
+	 * Calculates the mean for a level based on the number of games played and
+	 * previous scores.
 	 */
 	public void newMean(Levels m) {
 		int total = 0;
@@ -401,6 +389,11 @@ public class PersonalStats {
 		}
 	}
 
+	
+	/**
+	 * Getters and setters, required in order to use .xml files.
+	 */
+	
 	public void setPlayerName(String name){
 		this.PlayerName=name;
 	}
@@ -742,10 +735,9 @@ public class PersonalStats {
 	/**
 	 * This method can change any statistic, given that you know the game mode
 	 * and statistic you want to change.
-	 * 
-	 * @param m
-	 * @param t
-	 * @param score
+	 * @param m: The level you wish to change the stat for.
+	 * @param t: The stat you wish to change for the level.
+	 * @param score: The score you wish to change it to.
 	 */
 	public void setStats(Levels m, statType t, int score) {
 		if (m == Levels.Addition) {

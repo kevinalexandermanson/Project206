@@ -14,7 +14,6 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URL;
-import java.nio.file.Path;
 import java.util.ResourceBundle;
 
 import com.jfoenix.controls.JFXButton;
@@ -277,6 +276,9 @@ public class LoginController implements Initializable{
 		}
 	}
 	
+	/**
+	 * Returns the name of the current Player
+	 */
 	public static String getCurrentPlayer() {
 		if (CurrentPlayer!=null) {
 			System.out.println("Cool beans, " + CurrentPlayer.getPlayerName() + " loaded.");
@@ -286,6 +288,10 @@ public class LoginController implements Initializable{
 			return null;
 		}
 	}
+	
+	/**
+	 * Returns the current player as a PersonalStats object.
+	 */
 	public static PersonalStats getCurrentPlayerStats() {
 		if (CurrentPlayer!=null) {
 			System.out.println("Cool beans, " + CurrentPlayer.getPlayerName() + " stats loaded.");
