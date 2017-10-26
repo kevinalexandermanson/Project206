@@ -123,13 +123,15 @@ public class LoginController implements Initializable{
 		if (cmbbxSelectUser.getValue() != null) {
 			String user = (String) cmbbxSelectUser.getValue();
 			
-			
+			//Sends a confirmation screen to make sure the user wishes to delete the player.
 			Alert alert = new Alert(AlertType.CONFIRMATION, "Delete " + user + " ?", ButtonType.YES, ButtonType.NO, ButtonType.CANCEL);
 			alert.showAndWait();
 
 			if (alert.getResult() == ButtonType.YES) {
 			    userNames.remove(user);
 			    File userFile = new File("./" + user + ".xml");
+			    
+			    //Checks the deletion was successful.
 			    if (userFile.delete()) {
 					Alert deleteSuccess = new Alert(AlertType.INFORMATION);
 					deleteSuccess.setTitle("Delete User");
@@ -173,8 +175,9 @@ public class LoginController implements Initializable{
 	 * Loads users from files
 	 */
 	private void loadUsers() {
-		//Get the list of players from the PlayerData folder.
+		//Get an array of players from the PlayerData folder. Found via .xml files.
 		File[] files = new File(getJarPath() + sep + "PlayerData").listFiles();
+		
 		for(int i = 0; i < files.length; i++){
 			String fileName = files[i].getName();
 			if(fileName.endsWith(".xml")||fileName.endsWith(".XML")) {
@@ -198,7 +201,6 @@ public class LoginController implements Initializable{
 
 	/**
 	 * Loads an persons profile stored in an xml file.
-	 * @param file
 	 */
 	public static void loadDataXML(String fileName){
 		try{
@@ -210,7 +212,7 @@ public class LoginController implements Initializable{
 			CurrentPlayer = (PersonalStats)decoder.readObject();
 			decoder.close();
 			fis.close();
-			System.out.println(CurrentPlayer.getPlayerName() + " currently loaded.");
+			//System.out.println(CurrentPlayer.getPlayerName() + " currently loaded.");
 			
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -221,8 +223,6 @@ public class LoginController implements Initializable{
 	/**
 	 * Create a new player, and save it to an .xml file. Note that this does not
 	 * load the newly created player. loadDataXML should be called separately.
-	 * 
-	 * @param name
 	 */
 	public static void createPlayerXML(String name){
 		try{
@@ -250,7 +250,6 @@ public class LoginController implements Initializable{
 	
 	/**
 	 * Overwrites the current players xml with their new statistics. Should be called to save their progress after each game.
-	 * @param name
 	 */
 	public static void saveCurrentPlayerXML(){
 		try{
@@ -281,7 +280,7 @@ public class LoginController implements Initializable{
 	 */
 	public static String getCurrentPlayer() {
 		if (CurrentPlayer!=null) {
-			System.out.println("Cool beans, " + CurrentPlayer.getPlayerName() + " loaded.");
+			//System.out.println("Cool beans, " + CurrentPlayer.getPlayerName() + " loaded.");
 			return CurrentPlayer.getPlayerName();
 		} else {
 			System.out.println("No player loaded.");
@@ -294,7 +293,7 @@ public class LoginController implements Initializable{
 	 */
 	public static PersonalStats getCurrentPlayerStats() {
 		if (CurrentPlayer!=null) {
-			System.out.println("Cool beans, " + CurrentPlayer.getPlayerName() + " stats loaded.");
+			//System.out.println("Cool beans, " + CurrentPlayer.getPlayerName() + " stats loaded.");
 			return CurrentPlayer;
 		} else {
 			System.out.println("No player loaded.");
@@ -302,6 +301,9 @@ public class LoginController implements Initializable{
 		}
 	}
 
+	/**
+	 * Returns the location the application is being run from as a String. Does not have a / at the end!
+	 */
 	private static String getJarPath() {
 		File jarLocation = new File(ClassLoader.getSystemClassLoader().getResource(".").getPath());
 		return jarLocation.getAbsolutePath();

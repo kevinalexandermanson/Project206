@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 import java.util.ResourceBundle;
 
 import javax.script.ScriptEngine;
@@ -173,8 +174,6 @@ public class GameController implements Initializable, GUIUpdate {
 
 	/**
 	 * Handles the quit button
-	 * @param event
-	 * @throws IOException
 	 */
 	@FXML
 	private void btnQuitHandler(ActionEvent event) throws IOException {
@@ -213,7 +212,6 @@ public class GameController implements Initializable, GUIUpdate {
 
 	/**
 	 * Handles the recording button
-	 * @param event
 	 */
 	@FXML
 	private void btnRecordHandler(ActionEvent event) {
@@ -222,8 +220,6 @@ public class GameController implements Initializable, GUIUpdate {
 		btnRecord.setVisible(false);
 		lblRecording.setText("Recording in progress...");
 		currentQuestionNumber = lblCurrentGameNumber.getText();
-
-
 
 		// Opens a new recording thread and starts the recording as a background task
 		RecordingThread task = new RecordingThread(this);
@@ -263,9 +259,14 @@ public class GameController implements Initializable, GUIUpdate {
 		if (num == NUMOFQUESTIONS) {
 			lblCurrentGameNumber.setText("Game Over");
 
+			//TODO :Get a random number to save the score as (ONLY FOR TESTING).
+			Random rand = new Random(); 
+			int value = rand.nextInt(10); 
+			
 			//Save the score
 			PersonalStats p1 = Tatai.view.welcome.LoginController.getCurrentPlayerStats();
-			p1.recordLastGame(level, currentScore());
+			//p1.recordLastGame(level, currentScore());
+			p1.recordLastGame(level,value);
 			Tatai.view.welcome.LoginController.saveCurrentPlayerXML();
 
 			//Show results
@@ -490,7 +491,6 @@ public class GameController implements Initializable, GUIUpdate {
 
 	/**
 	 * Sets the level of the game
-	 * @param level
 	 */
 	public void setLevel(String level) {
 		this.level = level;

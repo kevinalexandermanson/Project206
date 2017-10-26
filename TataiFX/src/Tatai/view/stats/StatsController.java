@@ -1,5 +1,4 @@
 package Tatai.view.stats;
-import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -7,7 +6,6 @@ import java.util.ResourceBundle;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.effects.JFXDepthManager;
 
-import Tatai.view.game.GameController;
 import Tatai.view.welcome.LoginController;
 import javafx.beans.binding.Bindings;
 import javafx.beans.binding.IntegerBinding;
@@ -25,13 +23,8 @@ import javafx.scene.chart.XYChart;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
-import javafx.scene.control.Tab;
-import javafx.scene.control.TabPane;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 /** Controller for the stats screen **/
@@ -99,26 +92,8 @@ public class StatsController implements Initializable{
 	    
 	    @FXML
 	    private AnchorPane statisticsPane;
-	    
-
-	    //Keep track of if a button has been pressed already
-	    private boolean addPressed=false;
-	    private boolean subPressed=false;
-	    private boolean mulPressed=false;
-	    private boolean divPressed=false;
-	    private boolean randPressed=false;
-	    private boolean pracPressed=false;
-	    
-	    XYChart.Series blankData = new XYChart.Series();
-	    XYChart.Series addData = new XYChart.Series();
-	    XYChart.Series subData = new XYChart.Series();
-	    XYChart.Series mulData = new XYChart.Series();
-	    XYChart.Series divData = new XYChart.Series();
-	    XYChart.Series randData = new XYChart.Series();
-	    XYChart.Series pracData = new XYChart.Series();
-	    
-	    public static final int NUMOFLEVELS = 6;
 	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override
 	public void initialize(URL url, ResourceBundle rb){
 		
@@ -165,13 +140,14 @@ public class StatsController implements Initializable{
     
     /**
      * Handles reset button
-     * @param event
      * @throws IOException
      */
     @FXML
     private void btnResetHandler(ActionEvent event) throws IOException {
+    	
+    	//Sends a confirmation screen to check they wish to reset their progress.
     	Alert alert = new Alert(AlertType.CONFIRMATION, "Are you sure you want to reset the statistics for " + LoginController.getCurrentPlayer() + "? This cannot be reversed.", ButtonType.YES, ButtonType.NO, ButtonType.CANCEL);
-	alert.showAndWait();
+    	alert.showAndWait();
 
 		if (alert.getResult() == ButtonType.YES) {
 			//Delete their data
@@ -202,7 +178,8 @@ public class StatsController implements Initializable{
 	}
     
     /* Handles which game mode to display stats for */
-    @FXML 
+    @SuppressWarnings({ "unchecked", "rawtypes" })
+	@FXML 
     private void btnModeHandler(ActionEvent event) {
 
 		PersonalStats p1 = Tatai.view.welcome.LoginController.getCurrentPlayerStats();
@@ -222,6 +199,7 @@ public class StatsController implements Initializable{
     		chrtStatistics.getData().clear();
     		chrtStatistics.getData().add(set1);
    
+    		//Changes the labels for each score.
     		lblBest.setText("Best Score: " + String.valueOf(p1.getBestPracE()) + " / 10");
 			lblPrevious.setText("Previous Score: " + p1.getLastPracE() + " / 10");
 			lblAverage.setText("Average Score: " + String.format("%.2f", p1.getMeanPracE()) + " / 10");
@@ -263,7 +241,7 @@ public class StatsController implements Initializable{
     		chrtStatistics.getData().clear();
     		chrtStatistics.getData().add(set1);
     		
-    		//Change the labels.
+    		//Changes the labels for each score.
 			lblBest.setText("Best Score: " + String.valueOf(p1.getBestAdd()) + " / 10");
 			lblPrevious.setText("Previous Score: " + p1.getLastAdd() + " / 10");
 			lblAverage.setText("Average Score: " + String.format("%.2f", p1.getMeanAdd()) + " / 10");
@@ -284,6 +262,7 @@ public class StatsController implements Initializable{
     		chrtStatistics.getData().clear();
     		chrtStatistics.getData().add(set1);
     		
+    		//Changes the labels for each score.
 			lblBest.setText("Best Score: " + p1.getBestSub() + " / 10");
 			lblPrevious.setText("Previous Score: " + p1.getLastSub() + " / 10");
 			lblAverage.setText("Average Score: " + String.format("%.2f", p1.getMeanSub()) + " / 10");
@@ -304,6 +283,7 @@ public class StatsController implements Initializable{
     		chrtStatistics.getData().clear();
     		chrtStatistics.getData().add(set1);
     		
+    		//Changes the labels for each score.
 			lblBest.setText("Best Score: " + p1.getBestMul() + " / 10");
 			lblPrevious.setText("Previous Score: " + p1.getLastMul() + " / 10");
 			lblAverage.setText("Average Score: " + String.format("%.2f", p1.getMeanMul()) + " / 10");
@@ -324,6 +304,7 @@ public class StatsController implements Initializable{
     		chrtStatistics.getData().clear();
     		chrtStatistics.getData().add(set1);
     		
+    		//Changes the labels for each score.
 			lblBest.setText("Best Score: " + p1.getBestDiv() + " / 10");
 			lblPrevious.setText("Previous Score: " + p1.getLastDiv() + " / 10");
 			lblAverage.setText("Average Score: " + String.format("%.2f", p1.getMeanDiv()) + " / 10");
@@ -344,6 +325,7 @@ public class StatsController implements Initializable{
     		chrtStatistics.getData().clear();
     		chrtStatistics.getData().add(set1);
        		
+    		//Changes the labels for each score.
        		lblBest.setText("Best Score: " + p1.getBestRandE() + " / 10");
 			lblPrevious.setText("Previous Score: " + p1.getLastRandE() + " / 10");
 			lblAverage.setText("Average Score: " + String.format("%.2f", p1.getMeanRandE()) + " / 10");
@@ -363,13 +345,17 @@ public class StatsController implements Initializable{
     		chrtStatistics.getData().clear();
     		chrtStatistics.getData().add(set1);
        		
+    		//Changes the labels for each score.
        		lblBest.setText("Best Score: " + p1.getBestRandH() + " / 10");
 			lblPrevious.setText("Previous Score: " + p1.getLastRandH() + " / 10");
 			lblAverage.setText("Average Score: " + String.format("%.2f", p1.getMeanRandH()) + " / 10");
 			lblGames.setText("Games Played: " + p1.getGamesPlayedRandH() + "");
-    	}													//End of if statement.
+    	}
     }
 
+    /**
+     * Sets the appearance of all buttons to unpressed.
+     */
     private void removeButtonStyles() {
     	btnPractise.getStyleClass().removeAll("pressed");
     	btnPractiseHard.getStyleClass().removeAll("pressed");
@@ -382,14 +368,5 @@ public class StatsController implements Initializable{
     	
     }
     
-    //Remove the data, add in blank data.
-    private void resetGraph(){
-    	chrtStatistics.getData().remove(0, 5);
-    	for (int i = 0; i < NUMOFLEVELS; i++) {
-			chrtStatistics.getData().add(i,blankData);
-		}
-    }
-
-
 
 }

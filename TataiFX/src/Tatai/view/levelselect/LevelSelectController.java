@@ -123,8 +123,6 @@ public class LevelSelectController implements Initializable {
 			btnPractise.setVisible(true);
 			btnMaths.setVisible(true);
 			btnNumberPractice.setVisible(false);
-			
-			
 		}
 	}
 	
@@ -179,7 +177,6 @@ public class LevelSelectController implements Initializable {
 	
 	/**
 	 * Handles which mode is selected
-	 * @param event
 	 * @throws IOException
 	 */
 	@FXML

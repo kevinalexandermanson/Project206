@@ -71,11 +71,11 @@ public class PersonalStats {
 	public PersonalStats(String name) {
 		this.PlayerName = name;
 		this.resetScores();
-		
-		//System.out.println("Name is: " + this.PlayerName);
-		//System.out.println("getPlayerName test: " + this.getPlayerName());
 	}
 
+	/**
+	 * Sets all scores to zero.
+	 */
 	public void resetScores() {
 		this. BestAdd = 0;
 		this. LastAdd = 0;

@@ -107,7 +107,7 @@ public class EquationModel {
 				// calculate a random number between 1 - 99
 				randomNumber = rand.nextInt(99) + 1;
 
-				// If the prevous operand was not "/" then append the number to the string
+				// If the previous operand was not "/" then append the number to the string
 				if (skip == false) {
 					builder.append(randomNumber);
 				}
@@ -115,7 +115,7 @@ public class EquationModel {
 
 				String operand = null;
 				
-				// Randomlly produce an operand
+				// Randomally produce an operand
 				int randomOperand = rand.nextInt(4);
 
 				if (randomOperand == 0) {

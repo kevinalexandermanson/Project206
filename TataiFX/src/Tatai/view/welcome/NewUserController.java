@@ -50,7 +50,10 @@ public class NewUserController implements Initializable{
     private JFXButton btnBack;
     
     
-
+    /**
+     * Handles the back button
+     * @throws IOException
+     */
     @FXML
     void btnBackHandler(ActionEvent event) throws IOException {
 		Parent parentLogin = FXMLLoader.load(getClass().getResource("/Tatai/view/welcome/Login.fxml"));
@@ -60,6 +63,10 @@ public class NewUserController implements Initializable{
 		stage.setScene(sceneLogin);
     }
 
+    /**
+     * Handles the create user button
+     * @throws IOException
+     */
     @FXML
     void btnCreateHandler(ActionEvent event) throws IOException {
 		FXMLLoader loader = new FXMLLoader();
@@ -72,44 +79,47 @@ public class NewUserController implements Initializable{
 		
 		String user = txtCreateUser.getText();
 		
+		//If the user enters an invalid username, then creation is disallowed, and the user is informed to select another name.
 		if (user.equals("")) {
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("User Creation");
 			alert.setHeaderText("Invalid Name");
 			alert.setContentText("Username cannot be blank!");
-
 			alert.showAndWait(); 
+			
 		} else if (userNames.contains(user)) {
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("User Creation");
 			alert.setHeaderText("User Exists");
 			alert.setContentText("Please enter a different name.");
-
 			alert.showAndWait(); 
+			
 		} else if (user.contains("]") || user.contains("[") || user.contains(":") || user.contains(";") || user.contains("|") || user.contains("=") || user.contains(",") || user.contains("*") || user.contains(".") || user.contains("\"") || user.contains("/") || user.contains("\\") || user.contains("<") || user.contains(">")) {
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("User Creation");
 			alert.setHeaderText("Invalid characters.");
 			alert.setContentText("Please enter a different name.");
-
 			alert.showAndWait(); 
+			
 		} else if (user.length() > 12) {
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("User Creation");
 			alert.setHeaderText("Name too long");
 			alert.setContentText("Please enter a name that is 12 characters or less.");
+			alert.showAndWait();
 			
-			alert.showAndWait(); 
 		} else {
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("User Creation");
 			alert.setHeaderText("Creation Success");
 			alert.setContentText(user + " has been created.");
-
 			alert.showAndWait(); 
+			
+			//Create the new user
 			LoginController.createPlayerXML(user);
 			controller.addUser(user);
 			
+			//Load the login screen
 			Scene sceneLogin = new Scene(parentLogin);
 			
 			Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -119,6 +129,9 @@ public class NewUserController implements Initializable{
 
     }
 
+    /**
+     * Initalization of the scene.
+     */
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		JFXDepthManager.setDepth(cardPane,  4);
