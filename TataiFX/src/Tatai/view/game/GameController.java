@@ -197,7 +197,7 @@ public class GameController implements Initializable, GUIUpdate {
 			stage.setScene(sceneLevelSelect);
 
 		} else {
-			Alert alert = new Alert(AlertType.CONFIRMATION, "Do you wish to quit? Your progress for the current game will not be saved.", ButtonType.YES, ButtonType.NO);
+			Alert alert = new Alert(AlertType.CONFIRMATION, "Do you wish to quit?\nYour current progress will not be saved.", ButtonType.YES, ButtonType.NO);
 			alert.showAndWait();
 
 			if (alert.getResult() == ButtonType.YES) {
