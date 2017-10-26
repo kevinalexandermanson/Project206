@@ -29,7 +29,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -197,20 +199,31 @@ public class NumberPracticeController implements Initializable, GUIUpdate {
 	  * Handles Enter button
 	  */
 	 @FXML
-	 private void btnEnterHandler() {
-		 String number = txtField.getText();
-		 if (isInteger(number)) {
-			 int num = Integer.parseInt(number);
-			 if (num > 0 && num < 100) {
-				 lblCurrentGameNumber.setText(number);
-				 currentNum = num;
-			 }
-		 }
+	private void btnEnterHandler() {
+		String number = txtField.getText();
+		boolean validInput = false;
+		
+		if (isInteger(number)) {
+			int num = Integer.parseInt(number);
+			if (num > 0 && num < 100) {
+				lblCurrentGameNumber.setText(number);
+				currentNum = num;
+				validInput = true;
+			}
+		}
+		//If the input was not valid, then display a notification to the user.
+		if (!validInput) {
+			Alert deleteCancel = new Alert(AlertType.INFORMATION);
+			deleteCancel.setTitle("Number Practice");
+			deleteCancel.setHeaderText("Invalid input");
+			deleteCancel.setContentText("Please enter an integer between 1-99.");
+			deleteCancel.showAndWait();
+		}
 
-	 }
+	}
 
 	 /**
-	  * Determinds if the string inputed is an integer
+	  * Determines if the string inputed is an integer
 	  * @param s
 	  * @return
 	  */

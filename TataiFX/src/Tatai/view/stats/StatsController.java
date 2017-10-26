@@ -172,7 +172,6 @@ public class StatsController implements Initializable{
 			deleteCancel.setTitle("Delete User");
 			deleteCancel.setHeaderText("");
 			deleteCancel.setContentText("Cancelled");
-
 			deleteCancel.showAndWait();
 		}
 	}

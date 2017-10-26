@@ -259,14 +259,13 @@ public class GameController implements Initializable, GUIUpdate {
 		if (num == NUMOFQUESTIONS) {
 			lblCurrentGameNumber.setText("Game Over");
 
-			//TODO :Get a random number to save the score as (ONLY FOR TESTING).
+		/*	//TODO :Get a random number to save the score as (ONLY FOR TESTING).
 			Random rand = new Random(); 
-			int value = rand.nextInt(10); 
+			int value = rand.nextInt(10); 	*/
 			
 			//Save the score
 			PersonalStats p1 = Tatai.view.welcome.LoginController.getCurrentPlayerStats();
-			//p1.recordLastGame(level, currentScore());
-			p1.recordLastGame(level,value);
+			p1.recordLastGame(level, currentScore());
 			Tatai.view.welcome.LoginController.saveCurrentPlayerXML();
 
 			//Show results
