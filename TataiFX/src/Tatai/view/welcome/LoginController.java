@@ -35,6 +35,7 @@ import Tatai.Levels.Levels;
 import Tatai.view.stats.PersonalStats;
 import Tatai.view.stats.PersonalStats.statType;
 
+/** Controller for the Login Screen **/
 public class LoginController implements Initializable{
 
 	 @FXML
@@ -114,6 +115,7 @@ public class LoginController implements Initializable{
 		stage.setScene(sceneLogin);
 	}
 	
+	/** Delete button handler **/
 	@FXML
 	private void btnDeleteUserHandler() {
 

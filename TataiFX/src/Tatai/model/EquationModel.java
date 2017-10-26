@@ -8,6 +8,7 @@ import javax.script.ScriptException;
 
 import Tatai.Levels.Levels;
 
+/** Deals with creating equations **/
 public class EquationModel {
 
 	private String equation;

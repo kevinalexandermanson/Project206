@@ -21,6 +21,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
+/** Controller for the Level Select Screen **/
 public class LevelSelectController implements Initializable {
 	  @FXML
 	    private AnchorPane root;

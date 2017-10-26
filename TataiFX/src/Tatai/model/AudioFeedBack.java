@@ -8,6 +8,7 @@ import com.sun.media.jfxmedia.MediaPlayer;
 import javafx.scene.media.AudioClip;
 import javafx.scene.media.Media;
 
+/** Handles playback of pronunciation **/
 public class AudioFeedBack {
 
 	private static final String MA = "ma";

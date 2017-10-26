@@ -7,6 +7,7 @@ import Tatai.view.game.GameController;
 import javafx.concurrent.Task;
 import javafx.scene.control.Label;
 
+/** Thread to handle equation generation **/
 public class EquationThread extends Task<Void>{
 
 	private Map<String, LevelInterface> map;

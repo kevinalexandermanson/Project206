@@ -37,6 +37,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
+/** Controller for Number Practice Mode Screen **/
 public class NumberPracticeController implements Initializable, GUIUpdate {
 
 	@FXML

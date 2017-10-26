@@ -34,6 +34,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+/** Controller for the stats screen **/
 public class StatsController implements Initializable{
 	
 	 @FXML

@@ -5,6 +5,7 @@ import com.jfoenix.controls.JFXButton;
 import Tatai.model.Recording;
 import javafx.concurrent.Task;
 
+/** Thread to handle recording play back **/
 public class PlayingThread extends Task<Void>  {
 
 	private JFXButton btnPlayRecording;

@@ -5,6 +5,7 @@ import com.jfoenix.controls.JFXButton;
 import Tatai.model.AudioFeedBack;
 import javafx.concurrent.Task;
 
+/** Thread to handle pronunciation playback **/
 public class PronunciationThread extends Task<Void> {
 
 	private int currentNum;

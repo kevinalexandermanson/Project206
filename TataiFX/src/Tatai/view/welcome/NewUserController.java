@@ -23,6 +23,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
+/** Controller for the New User Screen **/
 public class NewUserController implements Initializable{
 
     @FXML

@@ -5,6 +5,7 @@ import java.util.concurrent.ExecutionException;
 import Tatai.model.Recording;
 import javafx.concurrent.Task;
 
+/** Thread to handle recording **/
 public class RecordingThread extends Task<Recording> {
 
 	private GUIUpdate task;

@@ -22,6 +22,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
+/** Controller for the Help Screen **/
 public class TutorialController implements Initializable {
 	 @FXML
     private AnchorPane root;
