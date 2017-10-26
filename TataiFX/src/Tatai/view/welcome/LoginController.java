@@ -9,9 +9,11 @@ import javafx.fxml.Initializable;
 
 import java.beans.XMLDecoder;
 import java.beans.XMLEncoder;
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -95,21 +97,33 @@ public class LoginController implements Initializable{
 	@FXML
 	private void btnLoginHandler(ActionEvent event) throws IOException {
 
-		if (cmbbxSelectUser.getValue() != null) {
-			loadDataXML(cmbbxSelectUser.getValue());
-			Parent parentLevelSelect = FXMLLoader.load(getClass().getResource("/Tatai/view/levelselect/LevelSelect.fxml"));
-			Scene sceneLevelSelect = new Scene(parentLevelSelect);
-			
-			Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-			stage.setScene(sceneLevelSelect);
-		}
-		else {
+		File file = new File(getJarPath() + sep + "PlayerData" + sep + cmbbxSelectUser.getValue() + ".xml");
+		
+		BufferedReader br = new BufferedReader(new FileReader(file));     
+		
+		if (!(br.readLine() == null)) {
+			if (cmbbxSelectUser.getValue() != null) {
+				loadDataXML(cmbbxSelectUser.getValue());
+				Parent parentLevelSelect = FXMLLoader.load(getClass().getResource("/Tatai/view/levelselect/LevelSelect.fxml"));
+				Scene sceneLevelSelect = new Scene(parentLevelSelect);
+				
+				Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+				stage.setScene(sceneLevelSelect);
+			} else {
+				Alert alert = new Alert(AlertType.INFORMATION);
+				alert.setTitle("Login");
+				alert.setHeaderText("Please select a user.");
+				alert.setContentText("No user selected.");
+	
+				alert.showAndWait(); 
+			}
+		} else {
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("Login");
-			alert.setHeaderText("Please select a user.");
-			alert.setContentText("No user selected.");
+			alert.setHeaderText("Loading");
+			alert.setContentText("User data is currently being generated. \nPlease wait a few moments and try again.");
 
-			alert.showAndWait(); 
+			alert.showAndWait(); 	
 		}
 
 
