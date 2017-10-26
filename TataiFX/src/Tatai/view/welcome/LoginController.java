@@ -174,8 +174,8 @@ public class LoginController implements Initializable{
 	 * Loads users from files
 	 */
 	private void loadUsers() {
-		
-		File[] files = new File("./").listFiles();
+		//Get the list of players from the PlayerData folder.
+		File[] files = new File(getJarPath() + sep + "PlayerData").listFiles();
 		for(int i = 0; i < files.length; i++){
 			String fileName = files[i].getName();
 			if(fileName.endsWith(".xml")||fileName.endsWith(".XML")) {
