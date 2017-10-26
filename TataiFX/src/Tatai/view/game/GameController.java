@@ -246,7 +246,7 @@ public class GameController implements Initializable, GUIUpdate {
 		// New Timeline to handle process bar timing
 		Timeline timeline = new Timeline(
 				new KeyFrame(Duration.ZERO, new KeyValue(progressBar.progressProperty(), 0)),
-				new KeyFrame(Duration.seconds(3.5), e-> {
+				new KeyFrame(Duration.seconds(3.3), e-> {
 					if (thread.isAlive() != true) {
 						progressBar.setVisible(false);
 					}

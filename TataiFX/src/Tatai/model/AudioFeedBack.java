@@ -11,6 +11,7 @@ public class AudioFeedBack {
 
 		Numbers[] maoriNumbers = Numbers.values();
 		
+		//Determines if the number is between 1-9 are plays the corresponding file
 		if (number <= 10) {
 			for (Numbers maoriNumber : maoriNumbers) {
 				if (number == maoriNumber.getIntegerValue()) {
@@ -19,6 +20,7 @@ public class AudioFeedBack {
 			}
 			
 		}
+		//Determines if the number is between 11-19 are plays the corresponding files
 		else if (number > 10 && number < 20) {
 			number = number % 10;
 			playAudio(Numbers.Ten.getNumber());
@@ -29,6 +31,7 @@ public class AudioFeedBack {
 				}
 			}
 		}
+		//Determines if the number is a multiple of 10 are plays the corresponding files
 		else if (number >= 20 && number < 100) {
 			int lasDigit = number % 10;
 			int firstDigit = number / 10;
@@ -41,6 +44,7 @@ public class AudioFeedBack {
 				}
 				playAudio(Numbers.Ten.getNumber());
 			}
+			// All other numbers will then be played with the usual structure
 			else {
 				for (Numbers maoriNumber : maoriNumbers) {
 					if (firstDigit == maoriNumber.getIntegerValue()) {
@@ -59,6 +63,11 @@ public class AudioFeedBack {
 		
 		
 	}
+	
+	/**
+	 * Plays the corresponding pronunciation file according to the inputed number
+	 * @param number
+	 */
 	private static void playAudio(String number) {
 		String musicFile =  "/Tatai/resources/Recordings/" + number + ".wav";
 		

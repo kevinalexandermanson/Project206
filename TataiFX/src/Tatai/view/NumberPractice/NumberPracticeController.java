@@ -126,6 +126,8 @@ public class NumberPracticeController implements Initializable, GUIUpdate {
 		 lblCurrentGameNumber.setText(Integer.toString(currentNum));
 		 btnEnter.setDisable(false);
 		 lblRecording.setText("");
+		 root.getStyleClass().removeAll("rootWrong");
+		 root.getStyleClass().removeAll("rootCorrect");
 	 }
 
 	 /**
