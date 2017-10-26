@@ -32,6 +32,8 @@ import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.effects.JFXDepthManager;
 
 import Tatai.Levels.Levels;
+import Tatai.model.threads.CreateXMLThread;
+import Tatai.model.threads.SaveXMLThread;
 import Tatai.view.stats.PersonalStats;
 import Tatai.view.stats.PersonalStats.statType;
 
@@ -232,42 +234,22 @@ public class LoginController implements Initializable{
 	 * load the newly created player. loadDataXML should be called separately.
 	 */
 	public static void createPlayerXML(String name){
-		try{
-			//Create the new player object.
-			PersonalStats p1 = new PersonalStats(name);
-			
-			FileOutputStream fos = new FileOutputStream(new File(getJarPath() + sep + "PlayerData" + sep + p1.getPlayerName() + ".xml"));
-			
-			XMLEncoder encoder = new XMLEncoder(fos);
-			encoder.writeObject(p1);
-			encoder.close();
-			fos.close();
-			System.out.println("New player: "+ p1.getPlayerName() + " successfully created.");
-
-		} catch(IOException e) {
-			e.printStackTrace();
-		}
+		
+		CreateXMLThread loadDataTask = new CreateXMLThread(name);
+		Thread thread = new Thread(loadDataTask);
+		thread.start();
 	}
 	
 	/**
 	 * Overwrites the current players xml with their new statistics. Should be called to save their progress after each game.
 	 */
 	public static void saveCurrentPlayerXML(){
-		try{
-			PersonalStats p1 = getCurrentPlayerStats();
-			
-			FileOutputStream fos = new FileOutputStream(new File(getJarPath() + sep + "PlayerData" + sep + p1.getPlayerName() + ".xml"));
-			System.out.println("The folder path is: " + getJarPath() + sep + "PlayerData" + sep + p1.getPlayerName() + ".xml");
-			
-			XMLEncoder encoder = new XMLEncoder(fos);
-			encoder.writeObject(p1);
-			encoder.close();
-			fos.close();
-			System.out.println("Stats for "+ p1.getPlayerName() + " successfully saved.");
-
-		} catch(IOException e) {
-			e.printStackTrace();
-		}
+		
+		PersonalStats p1 = getCurrentPlayerStats();
+		SaveXMLThread saveXMLTask = new SaveXMLThread(p1);
+		Thread thread = new Thread(saveXMLTask);
+		thread.start();
+		
 	}
 	
 	/**
