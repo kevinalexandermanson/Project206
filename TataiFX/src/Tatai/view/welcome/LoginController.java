@@ -236,12 +236,6 @@ public class LoginController implements Initializable{
 			//Create the new player object.
 			PersonalStats p1 = new PersonalStats(name);
 			
-	/*		//Create a folder named PlayerData if it doesn't already exist.
-			File PlayerData = new File(getJarPath() + sep + "PlayerData");
-			if (!PlayerData.exists()) {
-				PlayerData.mkdir();
-	            System.out.print("PlayerData folder created");
-	        }	*/
 			FileOutputStream fos = new FileOutputStream(new File(getJarPath() + sep + "PlayerData" + sep + p1.getPlayerName() + ".xml"));
 			
 			XMLEncoder encoder = new XMLEncoder(fos);
@@ -262,12 +256,6 @@ public class LoginController implements Initializable{
 		try{
 			PersonalStats p1 = getCurrentPlayerStats();
 			
-	/*		//Create a folder named PlayerData if it doesn't already exist.
-			File PlayerData = new File(getJarPath() + sep + "PlayerData");
-			if (!PlayerData.exists()) {
-				PlayerData.mkdir();
-	            System.out.print("PlayerData folder created");
-	        }	*/
 			FileOutputStream fos = new FileOutputStream(new File(getJarPath() + sep + "PlayerData" + sep + p1.getPlayerName() + ".xml"));
 			System.out.println("The folder path is: " + getJarPath() + sep + "PlayerData" + sep + p1.getPlayerName() + ".xml");
 			

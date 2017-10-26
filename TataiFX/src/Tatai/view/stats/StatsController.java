@@ -146,7 +146,7 @@ public class StatsController implements Initializable{
     private void btnResetHandler(ActionEvent event) throws IOException {
     	
     	//Sends a confirmation screen to check they wish to reset their progress.
-    	Alert alert = new Alert(AlertType.CONFIRMATION, "Are you sure you want to reset the statistics for " + LoginController.getCurrentPlayer() + "? This cannot be reversed.", ButtonType.YES, ButtonType.NO, ButtonType.CANCEL);
+    	Alert alert = new Alert(AlertType.CONFIRMATION, "Are you sure you want to reset the statistics for " + LoginController.getCurrentPlayer() + "?\n This cannot be reversed.", ButtonType.YES, ButtonType.NO, ButtonType.CANCEL);
     	alert.showAndWait();
 
 		if (alert.getResult() == ButtonType.YES) {

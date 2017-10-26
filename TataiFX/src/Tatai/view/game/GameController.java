@@ -130,6 +130,7 @@ public class GameController implements Initializable, GUIUpdate {
 	private String currentQuestionNumber;
 	private Map<String, LevelInterface> map;
 	private int currentNum;
+	private boolean endOfGame = false;
 
 	private static final int NUMOFQUESTIONS = 10;
 	private static final String NUMOFQUESTIONSSTRING = String.valueOf(NUMOFQUESTIONS);
@@ -180,10 +181,13 @@ public class GameController implements Initializable, GUIUpdate {
 		//If the last question has been played, then record the stats first, before exiting.
 		if(event.getSource().equals(btnReturnToMenu)){
 
-			PersonalStats p1 = Tatai.view.welcome.LoginController.getCurrentPlayerStats();
-			p1.recordLastGame(level, currentScore());
-			Tatai.view.welcome.LoginController.saveCurrentPlayerXML();
-
+			//If they've played the last question, then save the game.
+			if (endOfGame) {
+				PersonalStats p1 = Tatai.view.welcome.LoginController.getCurrentPlayerStats();
+				p1.recordLastGame(level, currentScore());
+				Tatai.view.welcome.LoginController.saveCurrentPlayerXML();
+			}
+			
 			// Loads the level select screen
 			Parent parentLevelSelect = FXMLLoader.load(getClass().getResource("/Tatai/view/levelselect/LevelSelect.fxml"));
 			Scene sceneLevelSelect = new Scene(parentLevelSelect);
@@ -196,6 +200,13 @@ public class GameController implements Initializable, GUIUpdate {
 			alert.showAndWait();
 
 			if (alert.getResult() == ButtonType.YES) {
+				//If they've played the last question, then save the game.
+				if (endOfGame) {
+					PersonalStats p1 = Tatai.view.welcome.LoginController.getCurrentPlayerStats();
+					p1.recordLastGame(level, currentScore());
+					Tatai.view.welcome.LoginController.saveCurrentPlayerXML();
+				}
+				
 				// Loads the level select screen
 				Parent parentLevelSelect = FXMLLoader.load(getClass().getResource("/Tatai/view/levelselect/LevelSelect.fxml"));
 				Scene sceneLevelSelect = new Scene(parentLevelSelect);
@@ -220,6 +231,12 @@ public class GameController implements Initializable, GUIUpdate {
 		btnRecord.setVisible(false);
 		lblRecording.setText("Recording in progress...");
 		currentQuestionNumber = lblCurrentGameNumber.getText();
+		
+		//If the current question is the last question, then set the endOfGame variable to true.
+		if(currentQuestion()==NUMOFQUESTIONS){
+			endOfGame = true;
+			System.out.println("endOfGame is now true.");
+		}
 
 		// Opens a new recording thread and starts the recording as a background task
 		RecordingThread task = new RecordingThread(this);
@@ -373,7 +390,9 @@ public class GameController implements Initializable, GUIUpdate {
 	 */
 	@FXML
 	private void btnPlayAgainHandler() {
-
+		endOfGame = false;
+		System.out.println("endOfGame is now false");
+		
 		// Sets up the game screen again
 		btnPlayAgain.setVisible(false);
 		btnReturnToMenu.setVisible(false);
@@ -394,6 +413,8 @@ public class GameController implements Initializable, GUIUpdate {
 	 */
 	@FXML
 	private void btnNextLevelHandler() {
+		endOfGame = false;
+		System.out.println("endOfGame is now false");
 
 		// Moves the player to the next level
 		level = Levels.PractiseHard.getLevel();
