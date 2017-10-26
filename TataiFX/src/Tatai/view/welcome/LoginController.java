@@ -152,7 +152,7 @@ public class LoginController implements Initializable{
 
 			if (alert.getResult() == ButtonType.YES) {
 			    userNames.remove(user);
-			    File userFile = new File("./" + user + ".xml");
+			    File userFile = new File(getJarPath() + sep + "PlayerData" + sep + user + ".xml");
 			    
 			    //Checks the deletion was successful.
 			    if (userFile.delete()) {
