@@ -14,6 +14,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Path;
 import java.util.ResourceBundle;
 
 import com.jfoenix.controls.JFXButton;
@@ -67,7 +68,8 @@ public class LoginController implements Initializable{
 
 	private static PersonalStats CurrentPlayer;
 	private ObservableList<String> userNames;
-
+	private static String sep = java.io.File.separator;
+	
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
 		JFXDepthManager.setDepth(cardPane,  4);
@@ -201,8 +203,8 @@ public class LoginController implements Initializable{
 	 */
 	public static void loadDataXML(String fileName){
 		try{
-			File file = new File("./" + fileName + ".xml");
-
+			File file = new File(getJarPath() + sep + "PlayerData" + sep + fileName + ".xml");
+			
 			FileInputStream fis = new FileInputStream(file);
 			XMLDecoder decoder = new XMLDecoder(fis);
 
@@ -218,30 +220,6 @@ public class LoginController implements Initializable{
 	}
 
 	/**
-	 * Whenever we wish to change a statistic for a player, this method is
-	 * called. The player object is modified, then the .xml file is updated.
-	 * 
-	 * @param player
-	 * @param mode
-	 * @param stat
-	 * @param Score
-	 */
-	public static void changeStatXML(PersonalStats player, Levels mode, statType stat, int Score){
-		try{
-			player.setStats(mode, stat, Score);
-
-			FileOutputStream fos = new FileOutputStream(new File("./" + player.getPlayerName() + ".xml"));
-			XMLEncoder encoder = new XMLEncoder(fos);
-			encoder.writeObject(player);
-			encoder.close();
-			fos.close();
-
-		} catch(IOException e) {
-			e.printStackTrace();
-		}
-	}
-
-	/**
 	 * Create a new player, and save it to an .xml file. Note that this does not
 	 * load the newly created player. loadDataXML should be called separately.
 	 * 
@@ -249,9 +227,17 @@ public class LoginController implements Initializable{
 	 */
 	public static void createPlayerXML(String name){
 		try{
+			//Create the new player object.
 			PersonalStats p1 = new PersonalStats(name);
-
-			FileOutputStream fos = new FileOutputStream(new File("./" + p1.getPlayerName() + ".xml"));
+			
+			//Create a folder named PlayerData if it doesn't already exist.
+			File PlayerData = new File(getJarPath() + sep + "PlayerData");
+			if (!PlayerData.exists()) {
+				PlayerData.mkdir();
+	            System.out.print("PlayerData folder created");
+	        }
+			FileOutputStream fos = new FileOutputStream(new File(getJarPath() + sep + "PlayerData" + sep + p1.getPlayerName() + ".xml"));
+			
 			XMLEncoder encoder = new XMLEncoder(fos);
 			encoder.writeObject(p1);
 			encoder.close();
@@ -270,8 +256,16 @@ public class LoginController implements Initializable{
 	public static void saveCurrentPlayerXML(){
 		try{
 			PersonalStats p1 = getCurrentPlayerStats();
-
-			FileOutputStream fos = new FileOutputStream(new File("./" + p1.getPlayerName() + ".xml"));
+			
+			//Create a folder named PlayerData if it doesn't already exist.
+			File PlayerData = new File(getJarPath() + sep + "PlayerData");
+			if (!PlayerData.exists()) {
+				PlayerData.mkdir();
+	            System.out.print("PlayerData folder created");
+	        }
+			FileOutputStream fos = new FileOutputStream(new File(getJarPath() + sep + "PlayerData" + sep + p1.getPlayerName() + ".xml"));
+			System.out.println("The folder path is: " + getJarPath() + sep + "PlayerData" + sep + p1.getPlayerName() + ".xml");
+			
 			XMLEncoder encoder = new XMLEncoder(fos);
 			encoder.writeObject(p1);
 			encoder.close();
@@ -302,5 +296,8 @@ public class LoginController implements Initializable{
 		}
 	}
 
-
+	private static String getJarPath() {
+		File jarLocation = new File(ClassLoader.getSystemClassLoader().getResource(".").getPath());
+		return jarLocation.getAbsolutePath();
+	}
 }
