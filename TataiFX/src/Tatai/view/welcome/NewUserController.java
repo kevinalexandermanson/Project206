@@ -88,6 +88,13 @@ public class NewUserController implements Initializable{
 			alert.setContentText("Please enter a different name.");
 
 			alert.showAndWait(); 
+		} else if (user.contains("]") || user.contains("[") || user.contains(":") || user.contains(";") || user.contains("|") || user.contains("=") || user.contains(",") || user.contains("*") || user.contains(".") || user.contains("\"") || user.contains("/") || user.contains("\\") || user.contains("<") || user.contains(">")) {
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setTitle("User Creation");
+			alert.setHeaderText("Invalid characters.");
+			alert.setContentText("Please enter a different name.");
+
+			alert.showAndWait(); 
 		} else if (user.length() > 12) {
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("User Creation");
