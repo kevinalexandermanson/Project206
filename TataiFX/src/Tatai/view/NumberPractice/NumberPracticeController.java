@@ -227,48 +227,9 @@ public class NumberPracticeController implements Initializable, GUIUpdate {
 		 return true;
 	 }
 
-
-	 //------------------------------Threads------------------------------------------------------//
-
 	 /**
-	  * Handles Pronunciation
+	  * Updates the GUI when the recording is finished
 	  */
-	 /*private class PronunciationThread extends Task<Void>  {
-
-		@Override
-		protected Void call() throws Exception {
-			AudioFeedBack.playFeedBackAudio(currentNum);
-			return null;
-		}
-
-		@Override 
-		protected void succeeded() {
-			btnPronunciation.setDisable(false);
-			super.succeeded();
-
-		}
-	}*/
-
-	 /**
-	  * Handles Playing recordings
-	  */
-	 /*private class PlayingThread extends Task<Void>  {
-
-		@Override
-		protected Void call() throws Exception {
-			Recording recording = new Recording();
-			recording.playRecording();
-			return null;
-		}
-
-		@Override 
-		protected void succeeded() {
-			btnPlayRecording.setDisable(false);
-			super.succeeded();
-
-		}
-	}*/
-
 	 public void updateGUI(Recording recording) {
 
 		 progressBar.setVisible(false);
