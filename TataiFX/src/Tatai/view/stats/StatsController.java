@@ -108,6 +108,7 @@ public class StatsController implements Initializable{
 		PersonalStats p1 = Tatai.view.welcome.LoginController.getCurrentPlayerStats();
 		
 		chrtStatistics.setTitle("Practise (Easy)");
+		chrty.setLabel("Score");
 		XYChart.Series set1 = new XYChart.Series();
 		int[] results = p1.getLast10PracE();
 		for(int i=0; i<p1.getGamesPlayedPracE(); i++){
@@ -146,7 +147,7 @@ public class StatsController implements Initializable{
     private void btnResetHandler(ActionEvent event) throws IOException {
     	
     	//Sends a confirmation screen to check they wish to reset their progress.
-    	Alert alert = new Alert(AlertType.CONFIRMATION, "Are you sure you want to reset the statistics for " + LoginController.getCurrentPlayer() + "?\n This cannot be reversed.", ButtonType.YES, ButtonType.NO, ButtonType.CANCEL);
+    	Alert alert = new Alert(AlertType.CONFIRMATION, "Reset the statistics for " + LoginController.getCurrentPlayer() + "?\nThis cannot be reversed.", ButtonType.YES, ButtonType.NO, ButtonType.CANCEL);
     	alert.showAndWait();
 
 		if (alert.getResult() == ButtonType.YES) {
@@ -167,12 +168,6 @@ public class StatsController implements Initializable{
 			Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 			stage.setScene(sceneStats);
 
-		} else {
-			Alert deleteCancel = new Alert(AlertType.INFORMATION);
-			deleteCancel.setTitle("Delete User");
-			deleteCancel.setHeaderText("");
-			deleteCancel.setContentText("Cancelled");
-			deleteCancel.showAndWait();
 		}
 	}
     
