@@ -180,13 +180,6 @@ public class GameController implements Initializable, GUIUpdate {
 	private void btnQuitHandler(ActionEvent event) throws IOException {
 		//If the last question has been played, then record the stats first, before exiting.
 		if(event.getSource().equals(btnReturnToMenu)){
-
-			//If they've played the last question, then save the game.
-			if (endOfGame) {
-				PersonalStats p1 = Tatai.view.welcome.LoginController.getCurrentPlayerStats();
-				p1.recordLastGame(level, currentScore());
-				Tatai.view.welcome.LoginController.saveCurrentPlayerXML();
-			}
 			
 			// Loads the level select screen
 			Parent parentLevelSelect = FXMLLoader.load(getClass().getResource("/Tatai/view/levelselect/LevelSelect.fxml"));
@@ -200,12 +193,6 @@ public class GameController implements Initializable, GUIUpdate {
 			alert.showAndWait();
 
 			if (alert.getResult() == ButtonType.YES) {
-				//If they've played the last question, then save the game.
-				if (endOfGame) {
-					PersonalStats p1 = Tatai.view.welcome.LoginController.getCurrentPlayerStats();
-					p1.recordLastGame(level, currentScore());
-					Tatai.view.welcome.LoginController.saveCurrentPlayerXML();
-				}
 				
 				// Loads the level select screen
 				Parent parentLevelSelect = FXMLLoader.load(getClass().getResource("/Tatai/view/levelselect/LevelSelect.fxml"));
