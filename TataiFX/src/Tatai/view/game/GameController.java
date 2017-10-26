@@ -183,7 +183,7 @@ public class GameController implements Initializable, GUIUpdate {
 	@FXML
 	private void btnQuitHandler(ActionEvent event) throws IOException {
 		//If the last question has been played, then record the stats first, before exiting.
-		if(currentQuestion()==NUMOFQUESTIONS){
+		if(event.getSource().equals(btnReturnToMenu)){
 
 			PersonalStats p1 = Tatai.view.welcome.LoginController.getCurrentPlayerStats();
 			p1.recordLastGame(level, currentScore());
